@@ -15,23 +15,39 @@
   <div class="bg-orb orb-2" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
-  <header class="site-header container">
-    <a class="brand" href="#hero">Pasha.dev</a>
-    <nav class="nav">
+<header class="site-header container">
+  <a class="brand" href="#hero">Pasha.dev</a>
+  
+  <div class="menu-wrapper">
+    <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </button>
+    <div class="menu-overlay" id="menu-overlay">
+  <div class="menu-card">
+    <nav class="mobile-nav">
       <a href="#about" data-i18n="nav-about">About me</a>
       <a href="#projects" data-i18n="nav-projects">Projects</a>
       <a href="#contacts" data-i18n="nav-contacts">Contacts</a>
-      <select id="lang-select" class="lang-picker" title="Change language">
-        <option value="en">EN</option>
-        <option value="uk">UA</option>
-        <option value="ru">RU</option>
-        <option value="it">IT</option>
-        <option value="de">DE</option>
-        <option value="fr">FR</option>
-        <option value="zh">ZH (中文)</option>
-      </select>
+      
+      <div class="lang-scroll-area"> 
+        <select id="lang-select" class="lang-picker" title="Change language">
+          <option value="en">English</option>
+          <option value="uk">Українська</option>
+          <option value="ru">Русский</option>
+          <option value="it">Italiano</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="zh">中文</option>
+        </select>
+      </div>
     </nav>
-  </header>
+  </div>
+</div>
+
+</header>
+
 
   <main>
     <section id="hero" class="hero container reveal reveal-fade">
