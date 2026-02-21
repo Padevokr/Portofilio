@@ -410,6 +410,32 @@ h3 {
   transition: transform 120ms linear, opacity 700ms ease;
 }
 
+.lang-picker {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  outline: none;
+  margin-left: 1rem;
+  transition: 0.3s;
+}
+
+.lang-picker:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.lang-picker option {
+  background: #0f172a; 
+  color: white;
+}
+
+
+
 @media (max-width: 960px) {
   .project-card {
     grid-column: span 12;
@@ -456,6 +482,11 @@ h3 {
   }
 
   * {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
+
     transition-duration: 0ms !important;
     animation-duration: 0ms !important;
   }
