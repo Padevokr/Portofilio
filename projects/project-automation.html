@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Giveaway Bot & Admin Dashboard — система управления Telegram-аккаунтами с ботом, админ-панелью и аналитикой.">
+  <title>Project | Giveaway Bot & Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header container">
+    <a class="brand" href="../index.html#hero">pasha.dev</a>
+    <nav class="nav">
+      <a href="../index.html#about">Обо мне</a>
+      <a href="../index.html#projects">Проекты</a>
+      <a href="../index.html#contacts">Контакты</a>
+    </nav>
+  </header>
+
+  <main class="project-page">
+    <section class="project-hero container reveal reveal-fade">
+      <a class="back-link" href="../index.html#projects">← Назад к проектам</a>
+      <p class="eyebrow">Case Study</p>
+      <h1>Giveaway Bot & Admin Dashboard</h1>
+      <p class="tagline">
+        Интегрированная система управления Telegram-аккаунтами: админ-панель на сайте,
+        автоматизированный бот, контроль доступа, аналитика и безопасность в одном продукте.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">Активная разработка</span>
+        <span class="badge neutral">Python + Asyncio</span>
+        <span class="badge neutral">Bot + Web + DB</span>
+      </div>
+    </section>
+
+    <section class="container section reveal reveal-slide scroll-zoom">
+      <h2>Общая концепция</h2>
+      <article class="glass-card project-panel">
+        <p>
+          Главная цель системы — автоматизировать участие аккаунтов в розыгрышах,
+          обеспечить анонимность пользователей и дать администратору полный контроль
+          через веб-интерфейс. Архитектура модульная и масштабируемая: новые функции
+          подключаются без переработки всего кода.
+        </p>
+      </article>
+    </section>
+
+    <section class="container section reveal reveal-scale scroll-zoom">
+      <h2>Пользователи и доступ</h2>
+      <div class="split-grid">
+        <article class="glass-card mini-card">
+          <h3>Для администратора</h3>
+          <ul class="project-points project-points-large">
+            <li>Создание пользователей с ID, именем и юзернеймом.</li>
+            <li>Назначение прав, ограничений и уровней доступа.</li>
+            <li>Привязка одного или нескольких аккаунтов к пользователю.</li>
+            <li>Полный контроль доступа к функциям бота.</li>
+          </ul>
+        </article>
+        <article class="glass-card mini-card">
+          <h3>Для пользователя</h3>
+          <ul class="project-points project-points-large">
+            <li>Доступ к боту только после активации через сайт.</li>
+            <li>Работа с несколькими аккаунтами в рамках одного ID.</li>
+            <li>Просмотр статистики: участие, успешность, активность.</li>
+            <li>Безопасный сценарий работы с кодами и паролями.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section reveal reveal-slide scroll-zoom">
+      <h2>Telegram-бот</h2>
+      <article class="glass-card project-panel">
+        <ul class="project-points project-points-large">
+          <li>Автоматически участвует в розыгрышах: подписки, капчи, действия по сценарию.</li>
+          <li>Отслеживает активность аккаунтов и показывает статистику пользователю.</li>
+          <li>Синхронизирован с сайтом через БД: изменения в панели сразу влияют на бота.</li>
+          <li>Асинхронная обработка позволяет вести много аккаунтов одновременно.</li>
+          <li>В действиях участвуют только активные и авторизованные аккаунты.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="container section reveal reveal-scale scroll-zoom">
+      <h2>База данных и админ-панель</h2>
+      <div class="architecture-grid">
+        <article class="glass-card architecture-card">
+          <h3>Структура БД</h3>
+          <p>Пользователи, аккаунты, статистика и логи. Состояние сохраняется при перезапусках, доступна аналитика и экспорт.</p>
+        </article>
+        <article class="glass-card architecture-card">
+          <h3>Управление</h3>
+          <p>Добавление, редактирование и удаление пользователей/аккаунтов, управление действиями бота и доступом.</p>
+        </article>
+        <article class="glass-card architecture-card">
+          <h3>Интерфейс</h3>
+          <p>Таблицы, карточки, фильтрация, визуализация активности, hover-эффекты и адаптивная навигация.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container section reveal reveal-slide scroll-zoom">
+      <h2>Безопасность и анонимность</h2>
+      <article class="glass-card project-panel">
+        <ul class="project-points project-points-large">
+          <li>Личные данные скрыты и доступны только администратору.</li>
+          <li>Доступ к аккаунтам защищён кодами и паролями.</li>
+          <li>Логируются действия бота и админа без раскрытия приватной информации.</li>
+          <li>Модульная архитектура снижает риски ошибок и уязвимостей.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="container section reveal reveal-scale scroll-zoom">
+      <h2>Ключевые преимущества</h2>
+      <article class="glass-card project-panel">
+        <ul class="project-points project-points-large">
+          <li>Централизованное управление пользователями и аккаунтами.</li>
+          <li>Автоматизация участия в розыгрышах без ручной рутины.</li>
+          <li>Подробная аналитика по аккаунтам и пользователям.</li>
+          <li>Безопасность, анонимность и прозрачность управления.</li>
+          <li>Лёгкое расширение и подключение новых модулей.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="container section reveal reveal-slide scroll-zoom">
+      <h2>Технологический стек</h2>
+      <div class="stack-grid">
+        <div class="glass-card stack-item"><strong>Python</strong><span>Логика бота и серверная обработка</span></div>
+        <div class="glass-card stack-item"><strong>Telegram Bot API</strong><span>Взаимодействие с пользователями</span></div>
+        <div class="glass-card stack-item"><strong>HTML / CSS / JS</strong><span>Веб-интерфейс и UX</span></div>
+        <div class="glass-card stack-item"><strong>SQLite / PostgreSQL</strong><span>Хранение пользователей и статистики</span></div>
+        <div class="glass-card stack-item"><strong>Asyncio</strong><span>Асинхронная обработка множества аккаунтов</span></div>
+      </div>
+    </section>
+
+    <section class="container section reveal reveal-scale scroll-zoom">
+      <h2>Визуальная галерея</h2>
+      <div class="gallery-grid">
+        <figure class="glass-card shot-card">
+          <img src="https://images.pexels.com/photos/7567606/pexels-photo-7567606.jpeg?cs=srgb&dl=pexels-jackie-dev-7567606.jpg&fm=jpg" alt="Админ-панель и управление аккаунтами">
+          <figcaption>Админ-контур управления: доступы, роли, контроль действий.</figcaption>
+        </figure>
+        <figure class="glass-card shot-card">
+          <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1600" alt="Telegram и мобильное взаимодействие пользователей">
+          <figcaption>Пользовательский контур: Telegram-взаимодействие и сценарии участия.</figcaption>
+        </figure>
+        <figure class="glass-card shot-card">
+          <img src="https://images.pexels.com/photos/17489159/pexels-photo-17489159/free-photo-of-technology-computer-data-server.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Инфраструктура и стабильная серверная работа">
+          <figcaption>Инфраструктура: стабильность, хранение данных и масштабирование.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="container section reveal reveal-slide scroll-zoom">
+      <h2>Итог</h2>
+      <article class="glass-card project-panel">
+        <p>
+          Это не просто бот, а полноценная система: каждое действие под контролем,
+          каждый аккаунт защищён, а администратор видит полную картину в реальном времени.
+          Решение подходит для масштабируемой автоматизации, модульного развития
+          и прозрачного управления Telegram-аккаунтами.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <script src="../scripts.js"></script>
+</body>
+</html>
