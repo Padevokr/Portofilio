@@ -73,3 +73,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+const menuBtn = document.getElementById('menu-btn');
+const overlay = document.getElementById('menu-overlay');
+const navLinks = document.querySelectorAll('.mobile-nav a');
+
+
+menuBtn.addEventListener('click', () => {
+    overlay.classList.toggle('active');
+});
+
+
+document.addEventListener('click', (e) => {
+    if (!overlay.contains(e.target) && !menuBtn.contains(e.target)) {
+        overlay.classList.remove('active');
+    }
+});
+
+
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        overlay.classList.remove('active');
+    });
+});
+
