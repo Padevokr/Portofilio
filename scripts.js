@@ -3,7 +3,7 @@ async function setLanguage(lang) {
     try {
         const response = await fetch(`./locales/${lang}.json`);
         if (!response.ok) throw new Error('Translation file not found');
-        const translations = await response.json();
+        const translations = await response.json(); 
 
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
