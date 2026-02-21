@@ -1,0 +1,11 @@
+{
+        "nav-about": "Chi sono", "nav-projects": "Progetti", "nav-contacts": "Contatti",
+        "hero-eyebrow": "Portfolio Sviluppatore", "hero-name": "Pasha", "hero-btn": "Vedi progetti",
+        "hero-tagline": "Sviluppo sistemi di automazione, strumenti Telegram, sistemi web e PC. Costruisco progetti focalizzati su struttura e stabilità.",
+        "about-title": "Chi sono", "about-text": "Sono una persona che ritiene importante capire come e perché tutto funziona. Mi interessano i sistemi: tecnici, logici e umani. Non amo il caos e le decisioni casuali, quindi scompongo ogni idea nella sua struttura e la porto a uno stato funzionante e stabile.",
+        "about-h-approach": "Approccio", "about-app-1": "Prima l'architettura, poi l'implementazione", "about-app-2": "Analisi dei punti di guasto e scalabilità", "about-app-3": "Un sistema, non una raccolta di funzioni",
+        "about-h-prog": "Programmazione", "about-prog-1": "Python, logica asincrona, interfacce web", "about-prog-2": "Automazione, eventi, database", "about-prog-3": "Struttura leggibile e codice estensibile",
+        "about-h-tg": "Telegram", "about-tg-1": "Bot come parte di un sistema completo", "about-tg-2": "Bundle: bot + interfaccia web + database", "about-tg-3": "Monitoraggio e controllo in tempo reale",
+        "about-h-val": "Valori", "about-val-1": "Onestà e schiettezza", "about-val-2": "Dialogo calmo e professionale", "about-val-3": "Stile curato nel codice e nell'interfaccia",
+        "proj-title": "Progetti", "proj-badge": "1 attivo", "proj-name": "Giveaway Bot & Admin Dashboard", "proj-status": "In sviluppo", "proj-more": "Dettagli", "cont-title": "Contatti"
+    }
