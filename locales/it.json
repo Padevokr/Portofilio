@@ -32,7 +32,6 @@
         "proj-more": "Dettagli", 
         "cont-title": "Contatti",
         "cont-note-text": "Se i pulsanti di contatto non funzionano, trovi qui i miei contatti diretti:",
-        "cont-note-tg-label": "Telegram:",
         "cont-note-gh-label": "GitHub:",
         "cont-note-mail-label": "Gmail:",
     "pa-back": "← Torna ai progetti",
@@ -88,4 +87,5 @@
     "pa-gal-cap3": "Infrastruttura: stabilità, archiviazione dei dati e scalabilità.",
     "pa-res-title": "Risultato",
     "pa-res-text": "Non è solo un bot, ma un sistema completo: ogni azione è sotto controllo, ogni account è protetto e l'amministratore vede il quadro completo in tempo reale. La soluzione è adatta per automazione scalabile, sviluppo modulare e gestione trasparente degli account Telegram."
+
 }
