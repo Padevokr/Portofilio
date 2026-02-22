@@ -31,7 +31,6 @@
     "proj-more": "Mehr Details", 
     "cont-title": "Kontakte",
     "cont-note-text": "Wenn die Kontakt-Buttons auf Ihrem Gerät nicht funktionieren, finden Sie hier meine direkten Kontaktdaten:",
-    "cont-note-tg-label": "Telegram:",
     "cont-note-gh-label": "GitHub:",
     "cont-note-mail-label": "Gmail:",
     "pa-back": "← Zurück zu den Projekten",
@@ -88,3 +87,4 @@
     "pa-res-title": "Ergebnis",
     "pa-res-text": "Dies ist nicht nur ein Bot, sondern ein vollständiges System: Jede Aktion steht unter Kontrolle, jedes Konto ist geschützt und der Administrator sieht das Gesamtbild in Echtzeit. Die Lösung eignet sich für skalierbare Automatisierung, modulare Entwicklung und transparente Verwaltung von Telegram-Konten."
 }
+
