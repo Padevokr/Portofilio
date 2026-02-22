@@ -31,7 +31,6 @@
     "proj-more": "更多详情", 
     "cont-title": "联系方式",
     "cont-note-text": "如果您的设备上的联系人按钮无法使用，请直接联系我:",
-    "cont-note-tg-label": "Telegram:",
     "cont-note-gh-label": "GitHub:",
     "cont-note-mail-label": "Gmail:",
     "pa-back": "← 返回项目",
@@ -88,3 +87,4 @@
     "pa-res-title": "成果",
     "pa-res-text": "这不仅仅是一个机器人，而是一套完整的系统：每个操作都受到控制，每个账号都受到保护，管理员可以实时查看整体情况。该解决方案适用于可扩展自动化、模块化开发以及透明的 Telegram 账号管理。"
 }
+
