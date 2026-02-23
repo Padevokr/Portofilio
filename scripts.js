@@ -1,4 +1,4 @@
-// 1. ФУНКЦИЯ ПЕРЕВОДА
+
 async function setLanguage(lang) {
     try {
         const isProjectPage = window.location.pathname.includes('/projects/');
@@ -11,7 +11,6 @@ async function setLanguage(lang) {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[key]) {
-                // Используем innerHTML для поддержки тегов в JSON
                 el.innerHTML = translations[key];
             }
         });
@@ -22,24 +21,20 @@ async function setLanguage(lang) {
     }
 }
 
-// 2. ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ
 document.addEventListener('DOMContentLoaded', () => {
     const langSelect = document.getElementById('lang-select');
     const savedLang = localStorage.getItem('lang') || 'en';
 
-    // Сразу переводим любую страницу (главную или в папке projects)
     setLanguage(savedLang); 
 
     if (langSelect) {
         langSelect.value = savedLang;
         langSelect.addEventListener('change', (e) => {
             setLanguage(e.target.value);
-            // Update button text dynamically if it exists
             updateReadMoreButtonText(e.target.value);
         });
     }
 
-    // --- ЛОГИКА МЕНЮ ---
     const menuBtn = document.getElementById('menu-btn');
     const overlay = document.getElementById('menu-overlay');
     const navLinks = document.querySelectorAll('.mobile-nav a');
@@ -54,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => link.addEventListener('click', () => overlay.classList.remove('active')));
     }
 
-    // --- READ MORE LOGIC ---
     const readMoreBtn = document.getElementById('read-more-btn');
     const hideDetailsBtn = document.getElementById('hide-details-btn');
     const projectDetails = document.getElementById('project-details');
@@ -62,10 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (readMoreBtn && projectDetails) {
         readMoreBtn.addEventListener('click', () => {
             projectDetails.classList.add('expanded');
-            // Hide the Read More button itself
             readMoreBtn.parentElement.style.display = 'none';
             
-            // Smooth scroll to the details section with a slight offset
             setTimeout(() => {
                 const headerOffset = 100;
                 const elementPosition = projectDetails.getBoundingClientRect().top;
@@ -82,54 +74,50 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hideDetailsBtn && projectDetails) {
         hideDetailsBtn.addEventListener('click', () => {
             projectDetails.classList.remove('expanded');
-            // Show the Read More button again
             if (readMoreBtn) {
                 readMoreBtn.parentElement.style.display = 'flex';
-                // Scroll back to the Read More button
                 readMoreBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
     }
 
-    // --- SIDEBAR ACTIVE STATE LOGIC ---
     const sections = document.querySelectorAll('.details-content section');
     const navLinksList = document.querySelectorAll('.toc a');
 
     if (sections.length > 0 && navLinksList.length > 0) {
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const scrollY = window.scrollY;
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // Offset for fixed header (approx 100px)
-                if (scrollY >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
+        const observerOptions = {
+            root: null,
+            rootMargin: '-15% 0px -80% 0px', 
+            threshold: 0
+        };
 
-            navLinksList.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    navLinksList.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
             });
-        });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => observer.observe(section));
     }
 });
 
 function updateReadMoreButtonText(lang) {
-    // This function is less critical now that we hide the button,
-    // but useful if we ever switch back to a toggle style.
     const readMoreBtn = document.getElementById('read-more-btn');
     if (readMoreBtn) {
-        // Just refresh translation
         setLanguage(lang);
     }
 }
 
-// --- ТВОИ АНИМАЦИИ (REVEAL & ZOOM) ---
 const revealItems = document.querySelectorAll(".reveal");
 const zoomSections = document.querySelectorAll(".scroll-zoom");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
