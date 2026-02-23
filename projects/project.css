@@ -1,0 +1,162 @@
+.project-page {
+  padding-bottom: 3rem;
+}
+
+.project-hero {
+  padding: 5.8rem 0 2.6rem;
+}
+
+.project-hero h1 {
+  max-width: 18ch;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  transition: color var(--ease), text-shadow var(--ease);
+}
+
+.back-link:hover {
+  color: var(--text);
+  text-shadow: 0 0 14px rgba(111, 211, 255, 0.35);
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.badge.neutral {
+  color: #d6deef;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.project-panel {
+  padding: 1.25rem;
+}
+
+.project-panel p {
+  margin: 0;
+  color: #d3dbef;
+}
+
+.architecture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.mini-card {
+  padding: 1rem;
+}
+
+.mini-card h3 {
+  margin: 0 0 0.55rem;
+}
+
+.architecture-card {
+  padding: 1rem;
+}
+
+.architecture-card h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+}
+
+.architecture-card p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.project-points-large {
+  margin-bottom: 0;
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.stack-item {
+  padding: 0.85rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.stack-item strong {
+  font-size: 0.94rem;
+  color: #eef4ff;
+}
+
+.stack-item span {
+  font-size: 0.85rem;
+  color: #d0daef;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.shot-card {
+  overflow: hidden;
+}
+
+.shot-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: contain; 
+  background: rgba(0, 0, 0, 0.2); 
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+
+.shot-card figcaption {
+  margin: 0;
+  padding: 0.75rem 0.8rem 0.85rem;
+  font-size: 0.93rem;
+  color: #d3dbef;
+}
+
+@media (max-width: 980px) {
+  .split-grid,
+  .architecture-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stack-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .project-hero {
+    padding-top: 4.7rem;
+  }
+
+  .split-grid,
+  .architecture-grid,
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
