@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const sections = document.querySelectorAll('.details-content section');
-    const navLinksList = document.querySelectorAll('.toc a');
+    const navLinksList = document.querySelectorAll('.toc a, .mobile-toc a');
 
     if (sections.length > 0 && navLinksList.length > 0) {
         const observerOptions = {
@@ -91,20 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
             threshold: 0
         };
 
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    
-                    navLinksList.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
+const observerCallback = (entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            
+            navLinksList.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${id}`) {
+                    link.classList.add('active');
+                    if (link.classList.contains('toc-item')) {
+                        link.parentElement.scrollTo({
+                            left: link.offsetLeft - (link.parentElement.offsetWidth / 2) + (link.offsetWidth / 2),
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             });
-        };
+        }
+    });
+};
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         sections.forEach(section => observer.observe(section));
