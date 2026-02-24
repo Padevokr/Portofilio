@@ -245,3 +245,61 @@
   }
 }
 
+.project-page .architecture-grid {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.project-page .architecture-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100%;
+}
+
+.project-page .architecture-card h3 {
+    color: var(--text);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.project-page .architecture-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+[data-i18n] {
+    transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .architecture-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+.long-read-card {
+    padding: 2.5rem;
+    margin-top: 2rem;
+    line-height: 1.8;
+}
+
+.text-block {
+    margin-bottom: 2.5rem;
+}
+
+.text-block h3 {
+    color: #eef4ff;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    border-left: 3px solid #6fd3ff;
+    padding-left: 1rem;
+}
+
+.text-block p {
+    color: #d3dbef;
+    text-align: justify;
+}
+

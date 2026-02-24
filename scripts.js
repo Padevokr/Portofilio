@@ -1,4 +1,3 @@
-
 async function setLanguage(lang) {
     try {
         const isProjectPage = window.location.pathname.includes('/projects/');
@@ -8,11 +7,40 @@ async function setLanguage(lang) {
         if (!response.ok) throw new Error('Translation file not found');
         const translations = await response.json();
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const techId = urlParams.get('id');
+        const fromSource = urlParams.get('from');
+
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[key]) {
-                el.innerHTML = translations[key];
+            let text = "";
+
+            if (techId && translations[techId]) {
+                if (fromSource === 'project-automation') {
+                    if (key === "full-sec-project-case-text") {
+                        text = translations[techId]["full-sec-project-case-text"];
+                        el.closest('article').style.display = 'block';
+                    } else if (key === "full-sec-project-case-title") {
+                        text = translations[techId]["full-sec-project-case-title"];
+                        el.closest('article').style.display = 'block';
+                    } else if (key.startsWith("full-sec-1") || key.startsWith("full-sec-2")) {
+                        el.closest('article').style.display = 'none';
+                    } else {
+                        text = translations[techId][key] || translations[key];
+                    }
+                } else {
+                    if (key.includes("project-case")) {
+                        el.closest('article').style.display = 'none';
+                    } else {
+                        text = translations[techId][key] || translations[key];
+                        if (el.closest('article')) el.closest('article').style.display = 'block';
+                    }
+                }
+            } else {
+                text = translations[key];
             }
+
+            if (text) el.innerHTML = text;
         });
         
         localStorage.setItem('lang', lang);
@@ -20,6 +48,9 @@ async function setLanguage(lang) {
         console.error("Translation error:", error);
     }
 }
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const langSelect = document.getElementById('lang-select');
