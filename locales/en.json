@@ -124,6 +124,10 @@
     "pa-nav-stack": "Stack",
     "pa-nav-gal": "Gallery",
     "pa-nav-res": "Result",
+    "view-all-projects": "To the project list",
+
+
+
     "python": {
         "tech-page-title": "Python: A Fundamental Breakdown of the Ecosystem",
         "tech-main-desc": "Python is a high-level language that combines incredible readability with powerful low-level capabilities. Its architecture is built around the CPython virtual machine, which executes compiled bytecode, making it an ideal tool for automation and backend development.",

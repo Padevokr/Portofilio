@@ -123,7 +123,11 @@
     "pa-nav-stack": "Stack",
     "pa-nav-gal": "Galerie",
     "pa-nav-res": "Résultat",
-    
+    "view-all-projects": "Vers la liste des projets",
+
+
+
+
     "python": {
         "tech-page-title": "Python: Une analyse fondamentale de l'écosystème",
         "tech-main-desc": "Python est un langage de haut niveau qui allie une lisibilité incroyable à de puissantes capacités de bas niveau. Son architecture est construite autour de la machine virtuelle CPython, qui exécute du bytecode compilé, ce qui en fait un outil idéal pour l'automatisation et le développement back-end.",
