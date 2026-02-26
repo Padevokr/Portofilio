@@ -37,7 +37,7 @@
     "flow-4-desc": "Garantire la stabilità.",
     "flow-5-title": "Supporto",
     "flow-5-desc": "Affidabilità a lungo termine.",
-    "proj-title": "Progetti", 
+    "proj-title": "Progetti e risorse", 
     "proj-badge": "1 attivo", 
     "proj-name": "Giveaway Bot & Admin Dashboard", 
     "proj-status": "In sviluppo", 
@@ -48,7 +48,7 @@
     "cont-note-text": "Se i pulsanti di contatto non funzionano, trovi qui i miei contatti diretti:",
     "cont-note-gh-label": "GitHub:",
     "cont-note-mail-label": "Gmail:",
-    "pa-back": "← Torna ai progetti",
+    "pa-back": "← Torna ai Progetti e risorsei",
     "pa-eyebrow": "Caso di studio",
     "pa-tagline": "Sistema integrato di gestione degli account Telegram: pannello di amministrazione web, bot automatizzato, controllo degli accessi e analisi in un unico prodotto.",
     "pa-status": "In sviluppo attivo",
@@ -125,7 +125,9 @@
     "pa-nav-gal": "Galleria",
     "pa-nav-res": "Risultato",
     "view-all-projects": "Vai all'elenco dei progetti",
+    "view-tools": "Vai alla pagina delle risorse",
     "all-projects-title": "Il sito web del mio progetto",
+    "back-link": "← Indietro",
 
 
 

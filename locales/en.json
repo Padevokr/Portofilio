@@ -36,7 +36,7 @@
     "flow-4-desc": "Ensuring stability and handling edge cases.",
     "flow-5-title": "Support",
     "flow-5-desc": "Monitoring and maintaining long-term reliability.",
-    "proj-title": "Projects", 
+    "proj-title": "Projects & Resources", 
     "proj-badge": "1 active", 
     "proj-name": "Giveaway Bot & Admin Dashboard", 
     "proj-status": "Active development", 
@@ -47,7 +47,7 @@
     "cont-note-text": "If the contact buttons do not work on your device, you can find my direct contact data here:",
     "cont-note-gh-label": "GitHub:",
     "cont-note-mail-label": "Gmail:",
-    "pa-back": "← Back to projects",
+    "pa-back": "← Back to Projects & Resources",
     "pa-eyebrow": "Case Study",
     "pa-tagline": "Integrated Telegram account management system: website admin panel, automated bot, access control and analytics in one product.",
     "pa-status": "In active development",
@@ -125,7 +125,9 @@
     "pa-nav-gal": "Gallery",
     "pa-nav-res": "Result",
     "view-all-projects": "To the project list",
+    "view-tools": "To the resources page",
     "all-projects-title": "My project website",
+    "back-link": "← Back",
 
 
 

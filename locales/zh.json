@@ -36,7 +36,7 @@
     "flow-4-desc": "确保系统稳定。",
     "flow-5-title": "支持",
     "flow-5-desc": "长期可靠维护。",
-    "proj-title": "项目", 
+    "proj-title": "项目与资源", 
     "proj-badge": "1 个活跃项目", 
     "proj-name": "抽奖机器人与管理面板", 
     "proj-status": "正在积极开发中", 
@@ -47,7 +47,7 @@
     "cont-note-text": "如果您的设备上的联系人按钮无法使用，请直接联系我:",
     "cont-note-gh-label": "GitHub:",
     "cont-note-mail-label": "Gmail:",
-    "pa-back": "← 返回项目",
+    "pa-back": "← 返回项目与资源",
     "pa-eyebrow": "案例研究",
     "pa-tagline": "一体化 Telegram 账号管理系统：网站管理后台、自动化机器人、访问控制与数据分析集成于一个产品中。",
     "pa-status": "正在积极开发中",
@@ -124,7 +124,9 @@
     "pa-nav-gal": "画廊",
     "pa-nav-res": "成果",
     "view-all-projects": "转到项目列表",
+    "view-tools": "转到资源页面",
     "all-projects-title": "我的项目网站",
+    "back-link": "← 返回",
 
 
 

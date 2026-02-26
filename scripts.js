@@ -1,7 +1,13 @@
 async function setLanguage(lang) {
     try {
-        const isProjectPage = window.location.pathname.includes('/projects/');
-        const pathPrefix = isProjectPage ? '../' : './';
+        const path = window.location.pathname;
+        let pathPrefix = './';
+
+        if (path.includes('/Auto.Tg/') || path.includes('/What_is/')) {
+            pathPrefix = '../../'; 
+        } else if (path.includes('/projects/')) {
+            pathPrefix = '../';   
+        }
         
         const response = await fetch(`${pathPrefix}locales/${lang}.json`);
         if (!response.ok) throw new Error('Translation file not found');
@@ -18,19 +24,19 @@ async function setLanguage(lang) {
             if (techId && translations[techId]) {
                 if (fromSource === 'project-automation') {
                     if (key === "full-sec-project-case-text") {
-                        text = translations[techId]["full-sec-project-case-text"];
-                        el.closest('article').style.display = 'block';
+                        text = translations[techId][key];
+                        if (el.closest('article')) el.closest('article').style.display = 'block';
                     } else if (key === "full-sec-project-case-title") {
                         text = translations[techId]["full-sec-project-case-title"];
-                        el.closest('article').style.display = 'block';
+                        if (el.closest('article')) el.closest('article').style.display = 'block';
                     } else if (key.startsWith("full-sec-1") || key.startsWith("full-sec-2")) {
-                        el.closest('article').style.display = 'none';
+                        if (el.closest('article')) el.closest('article').style.display = 'none';
                     } else {
                         text = translations[techId][key] || translations[key];
                     }
                 } else {
                     if (key.includes("project-case")) {
-                        el.closest('article').style.display = 'none';
+                        if (el.closest('article')) el.closest('article').style.display = 'none';
                     } else {
                         text = translations[techId][key] || translations[key];
                         if (el.closest('article')) el.closest('article').style.display = 'block';
@@ -48,6 +54,8 @@ async function setLanguage(lang) {
         console.error("Translation error:", error);
     }
 }
+
+
 
 
 

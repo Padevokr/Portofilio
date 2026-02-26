@@ -618,14 +618,12 @@ h3 {
   padding-top: 1rem;
 }
 
-/* Контейнер для выравнивания */
 .lang-container {
   display: flex;
   align-items: center;
   margin-left: 1.5rem;
 }
 
-/* Стилизация выпадающего списка */
 .lang-picker {
   background: rgba(255, 255, 255, 0.05);
   -webkit-backdrop-filter: blur(12px);
@@ -800,12 +798,10 @@ h3 {
   }
 }
 
-/* Anchor offset for fixed header */
 :target {
   scroll-margin-top: 6rem; 
 }
 
-/* Stack Items in Project Page */
 .stack-item {
   padding: 0.85rem;
   display: grid;
@@ -837,6 +833,10 @@ h3 {
   align-items: center;
   padding: 1.5rem 2rem;
   text-decoration: none;
+}
+
+.projects-link-wrapper + .projects-link-wrapper {
+  margin-top: 1rem;
 }
 
 .btn-text {
