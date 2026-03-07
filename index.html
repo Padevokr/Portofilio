@@ -15,46 +15,75 @@
   <div class="bg-orb orb-2" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
-<header class="site-header container">
-  <a class="brand" href="#hero">Dekrov.dev</a>
-  
-  <div class="menu-wrapper">
-    <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </button>
-    <div class="menu-overlay" id="menu-overlay">
-  <div class="menu-card">
-    <nav class="mobile-nav">
-      <a href="#about" data-i18n="nav-about">About me</a>
-      <a href="#projects" data-i18n="nav-projects">Projects</a>
-      <a href="#contacts" data-i18n="nav-contacts">Contacts</a>
-      
-      <div class="lang-scroll-area"> 
-        <select id="lang-select" class="lang-picker" title="Change language">
-          <option value="en">English</option>
-          <option value="uk">Українська</option>
-          <option value="ru">Русский</option>
-          <option value="it">Italiano</option>
-          <option value="de">Deutsch</option>
-          <option value="fr">Français</option>
-          <option value="zh">中文</option>
-        </select>
-      </div>
-    </nav>
-  </div>
-</div>
-</div>
-</header>
+  <header class="site-header container">
+    <a class="brand" href="#hero">Dekrov.dev</a>
 
+    <div class="menu-wrapper">
+      <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </button>
+      <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-card">
+          <nav class="mobile-nav">
+            <a href="#about" data-i18n="nav-about">About me</a>
+            <a href="#projects" data-i18n="nav-projects">Projects</a>
+            <a href="#contacts" data-i18n="nav-contacts">Contacts</a>
+
+            <div class="lang-scroll-area">
+              <select id="lang-select" class="lang-picker" title="Change language">
+                <option value="en">English</option>
+                <option value="uk">Українська</option>
+                <option value="ru">Русский</option>
+                <option value="it">Italiano</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="zh">中文</option>
+              </select>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <main>
     <section id="hero" class="hero container reveal reveal-fade">
-      <p class="eyebrow" data-i18n="hero-eyebrow">Pasha</p>
-      <h1 data-i18n="hero-name">Telegram Systems Developer</h1>
-      <p class="tagline" data-i18n="hero-tagline">I build stable, scalable automation systems that solve real business problems. From architecture to deployment.</p>
-      <a class="btn-primary" href="#projects" data-i18n="hero-btn">View Projects</a>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="hero-eyebrow">Pasha</p>
+          <h1 data-i18n="hero-name">Telegram Systems Developer</h1>
+          <p class="tagline" data-i18n="hero-tagline">I build stable, scalable automation systems that solve real business problems. From architecture to deployment.</p>
+          <p class="hero-support" data-i18n="hero-support">
+            I design interfaces, automation flows, and Telegram-based products that are clear, reliable, and ready to grow.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#projects" data-i18n="hero-btn">View Projects</a>
+            <a class="btn-secondary" href="#contacts" data-i18n="hero-contact-btn">Contact Me</a>
+          </div>
+        </div>
+        <aside class="glass-card hero-panel" aria-label="Developer focus" data-i18n-aria-label="hero-panel-aria">
+          <div class="hero-panel-top">
+            <span class="hero-panel-label" data-i18n="hero-panel-label">Focus</span>
+            <strong data-i18n="hero-panel-title">Frontend + Automation</strong>
+          </div>
+          <div class="hero-metrics">
+            <div class="hero-metric">
+              <span class="hero-metric-value" data-i18n="hero-metric-ui-value">UI</span>
+              <span class="hero-metric-label" data-i18n="hero-metric-ui-label">Clean landing pages and dashboards</span>
+            </div>
+            <div class="hero-metric">
+              <span class="hero-metric-value" data-i18n="hero-metric-tg-value">TG</span>
+              <span class="hero-metric-label" data-i18n="hero-metric-tg-label">Bots, admin panels, flows</span>
+            </div>
+            <div class="hero-metric">
+              <span class="hero-metric-value" data-i18n="hero-metric-api-value">API</span>
+              <span class="hero-metric-label" data-i18n="hero-metric-api-label">Connected logic and real integrations</span>
+            </div>
+          </div>
+        </aside>
+      </div>
     </section>
 
     <section id="about" class="container section reveal reveal-slide scroll-zoom">
@@ -100,29 +129,46 @@
       </article>
     </section>
 
-<section id="tech-stack" class="container section reveal reveal-slide scroll-zoom">
-  <h2 data-i18n="tech-title">Tech Stack</h2>
-  <div class="tech-grid">
-    <a href="projects/What_is/tech.html?id=python&from=main" class="glass-card tech-card">
-      <span class="tech-name">Python</span>
-    </a>
-    <a href="projects/What_is/tech.html?id=aiogram&from=main" class="glass-card tech-card">
-      <span class="tech-name">Aiogram</span>
-    </a>
-    <a href="projects/What_is/tech.html?id=flask&from=main" class="glass-card tech-card">
-      <span class="tech-name">Flask / FastAPI</span>
-    </a>
-    <a href="projects/What_is/tech.html?id=postgres&from=main" class="glass-card tech-card">
-      <span class="tech-name">PostgreSQL / SQLite</span>
-    </a>
-    <a href="projects/What_is/tech.html?id=frontend&from=main" class="glass-card tech-card">
-      <span class="tech-name">HTML / CSS / JS</span>
-    </a>
-    <a href="projects/What_is/tech.html?id=git&from=main" class="glass-card tech-card">
-      <span class="tech-name">Git</span>
-    </a>
-  </div>
-</section>
+    <section id="tech-stack" class="container section reveal reveal-slide scroll-zoom">
+      <h2 data-i18n="tech-title">Tech Stack</h2>
+      <div class="specialties-grid">
+        <article class="glass-card specialty-card">
+          <span class="specialty-kicker" data-i18n="specialty-kicker">Specialization</span>
+          <h3 data-i18n="specialty-1-title">Frontend Interfaces</h3>
+          <p data-i18n="specialty-1-text">Responsive pages, dashboards, landing layouts, and polished interactions in pure HTML, CSS, and JavaScript.</p>
+        </article>
+        <article class="glass-card specialty-card">
+          <span class="specialty-kicker" data-i18n="specialty-kicker">Specialization</span>
+          <h3 data-i18n="specialty-2-title">Automation Systems</h3>
+          <p data-i18n="specialty-2-text">Bots, scripts, event logic, admin tools, and backend flows that reduce manual work and keep processes predictable.</p>
+        </article>
+        <article class="glass-card specialty-card">
+          <span class="specialty-kicker" data-i18n="specialty-kicker">Specialization</span>
+          <h3 data-i18n="specialty-3-title">Product Thinking</h3>
+          <p data-i18n="specialty-3-text">I do not stop at code. I structure the flow, clarify the task, and shape the final interface around a real use case.</p>
+        </article>
+      </div>
+      <div class="tech-grid">
+        <a href="projects/What_is/tech.html?id=python&from=main" class="glass-card tech-card">
+          <span class="tech-name">Python</span>
+        </a>
+        <a href="projects/What_is/tech.html?id=aiogram&from=main" class="glass-card tech-card">
+          <span class="tech-name">Aiogram</span>
+        </a>
+        <a href="projects/What_is/tech.html?id=flask&from=main" class="glass-card tech-card">
+          <span class="tech-name">Flask / FastAPI</span>
+        </a>
+        <a href="projects/What_is/tech.html?id=postgres&from=main" class="glass-card tech-card">
+          <span class="tech-name">PostgreSQL / SQLite</span>
+        </a>
+        <a href="projects/What_is/tech.html?id=frontend&from=main" class="glass-card tech-card">
+          <span class="tech-name">HTML / CSS / JS</span>
+        </a>
+        <a href="projects/What_is/tech.html?id=git&from=main" class="glass-card tech-card">
+          <span class="tech-name">Git</span>
+        </a>
+      </div>
+    </section>
 
     <section id="workflow" class="container section reveal reveal-slide scroll-zoom">
       <h2 data-i18n="flow-title">How I Work</h2>
@@ -150,51 +196,88 @@
       </div>
     </section>
 
+    <section id="projects" class="container section reveal reveal-scale scroll-zoom">
+      <div class="section-head">
+        <h2 data-i18n="proj-title">Projects & Resources</h2>
+      </div>
+      <div class="project-showcase">
+        <article class="glass-card featured-project">
+          <div class="featured-copy">
+            <span class="featured-kicker" data-i18n="featured-kicker">Featured direction</span>
+            <h3 data-i18n="featured-title">Interfaces, bots, and automation products</h3>
+            <p data-i18n="featured-text">
+              This portfolio is strongest when it shows complete systems: visual interface, business logic, and real user flow.
+            </p>
+            <div class="featured-tags" aria-label="Project categories" data-i18n-aria-label="featured-tags-aria">
+              <span data-i18n="featured-tag-1">Landing</span>
+              <span data-i18n="featured-tag-2">Dashboard</span>
+              <span data-i18n="featured-tag-3">Telegram Bot</span>
+              <span data-i18n="featured-tag-4">Automation</span>
+            </div>
+          </div>
+          <div class="preview-stack" aria-hidden="true">
+            <div class="preview-window preview-window-wide">
+              <span class="preview-bar"></span>
+              <span class="preview-line preview-line-lg"></span>
+              <span class="preview-line"></span>
+              <span class="preview-grid"></span>
+            </div>
+            <div class="preview-window preview-window-tall">
+              <span class="preview-bar"></span>
+              <span class="preview-card"></span>
+              <span class="preview-card preview-card-small"></span>
+            </div>
+          </div>
+        </article>
 
-<section id="projects" class="container section reveal reveal-scale scroll-zoom">
-  <div class="section-head">
-    <h2 data-i18n="proj-title">Projects & Resources</h2>
-  </div>
+        <div class="projects-link-wrapper">
+          <a class="glass-card project-card projects-btn" href="projects.html">
+            <span class="btn-text" data-i18n="view-all-projects">Go to the list of projects</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
 
-<div class="projects-link-wrapper">
-  <a class="glass-card project-card projects-btn" href="projects.html">
-    <span class="btn-text" data-i18n="view-all-projects">Go to the list of projects</span>
-    <span class="btn-arrow">→</span>
-  </a>
+        <div class="projects-link-wrapper">
+          <a class="glass-card project-card projects-btn" href="projects/donate/Donate.html">
+            <span class="btn-text-tools" data-i18n="view-donate">Donate</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <section id="contacts" class="container section reveal reveal-slide scroll-zoom">
+      <h2 data-i18n="cont-title">Contacts</h2>
+      <div class="contacts-cta glass-card">
+        <div>
+          <span class="contacts-kicker" data-i18n="cont-cta-kicker">Open for work</span>
+          <h3 data-i18n="cont-cta-title">Need a landing page, dashboard, bot, or automation flow?</h3>
+          <p data-i18n="cont-cta-text">I am easiest to reach by email. If you want, you can also check the code and project history on GitHub first.</p>
+        </div>
+        <a class="btn-primary contacts-cta-btn" href="mailto:Dekrov.dev@gmail.com" data-i18n="cont-cta-btn">Email Me</a>
+      </div>
+      <div class="contacts-wrap glass-card">
+        <div class="contacts-buttons">
+          <a class="social-link" href="https://github.com/DekrovDev" target="_blank" rel="noreferrer noopener">
+            <span>GitHub</span>
+          </a>
+          <a class="social-link" href="mailto:Dekrov.dev@gmail.com">
+            <span>Email</span>
+          </a>
+        </div>
+        <p class="contacts-note">
+          <span data-i18n="cont-note-text">
+            If the contact buttons do not work on your device, you can find my direct contact data here:
+          </span><br>
+          <span data-i18n="cont-note-gh-label">GitHub:</span>
+          <strong>https://github.com/DekrovDev</strong><br>
+          <span data-i18n="cont-note-mail-label">Gmail:</span>
+          <strong>Dekrov.dev@gmail.com</strong>
+        </p>
+      </div>
+    </section>
+  </main>
 
-<div class="projects-link-wrapper">
-  <a class="glass-card project-card projects-btn" href="projects/tools/library.tools.html">
-    <span class="btn-text-tools" data-i18n="view-tools">To the resources page</span>
-    <span class="btn-arrow">→</span>
-  </a>
-</div>
-
-
-<section id="contacts" class="container section reveal reveal-slide scroll-zoom">
-  <h2 data-i18n="cont-title">Contacts</h2>
-  <div class="contacts-wrap glass-card">
-    <div class="contacts-buttons">
-      <a class="social-link" href="https://github.com" target="_blank" rel="noreferrer noopener">
-        <span>GitHub</span>
-      </a>
-      <a class="social-link" href="mailto:Dekrov.dev@gmail.com">
-        <span>Email</span>
-      </a>
-    </div>
-    <p class="contacts-note">
-      <span data-i18n="cont-note-text">
-        If the contact buttons do not work on your device, you can find my direct contact data here:
-      </span><br>
-      <span data-i18n="cont-note-gh-label">GitHub:</span>
-      <strong>https://github.com/DekrovDev</strong><br>
-      <span data-i18n="cont-note-mail-label">Gmail:</span>
-      <strong>Dekrov.dev@gmail.com</strong>
-    </p>
-  </div>
-</section>
-
-  <script src="scripts.js"></script>
+  <script src="scripts.js?v=20260307"></script>
 </body>
 </html>

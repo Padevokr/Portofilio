@@ -9,18 +9,30 @@ async function setLanguage(lang) {
             pathPrefix = '../';   
         }
         
-        const response = await fetch(`${pathPrefix}locales/${lang}.json`);
+        const response = await fetch(`${pathPrefix}locales/${lang}.json?v=20260307`, {
+            cache: 'no-store'
+        });
         if (!response.ok) throw new Error('Translation file not found');
         const translations = await response.json();
-
+        
         const urlParams = new URLSearchParams(window.location.search);
         const techId = urlParams.get('id');
         const fromSource = urlParams.get('from');
 
+        const backLink = document.getElementById('dynamic-back-link');
+        if (backLink) {
+            if (fromSource === 'project-automation') {
+                backLink.href = "../Auto.Tg/project-automation.html";
+                backLink.setAttribute('data-i18n', 'back-to-Giveaway-Bot-&-Admin-Dashboard'); 
+            } else {
+                backLink.href = "../../index.html";
+                backLink.setAttribute('data-i18n', 'back-to-home');   
+            }
+        }
+
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             let text = "";
-
             if (techId && translations[techId]) {
                 if (fromSource === 'project-automation') {
                     if (key === "full-sec-project-case-text") {
@@ -48,12 +60,21 @@ async function setLanguage(lang) {
 
             if (text) el.innerHTML = text;
         });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+            const key = el.getAttribute('data-i18n-aria-label');
+            const text = translations[key];
+            if (text) {
+                el.setAttribute('aria-label', text);
+            }
+        });
         
         localStorage.setItem('lang', lang);
     } catch (error) {
         console.error("Translation error:", error);
     }
 }
+
 
 
 
@@ -150,6 +171,7 @@ const observerCallback = (entries) => {
         }
     });
 };
+
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         sections.forEach(section => observer.observe(section));

@@ -22,9 +22,44 @@
 </head>
 <body class="project-page">
     <main class="container">
-    <header class="site-header container">
-        <a href="javascript:history.back()" class="back-link" data-i18n="back-link">Back</a>
-    </header>
+    
+        <header class="site-header container">
+    <a class="brand" href="../../index.html#hero">Dekrov.dev</a>
+    
+    <div class="menu-wrapper">
+    <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </button>
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-card">
+        <nav class="mobile-nav">
+            <a href="../../index.html#about" data-i18n="nav-about">About me</a>
+            <a href="../../index.html#projects" data-i18n="nav-projects">Projects</a>
+            <a href="../../index.html#contacts" data-i18n="nav-contacts">Contacts</a>
+            <a href="../../index.html" data-i18n="nav-all-projects">Home</a>
+            <div class="lang-scroll-area"> 
+            <select id="lang-select" class="lang-picker" title="Change language">
+                <option value="en">English</option>
+                <option value="uk">Українська</option>
+                <option value="ru">Русский</option>
+                <option value="it">Italiano</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="zh">中文</option>
+            </select>
+            </div>
+        </nav>
+        </div>
+    </div>
+    </div>
+</header>
+
+    <main class="container section reveal-fade">
+        <a href="../../index.html" id="dynamic-back-link" class="back-link" data-i18n="back-link">← Back</a>
+    </main>
+
 
     <section class="project-panel glass-card reveal">
         <p data-i18n="tech-main-desc"></p>
