@@ -75,6 +75,58 @@ async function setLanguage(lang) {
     }
 }
 
+function initGridEffects() {
+    const grid = document.querySelector('.bg-grid');
+    if (!grid) return;
+    const desktopEffectsMedia = window.matchMedia('(min-width: 768px) and (pointer: fine) and (hover: hover)');
+
+    if (prefersReducedMotion || !desktopEffectsMedia.matches) return;
+
+    const pulsePool = Array.from({ length: 5 }, () => {
+        const pulse = document.createElement('span');
+        pulse.className = 'grid-pulse';
+        pulse.setAttribute('aria-hidden', 'true');
+        pulse.addEventListener('animationend', () => {
+            pulse.className = 'grid-pulse';
+        });
+        grid.appendChild(pulse);
+        return pulse;
+    });
+
+    const triggerPulse = () => {
+        const pulse = pulsePool.find((item) => !item.classList.contains('is-active'))
+            || pulsePool[Math.floor(Math.random() * pulsePool.length)];
+
+        const gridSize = parseFloat(getComputedStyle(grid).getPropertyValue('--grid-size')) || 60;
+        const isVertical = Math.random() > 0.45;
+        const lineCount = isVertical
+            ? Math.max(1, Math.ceil(window.innerWidth / gridSize))
+            : Math.max(1, Math.ceil(window.innerHeight / gridSize));
+        const lineIndex = Math.floor(Math.random() * lineCount);
+        const lineOffset = lineIndex * gridSize;
+        const viewportSpan = isVertical ? window.innerHeight : window.innerWidth;
+        const pulseLength = Math.max(120, Math.min(Math.round(viewportSpan * (0.14 + Math.random() * 0.12)), 280));
+        const pulseDuration = Math.round(1600 + Math.random() * 1900);
+
+        pulse.className = 'grid-pulse';
+        pulse.style.setProperty('--line-offset', `${lineOffset}px`);
+        pulse.style.setProperty('--pulse-length', `${pulseLength}px`);
+        pulse.style.setProperty('--pulse-duration', `${pulseDuration}ms`);
+        pulse.classList.add(isVertical ? 'is-vertical' : 'is-horizontal');
+
+        void pulse.offsetWidth;
+        pulse.classList.add('is-active');
+    };
+
+    const schedulePulse = () => {
+        triggerPulse();
+        const nextDelay = 1200 + Math.random() * 2600;
+        window.setTimeout(schedulePulse, nextDelay);
+    };
+
+    window.setTimeout(schedulePulse, 900);
+}
+
 
 
 
@@ -176,6 +228,8 @@ const observerCallback = (entries) => {
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         sections.forEach(section => observer.observe(section));
     }
+
+    initGridEffects();
 });
 
 function updateReadMoreButtonText(lang) {
