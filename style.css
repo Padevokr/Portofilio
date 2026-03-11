@@ -86,6 +86,15 @@ h3 {
   color: var(--text-muted);
 }
 
+.hero-eyebrow {
+  font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: none;
+  color: var(--accent);
+  text-shadow: 0 0 18px rgba(111, 211, 255, 0.24);
+}
+
 .tagline {
   margin: 1rem 0 0;
   max-width: 52ch;
