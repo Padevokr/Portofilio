@@ -1,13 +1,10 @@
 async function setLanguage(lang) {
     try {
         const path = window.location.pathname;
-        let pathPrefix = './';
-
-        if (path.includes('/Auto.Tg/') || path.includes('/What_is/')) {
-            pathPrefix = '../../'; 
-        } else if (path.includes('/projects/')) {
-            pathPrefix = '../';   
-        }
+        const normalizedPath = path.endsWith('/') ? `${path}index.html` : path;
+        const segments = normalizedPath.split('/').filter(Boolean);
+        const fileDepth = Math.max(0, segments.length - 1);
+        const pathPrefix = fileDepth === 0 ? './' : '../'.repeat(fileDepth);
         
         const response = await fetch(`${pathPrefix}locales/${lang}.json?v=20260307`, {
             cache: 'no-store'
@@ -19,15 +16,18 @@ async function setLanguage(lang) {
         const techId = urlParams.get('id');
         const fromSource = urlParams.get('from');
 
-        const backLink = document.getElementById('dynamic-back-link');
-        if (backLink) {
-            if (fromSource === 'project-automation') {
-                backLink.href = "../Auto.Tg/project-automation.html";
-                backLink.setAttribute('data-i18n', 'back-to-Giveaway-Bot-&-Admin-Dashboard'); 
-            } else {
-                backLink.href = "../../index.html";
-                backLink.setAttribute('data-i18n', 'back-to-home');   
-            }
+	        const backLink = document.getElementById('dynamic-back-link');
+	        if (backLink) {
+	            if (fromSource === 'project-automation') {
+	                backLink.href = "../Auto.Tg/project-automation.html#d-stack";
+	                backLink.setAttribute('data-i18n', 'back-to-Giveaway-Bot-&-Admin-Dashboard'); 
+	            } else if (fromSource === 'project-ai-userbot') {
+	                backLink.href = "../AI.Userbot/project-ai-userbot.html#ai-stack";
+	                backLink.setAttribute('data-i18n', 'back-to-Dekrov-AI-Userbot');
+	            } else {
+	                backLink.href = "../../index.html";
+	                backLink.setAttribute('data-i18n', 'back-to-home');   
+	            }
         }
 
         document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -66,6 +66,22 @@ async function setLanguage(lang) {
             const text = translations[key];
             if (text) {
                 el.setAttribute('aria-label', text);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-title]').forEach(el => {
+            const key = el.getAttribute('data-i18n-title');
+            const text = translations[key];
+            if (text) {
+                el.setAttribute('title', text);
+            }
+        });
+
+        document.querySelectorAll('[data-i18n-content]').forEach(el => {
+            const key = el.getAttribute('data-i18n-content');
+            const text = translations[key];
+            if (text) {
+                el.setAttribute('content', text);
             }
         });
         
@@ -161,18 +177,35 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.forEach(link => link.addEventListener('click', () => overlay.classList.remove('active')));
     }
 
-    const readMoreBtn = document.getElementById('read-more-btn');
-    const hideDetailsBtn = document.getElementById('hide-details-btn');
-    const projectDetails = document.getElementById('project-details');
+	    const readMoreBtn = document.getElementById('read-more-btn');
+	    const hideDetailsBtn = document.getElementById('hide-details-btn');
+	    const projectDetails = document.getElementById('project-details');
+	    const expandProjectDetails = () => {
+	        if (!projectDetails) return;
+	        projectDetails.classList.add('expanded');
+	        if (readMoreBtn?.parentElement) {
+	            readMoreBtn.parentElement.style.display = 'none';
+	        }
+	    };
 
-    if (readMoreBtn && projectDetails) {
-        readMoreBtn.addEventListener('click', () => {
-            projectDetails.classList.add('expanded');
-            readMoreBtn.parentElement.style.display = 'none';
-            
-            setTimeout(() => {
-                const headerOffset = 100;
-                const elementPosition = projectDetails.getBoundingClientRect().top;
+	    const scrollToHashSection = () => {
+	        if (!projectDetails || !window.location.hash) return;
+	        const hashTarget = document.querySelector(window.location.hash);
+	        if (!hashTarget || !projectDetails.contains(hashTarget)) return;
+
+	        expandProjectDetails();
+	        window.setTimeout(() => {
+	            hashTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	        }, 120);
+	    };
+
+	    if (readMoreBtn && projectDetails) {
+	        readMoreBtn.addEventListener('click', () => {
+	            expandProjectDetails();
+	            
+	            setTimeout(() => {
+	                const headerOffset = 100;
+	                const elementPosition = projectDetails.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.scrollY - headerOffset;
                 
                 window.scrollTo({
@@ -180,8 +213,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: "smooth"
                 });
             }, 100);
-        });
-    }
+	        });
+	    }
+
+	    scrollToHashSection();
+	    window.addEventListener('hashchange', scrollToHashSection);
 
     if (hideDetailsBtn && projectDetails) {
         hideDetailsBtn.addEventListener('click', () => {
@@ -266,10 +302,9 @@ if (!prefersReducedMotion && zoomSections.length > 0) {
             const rect = section.getBoundingClientRect();
             const distance = viewportHeight - rect.top;
             const progress = Math.min(Math.max(distance / (viewportHeight * 0.9), 0), 1);
-            const scale = 0.955 + progress * 0.045;
-            const translateY = (1 - progress) * 32;
-            section.style.setProperty("--scroll-scale", scale.toFixed(3));
-            section.style.setProperty("--scroll-y", `${translateY.toFixed(1)}px`);
+            const translateY = Math.round((1 - progress) * 18);
+            section.style.setProperty("--scroll-scale", "1");
+            section.style.setProperty("--scroll-y", `${translateY}px`);
         });
         rafId = 0;
     };

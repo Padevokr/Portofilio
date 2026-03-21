@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NY04NMP3VW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NY04NMP3VW');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    data-i18n-content="aiu-meta-description"
+    content="Dekrov AI Userbot: a Telegram-first AI system with userbot logic, control bot, memory, reminders, live data, and automation."
+  >
+  <title data-i18n="aiu-page-title">Project | Dekrov AI Userbot</title>
+  <link rel="icon" type="image/png" href="../../assets/favicon-rounded.png">
+  <link rel="apple-touch-icon" href="../../assets/favicon-rounded.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="project.css">
+  <script src="../../scripts.js" defer></script>
+</head>
+<body>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header container">
+    <a class="brand" href="../../index.html#hero">Dekrov.dev</a>
+
+    <div class="menu-wrapper">
+      <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu" data-i18n-aria-label="menu-toggle-label">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </button>
+
+      <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-card">
+          <nav class="mobile-nav">
+            <a href="../../index.html#about" data-i18n="nav-about">About me</a>
+            <a href="../../index.html#projects" data-i18n="nav-projects">Projects</a>
+            <a href="../../index.html#contacts" data-i18n="nav-contacts">Contacts</a>
+            <a href="../../index.html" data-i18n="nav-all-projects">Home</a>
+            <div class="lang-scroll-area">
+              <select id="lang-select" class="lang-picker" title="Change language" data-i18n-title="change-language-label">
+                <option value="en">English</option>
+                <option value="uk">Ukrainian</option>
+                <option value="ru">Russian</option>
+                <option value="it">Italiano</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">French</option>
+                <option value="zh">Chinese</option>
+              </select>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="project-page">
+    <section class="project-hero container reveal reveal-fade">
+      <a class="back-link" href="../../projects.html" data-i18n="aiu-back">Back to projects</a>
+      <p class="eyebrow" data-i18n="pa-eyebrow">Case Study</p>
+      <h1 data-i18n="proj-name-2">Dekrov AI Userbot</h1>
+      <p class="tagline" data-i18n="aiu-tagline">
+        A Telegram-first AI system that works from the owner's own account, adds a dedicated control bot,
+        supports an optional public chat bot, and keeps memory, reminders, live data, and automation inside one flow.
+      </p>
+      <div class="hero-badges">
+        <span class="badge completed" data-i18n="aiu-status">Completed successfully</span>
+        <span class="badge neutral" data-i18n="aiu-badge-1">Python + Pyrogram</span>
+        <span class="badge neutral" data-i18n="aiu-badge-2">Groq + Live Data</span>
+        <span class="badge neutral" data-i18n="aiu-badge-3">Userbot + Control Bot</span>
+      </div>
+      <article class="glass-card repo-callout">
+        <p class="repo-callout-kicker" data-i18n="aiu-open-kicker">Open Source</p>
+        <h2 data-i18n="aiu-open-title">Open repository</h2>
+        <p class="repo-callout-text" data-i18n="aiu-open-text">
+          Full source code, setup details, and documentation are available on GitHub.
+        </p>
+        <div class="repo-actions">
+          <a
+            class="btn-secondary"
+            href="https://github.com/DekrovDev/dekrov-ai-userbot/"
+            target="_blank"
+            rel="noreferrer noopener"
+            data-i18n="aiu-repo-link"
+          >Open full repository</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="container section reveal reveal-slide scroll-zoom">
+      <div class="split-grid">
+        <article class="glass-card mini-card">
+          <h3 data-i18n="aiu-problem-title">Problem</h3>
+          <p data-i18n="aiu-problem-text">
+            Most AI assistants live in a browser, depend on heavy infrastructure, or stay disconnected from real Telegram workflows.
+            The goal here was different: run from a real account, understand natural language, automate routine actions,
+            and stay useful in everyday communication without requiring a web dashboard for the owner.
+          </p>
+        </article>
+        <article class="glass-card mini-card">
+          <h3 data-i18n="aiu-solution-title">Solution</h3>
+          <p data-i18n="aiu-solution-text">
+            The project combines a Pyrogram userbot, a separate control bot, an optional public chat bot,
+            layered memory, reminder scheduling, live-data tools, and structured Telegram action routing.
+            The result is a compact but capable AI operating system built directly around Telegram.
+          </p>
+        </article>
+      </div>
+
+      <div class="stat-band">
+        <div class="stat-item">
+          <strong data-i18n="aiu-stat-1-title">3 command modes</strong>
+          <span data-i18n="aiu-stat-1-text">Dialogue, Telegram actions, and AI tasks are split into dedicated command channels.</span>
+        </div>
+        <div class="stat-item">
+          <strong data-i18n="aiu-stat-2-title">No database</strong>
+          <span data-i18n="aiu-stat-2-text">Runtime state is stored in local JSON files and Telegram session files for portability.</span>
+        </div>
+        <div class="stat-item">
+          <strong data-i18n="aiu-stat-3-title">Telegram-native</strong>
+          <span data-i18n="aiu-stat-3-text">No separate frontend is required for the owner to manage reminders, replies, and actions.</span>
+        </div>
+        <div class="stat-item">
+          <strong data-i18n="aiu-stat-4-title">Model fallback</strong>
+          <span data-i18n="aiu-stat-4-text">AI models can be switched or backed off when limits, failures, or edge cases appear.</span>
+        </div>
+      </div>
+
+      <div class="read-more-wrapper">
+        <button id="read-more-btn" class="btn-primary" data-i18n="pa-read-more">Read More</button>
+      </div>
+    </section>
+
+    <div id="project-details" class="details-hidden container">
+      <nav class="mobile-toc-wrapper">
+        <div class="mobile-toc">
+          <a href="#ai-arch" class="toc-item active" data-i18n="aiu-nav-arch">Architecture</a>
+          <a href="#ai-modes" class="toc-item" data-i18n="aiu-nav-modes">Modes</a>
+          <a href="#ai-memory" class="toc-item" data-i18n="aiu-nav-memory">Memory</a>
+          <a href="#ai-live" class="toc-item" data-i18n="aiu-nav-live">Live Tools</a>
+          <a href="#ai-ops" class="toc-item" data-i18n="aiu-nav-ops">Operations</a>
+          <a href="#ai-stack" class="toc-item" data-i18n="pa-nav-stack">Stack</a>
+          <a href="#ai-result" class="toc-item" data-i18n="pa-nav-res">Result</a>
+        </div>
+      </nav>
+
+      <div class="details-layout">
+        <aside class="details-sidebar">
+          <nav class="toc glass-card">
+            <ul>
+              <li><a href="#ai-arch" data-i18n="aiu-nav-arch">Architecture</a></li>
+              <li><a href="#ai-modes" data-i18n="aiu-nav-modes">Modes</a></li>
+              <li><a href="#ai-memory" data-i18n="aiu-nav-memory">Memory</a></li>
+              <li><a href="#ai-live" data-i18n="aiu-nav-live">Live Tools</a></li>
+              <li><a href="#ai-ops" data-i18n="aiu-nav-ops">Operations</a></li>
+              <li><a href="#ai-stack" data-i18n="pa-nav-stack">Stack</a></li>
+              <li><a href="#ai-result" data-i18n="pa-nav-res">Result</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="details-content">
+          <section id="ai-arch" class="section reveal reveal-scale scroll-zoom">
+            <h2 data-i18n="aiu-arch-title">Architecture</h2>
+            <div class="architecture-grid">
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="aiu-arch-card-1-title">Userbot Core</h3>
+                <p data-i18n="aiu-arch-card-1-text">
+                  The main engine runs from the owner's Telegram account via Pyrogram and handles direct commands,
+                  chat context, auto-replies, reminders, and action execution.
+                </p>
+              </article>
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="aiu-arch-card-2-title">Control Bot</h3>
+                <p data-i18n="aiu-arch-card-2-text">
+                  A separate Telegram bot provides a control layer for runtime settings, response modes,
+                  allow/block lists, fallback behavior, and feature toggles.
+                </p>
+              </article>
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="aiu-arch-card-3-title">Optional Chat Bot</h3>
+                <p data-i18n="aiu-arch-card-3-text">
+                  When enabled, a public-facing bot exposes the AI to normal chat users without replacing the owner-centric userbot flow.
+                </p>
+              </article>
+            </div>
+
+            <article class="glass-card project-panel system-flow">
+              <p data-i18n="aiu-arch-flow-text">
+                The project avoids a classic web stack and keeps the interaction loop inside Telegram.
+                Instead of browser forms and dashboards, the system routes natural language into concrete actions, memory updates, and live requests.
+              </p>
+              <div class="flow-line">
+                <span class="flow-node" data-i18n="aiu-flow-1">Owner Message</span>
+                <span class="flow-arrow">-&gt;</span>
+                <span class="flow-node" data-i18n="aiu-flow-2">Intent / Command Router</span>
+                <span class="flow-arrow">-&gt;</span>
+                <span class="flow-node" data-i18n="aiu-flow-3">AI / Action / Live Tool</span>
+                <span class="flow-arrow">-&gt;</span>
+                <span class="flow-node" data-i18n="aiu-flow-4">Telegram Response</span>
+              </div>
+            </article>
+          </section>
+
+          <section id="ai-modes" class="section reveal reveal-slide scroll-zoom">
+            <h2 data-i18n="aiu-modes-title">Interaction Modes</h2>
+            <div class="command-grid">
+              <article class="glass-card command-card">
+                <span class="command-label">.d</span>
+                <p data-i18n="aiu-mode-d-text">
+                  Dialogue and owner workflow mode. It handles planning, reminders, memory updates,
+                  directives, everyday assistance, and longer-form requests.
+                </p>
+                <ul class="project-points project-points-large">
+                  <li data-i18n="aiu-mode-d-li1">Owner-oriented assistant behavior</li>
+                  <li data-i18n="aiu-mode-d-li2">Reminder creation and review</li>
+                  <li data-i18n="aiu-mode-d-li3">Style and directive updates</li>
+                </ul>
+              </article>
+
+              <article class="glass-card command-card">
+                <span class="command-label">.k</span>
+                <p data-i18n="aiu-mode-k-text">
+                  Structured Telegram action mode. This is where the system turns natural language into concrete chat operations:
+                  forward, delete, archive, inspect, and move content between chats.
+                </p>
+                <ul class="project-points project-points-large">
+                  <li data-i18n="aiu-mode-k-li1">Natural-language Telegram control</li>
+                  <li data-i18n="aiu-mode-k-li2">Cross-chat actions and utilities</li>
+                  <li data-i18n="aiu-mode-k-li3">Execution policies and confirmations</li>
+                </ul>
+              </article>
+
+              <article class="glass-card command-card">
+                <span class="command-label">.b</span>
+                <p data-i18n="aiu-mode-b-text">
+                  AI task mode for summarization, search, live information, image reasoning,
+                  and voice transcription through Groq-backed services.
+                </p>
+                <ul class="project-points project-points-large">
+                  <li data-i18n="aiu-mode-b-li1">Voice-to-text with Whisper</li>
+                  <li data-i18n="aiu-mode-b-li2">Vision analysis for images</li>
+                  <li data-i18n="aiu-mode-b-li3">Search, news, rates, and weather</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section id="ai-memory" class="section reveal reveal-scale scroll-zoom">
+            <h2 data-i18n="aiu-memory-title">Memory and Personalization</h2>
+            <div class="split-grid">
+              <article class="glass-card mini-card">
+                <h3 data-i18n="aiu-memory-card-1-title">Layered Memory</h3>
+                <p data-i18n="aiu-memory-card-1-text">
+                  The system stores owner profile data, user-specific memory, entity facts, shared short-term context,
+                  and style signals. This creates continuity between chats without turning the project into a heavyweight platform.
+                </p>
+              </article>
+              <article class="glass-card mini-card">
+                <h3 data-i18n="aiu-memory-card-2-title">Adaptive Style</h3>
+                <p data-i18n="aiu-memory-card-2-text">
+                  Style weighting lets the assistant balance the owner's voice, the target user's tone, and current chat context.
+                  That makes replies feel less generic and much more aligned with how the owner actually communicates.
+                </p>
+              </article>
+            </div>
+            <article class="glass-card project-panel">
+              <ul class="project-points project-points-large">
+                <li data-i18n="aiu-memory-li1">Owner knowledge is stored separately and can be rewritten without touching code.</li>
+                <li data-i18n="aiu-memory-li2">Per-user profiles and entity memory accumulate context over time.</li>
+                <li data-i18n="aiu-memory-li3">Reminder and scheduler state survives restarts.</li>
+                <li data-i18n="aiu-memory-li4">JSON persistence keeps deployment simple and transparent.</li>
+              </ul>
+            </article>
+          </section>
+
+          <section id="ai-live" class="section reveal reveal-slide scroll-zoom">
+            <h2 data-i18n="aiu-live-title">Live Tools and Retrieval</h2>
+            <div class="architecture-grid">
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="aiu-live-card-1-title">Web Grounding</h3>
+                <p data-i18n="aiu-live-card-1-text">
+                  Search routing combines DuckDuckGo, Google, Wikipedia, GitHub search, and optional SearXNG,
+                  then extracts article content for better grounded answers.
+                </p>
+              </article>
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="aiu-live-card-2-title">Daily Utilities</h3>
+                <p data-i18n="aiu-live-card-2-text">
+                  Weather, exchange rates, news, and general live requests are treated as first-class tools,
+                  not as afterthoughts glued onto a chat bot.
+                </p>
+              </article>
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="aiu-live-card-3-title">Multimodal Input</h3>
+                <p data-i18n="aiu-live-card-3-text">
+                  Voice transcription and image analysis expand the assistant beyond plain text and make it useful in actual Telegram usage patterns.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section id="ai-ops" class="section reveal reveal-scale scroll-zoom">
+            <h2 data-i18n="aiu-ops-title">Operations and Constraints</h2>
+            <div class="split-grid">
+              <article class="glass-card mini-card">
+                <h3 data-i18n="aiu-ops-card-1-title">Configuration</h3>
+                <p data-i18n="aiu-ops-card-1-text">
+                  The project is driven by `.env`, session files, JSON state, and owner knowledge content.
+                  That keeps setup explicit: Telegram credentials, Groq API key, command behavior, search toggles, and memory options.
+                </p>
+              </article>
+              <article class="glass-card mini-card">
+                <h3 data-i18n="aiu-ops-card-2-title">Safety</h3>
+                <p data-i18n="aiu-ops-card-2-text">
+                  The design includes outgoing-only command restrictions, identity limits, validation, silence logic,
+                  and safety filters so automation stays useful without turning reckless.
+                </p>
+              </article>
+            </div>
+            <article class="glass-card project-panel">
+              <ul class="project-points project-points-large">
+                <li data-i18n="aiu-ops-li1">No SQL database, Redis, or Docker is required for the core workflow.</li>
+                <li data-i18n="aiu-ops-li2">Pyrogram session files are sensitive and must remain private.</li>
+                <li data-i18n="aiu-ops-li3">The system is designed to run as a persistent Python process on a local machine or VPS.</li>
+                <li data-i18n="aiu-ops-li4">The control bot is operationally important because it exposes runtime management without a web admin.</li>
+              </ul>
+            </article>
+          </section>
+
+	          <section id="ai-stack" class="section reveal reveal-slide scroll-zoom">
+	            <h2 data-i18n="pa-stack-title">Technology Stack</h2>
+	            <div class="stack-grid">
+	              <a href="../What_is/tech.html?id=python&from=project-ai-userbot" class="glass-card stack-item">
+	                <strong>Python</strong>
+	                <span data-i18n="aiu-stack-1-text">Main application logic and orchestration.</span>
+	              </a>
+	              <a href="../What_is/tech.html?id=pyrogram&from=project-ai-userbot" class="glass-card stack-item">
+	                <strong>Pyrogram</strong>
+	                <span data-i18n="aiu-stack-2-text">Userbot transport and Telegram session handling.</span>
+	              </a>
+	              <a href="../What_is/tech.html?id=groq&from=project-ai-userbot" class="glass-card stack-item">
+	                <strong>Groq API</strong>
+	                <span data-i18n="aiu-stack-3-text">LLM, vision, and voice transcription services.</span>
+	              </a>
+	              <a href="../What_is/tech.html?id=asyncio&from=project-ai-userbot" class="glass-card stack-item">
+	                <strong>Asyncio</strong>
+	                <span data-i18n="aiu-stack-4-text">Concurrent task handling, scheduling, and chat workflows.</span>
+	              </a>
+	              <a href="../What_is/tech.html?id=httpx&from=project-ai-userbot" class="glass-card stack-item">
+	                <strong>HTTPX</strong>
+	                <span data-i18n="aiu-stack-5-text">Network requests for live tools and retrieval features.</span>
+	              </a>
+	              <a href="../What_is/tech.html?id=json-persistence&from=project-ai-userbot" class="glass-card stack-item">
+	                <strong data-i18n="aiu-stack-6-title">JSON Persistence</strong>
+	                <span data-i18n="aiu-stack-6-text">Portable runtime state without a separate database layer.</span>
+	              </a>
+	            </div>
+	          </section>
+
+          <section id="ai-result" class="section reveal reveal-slide scroll-zoom">
+            <h2 data-i18n="pa-res-title">Result</h2>
+            <article class="glass-card project-panel">
+              <p data-i18n="aiu-result-text">
+                Dekrov AI Userbot stands out because it treats Telegram as the primary product surface, not as a thin integration.
+                It combines assistant behavior, structured actions, memory, reminders, live retrieval, and model management into one coherent toolchain.
+                As a portfolio case, it shows strong systems thinking: the project is opinionated, modular, practical, and clearly built around real usage instead of demo-only AI features.
+              </p>
+            </article>
+          </section>
+
+          <div class="hide-details-wrapper">
+            <button id="hide-details-btn" class="btn-primary" data-i18n="pa-hide-details">Hide Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
