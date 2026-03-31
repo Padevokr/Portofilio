@@ -1,0 +1,17 @@
+@import url("../AI.Userbot/project.css");
+
+.project-hero h1 {
+  max-width: 16ch;
+}
+
+.repo-callout .project-points {
+  margin-top: 0.1rem;
+}
+
+.repo-callout .project-points li {
+  color: #d3dbef;
+}
+
+.stat-item strong {
+  color: #f2f7ff;
+}

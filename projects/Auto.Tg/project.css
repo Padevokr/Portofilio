@@ -56,6 +56,13 @@
   gap: 0.8rem;
 }
 
+.split-grid + .project-panel,
+.split-grid + .stat-band,
+.architecture-grid + .project-panel,
+.architecture-grid + .stat-band {
+  margin-top: 0.8rem;
+}
+
 .mini-card {
   padding: 1rem;
 }

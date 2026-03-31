@@ -84,7 +84,7 @@
     "pa-read-more": "Read More",
     "pa-read-less": "Show Less",
     "pa-problem-title": "Problem",
-    "pa-problem-text": "Managing multiple Telegram accounts for giveaways manually is inefficient and prone to errors. Users need anonymity, while administrators need centralized control and transparency without accessing sensitive user data directly.",
+    "pa-problem-text": "The hard part of this project was not sending commands to Telegram, but coordinating many accounts, permissions, admin visibility, and automation rules without turning the system into chaos or exposing sensitive account data.",
     "pa-solution-title": "Solution",
     "pa-solution-text": "I built a comprehensive system consisting of a Telegram bot for automated actions, a web-based admin dashboard for management, and a secure database. The system ensures safe participation in giveaways while providing real-time analytics.",
     "pa-arch-title": "Architecture",
@@ -162,7 +162,7 @@
     "aiu-badge-2": "Groq + Live Data",
     "aiu-badge-3": "Userbot + Control Bot",
     "aiu-problem-title": "Problem",
-    "aiu-problem-text": "Most AI assistants live in a browser, depend on heavy infrastructure, or stay disconnected from real Telegram workflows. The goal here was different: run from a real account, understand natural language, automate routine actions, and stay useful in everyday communication without requiring a web dashboard for the owner.",
+    "aiu-problem-text": "Most Telegram AI projects are thin wrappers around a single model call. They can answer messages, but they do not behave like a real operating layer for an account: weak memory, no action routing, limited control, and too much friction between chat, tools, and automation.",
     "aiu-solution-title": "Solution",
     "aiu-solution-text": "The project combines a Pyrogram userbot, a separate control bot, an optional public chat bot, layered memory, reminder scheduling, live-data tools, and structured Telegram action routing. The result is a compact but capable AI operating system built directly around Telegram.",
     "aiu-stat-1-title": "3 command modes",
@@ -257,7 +257,11 @@
         "full-sec-2-title": "2. Memory Management and the GIL Problem",
         "full-sec-2-text": "In Python, the primary memory cleanup mechanism is Reference Counting: an object is deleted as soon as no more references point to it. For cyclic references, a Garbage Collector is used. A crucial limitation is the Global Interpreter Lock (GIL). This mutex protects data thread-safety but restricts parallel execution of bytecode across different threads. To circumvent this in heavy tasks, we use the multiprocessing module or asynchrony.",
         "full-sec-project-case-title": "3. Project Application: Implementation and Libraries",
-        "full-sec-project-case-text": "As I already mentioned in the main section of my portfolio, Python is my key tool. In this project, I used it to build the bot's modular architecture. To guarantee data purity, I applied the **Pydantic** library for strict validation of incoming objects. All the giveaway business logic was moved into separate asynchronous services, which made it possible to isolate the Telegram API from heavy computations. Also, for in-depth system state monitoring, the **Loguru** library was implemented, providing detailed logging of every automation step."
+        "full-sec-project-case-text": "As I already mentioned in the main section of my portfolio, Python is my key tool. In this project, I used it to build the bot's modular architecture. To guarantee data purity, I applied the **Pydantic** library for strict validation of incoming objects. All the giveaway business logic was moved into separate asynchronous services, which made it possible to isolate the Telegram API from heavy computations. Also, for in-depth system state monitoring, the **Loguru** library was implemented, providing detailed logging of every automation step.",
+        "project-ai-userbot-case-title": "Project Application: Dekrov AI Userbot",
+        "project-ai-userbot-case-text": "In Dekrov AI Userbot, Python is the orchestration layer for command parsing, memory, reminders, action routing, chat-bot support, and owner workflows. The value here is not just language familiarity but the ability to keep one Telegram-native system modular while it coordinates AI, automation, and runtime state in one process.",
+        "project-visitor-ai-case-title": "Project Application: Visitor AI Assistant",
+        "project-visitor-ai-case-text": "In Visitor AI Assistant, Python holds together the public consultation flow: session lifecycle, moderation counters, drift detection, request drafting, and owner handoff all live in the same runtime. It is the layer that keeps the assistant helpful and structured instead of turning into a loose generic chatbot."
     },
     "aiogram": {
         "tech-page-title": "Aiogram: Professional Telegram Interface Development",
@@ -274,7 +278,9 @@
         "full-sec-2-title": "2. Finite State Machine (FSM)",
         "full-sec-2-text": "To create complex interfaces, a Finite State Machine is used. It remembers which stage of the dialogue the user is at. To prevent data loss during a bot restart, we connect external storages (Redis/Postgres). This is the standard for Enterprise solutions, allowing you to seamlessly update the bot code without interrupting active user sessions.",
         "full-sec-project-case-title": "Project Application: Telegram Mechanics",
-        "full-sec-project-case-text": "As I already mentioned on the main page of my portfolio, I specialize in developing Telegram systems. In this project, I used **Aiogram 3.x** to build an asynchronous interaction architecture. I implemented a **Custom Middlewares** system to automatically check user subscription to sponsor channels before allowing entry to the giveaway. A state machine (**FSM**) with a **Redis** storage was also implemented, allowing administrators to configure giveaways step-by-step (uploading media, selecting a date, setting conditions) without losing progress even during a server reboot. To protect against cheating, I integrated custom filters on the dispatcher side that cut off suspicious bot activity."
+        "full-sec-project-case-text": "As I already mentioned on the main page of my portfolio, I specialize in developing Telegram systems. In this project, I used **Aiogram 3.x** to build an asynchronous interaction architecture. I implemented a **Custom Middlewares** system to automatically check user subscription to sponsor channels before allowing entry to the giveaway. A state machine (**FSM**) with a **Redis** storage was also implemented, allowing administrators to configure giveaways step-by-step (uploading media, selecting a date, setting conditions) without losing progress even during a server reboot. To protect against cheating, I integrated custom filters on the dispatcher side that cut off suspicious bot activity.",
+        "project-visitor-ai-case-title": "Project Application: Visitor AI Assistant",
+        "project-visitor-ai-case-text": "Aiogram is the transport layer of the visitor assistant: consultation start buttons, callbacks, moderation actions, and public chat routing are all built around bot-first interaction patterns. That makes it a strong fit for a visitor product that must feel responsive while still preserving clear boundaries."
     },
     "postgres": {
         "tech-page-title": "PostgreSQL: An Industrial-Grade Database",
@@ -355,7 +361,11 @@
         "full-sec-2-title": "2. Scalability of Network Calls",
         "full-sec-2-text": "Asyncio operates on low-level system calls (epoll/kqueue), allowing it to monitor thousands of sockets. The program 'sleeps' at the OS kernel level until data arrives. This ensures that one request's latency doesn't affect the overall throughput of the entire system.",
         "full-sec-project-case-title": "Project Application: Multi-accounting & Speed",
-        "full-sec-project-case-text": "**I didn't mention Asyncio on the main page**, but in this project, it was a key technology. I used asynchrony to implement **multi-accounting** — the bot can work with different Telegram sessions simultaneously without interference. Using `asyncio.gather()`, I configured parallel subscription checks in 5-10 channels at once. This reduced the user's waiting time from several seconds to milliseconds. Asynchronous queues (Tasks) also ensured stable background mailings that don't slow down the main bot interface during active giveaways."
+        "full-sec-project-case-text": "**I didn't mention Asyncio on the main page**, but in this project, it was a key technology. I used asynchrony to implement **multi-accounting** — the bot can work with different Telegram sessions simultaneously without interference. Using `asyncio.gather()`, I configured parallel subscription checks in 5-10 channels at once. This reduced the user's waiting time from several seconds to milliseconds. Asynchronous queues (Tasks) also ensured stable background mailings that don't slow down the main bot interface during active giveaways.",
+        "project-ai-userbot-case-title": "Project Application: Dekrov AI Userbot",
+        "project-ai-userbot-case-text": "Asyncio is the architectural backbone of Dekrov AI Userbot: reminders, live requests, background jobs, auto-replies, and command execution all coexist in one persistent runtime. The project uses asynchrony as a system design choice, not as a small implementation detail.",
+        "project-visitor-ai-case-title": "Project Application: Visitor AI Assistant",
+        "project-visitor-ai-case-text": "Visitor AI Assistant relies on asyncio for concurrent message handling, session updates, cooldowns, and moderation checks. That lets the public assistant stay responsive while still maintaining state and background logic in parallel."
     },
     "menu-toggle-label": "Toggle menu",
     "change-language-label": "Change language",
@@ -374,12 +384,12 @@
     "back-to-Dekrov-AI-Userbot": "Back to Dekrov AI Userbot",
     "proj-name-3": "Visitor AI Assistant",
     "proj-desc-3": "Public-facing Telegram AI assistant for consultations, soft routing, session memory, moderation, and owner handoff.",
-    "proj-status-3": "Live",
+    "proj-status-3": "Completed successfully",
     "vis-page-title": "Project | Visitor AI Assistant",
     "vis-meta-description": "Visitor AI Assistant: a public-facing Telegram consultation layer with session memory, moderation, routing, and owner handoff.",
     "vis-back": "Back to projects",
     "vis-tagline": "A public-facing Telegram AI assistant built for first-contact conversations, project discovery, request drafting, moderation, and smooth handoff to the owner.",
-    "vis-status": "Live",
+    "vis-status": "Completed successfully",
     "vis-badge-1": "Python + Aiogram",
     "vis-badge-2": "Session Memory",
     "vis-badge-3": "Moderation + Handoff",
@@ -389,7 +399,7 @@
     "vis-private-li1": "Built for first contact, not generic endless chat.",
     "vis-private-li2": "Keeps temporary session context while the consultation is active.",
     "vis-private-li3": "Can escalate meaningful requests to the owner without exposing private system behavior.",
-    "vis-problem-text": "Most public AI bots either dump generic info, push links too early, or drift into empty small talk. That makes them poor as a real first contact layer for projects and collaboration requests.",
+    "vis-problem-text": "A public AI assistant has to do more than answer politely. If it is too generic, it wastes leads; if it is too open, it leaks internal context; if it is too rigid, it kills useful conversations. The challenge is building a first-contact layer that helps people move forward without becoming either a dumb FAQ or an unrestricted chatbot.",
     "vis-solution-text": "Visitor AI Assistant was built as a separate consultation contour: it answers public questions, helps visitors shape a meaningful request, preserves short session context, and keeps clear behavioral boundaries.",
     "vis-stat-1-title": "Session-based",
     "vis-stat-1-text": "Conversation context is kept only for the active consultation and expires after inactivity.",
@@ -443,7 +453,9 @@
         "full-sec-1-title": "1. Telegram account automation",
         "full-sec-1-text": "Pyrogram is especially useful when the product is not just a public bot but a system that acts through a real Telegram account. In this mode, the application can read dialogs, send messages, inspect media, and coordinate actions in ways that the regular Bot API does not expose. That is why it fits userbot architecture well.",
         "full-sec-2-title": "2. Sessions, dialogs, and media",
-        "full-sec-2-text": "A practical strength of Pyrogram is the combination of session management with ergonomic chat APIs. The developer gets access to messages, users, files, and chat metadata through one consistent interface. That reduces glue code and lets the system focus on routing, safety, and business logic instead of protocol plumbing."
+        "full-sec-2-text": "A practical strength of Pyrogram is the combination of session management with ergonomic chat APIs. The developer gets access to messages, users, files, and chat metadata through one consistent interface. That reduces glue code and lets the system focus on routing, safety, and business logic instead of protocol plumbing.",
+        "project-ai-userbot-case-title": "Project Application: Dekrov AI Userbot",
+        "project-ai-userbot-case-text": "Pyrogram is what makes the userbot side possible. Dekrov AI Userbot works through the owner's real Telegram account, so dialog access, media handling, cross-chat actions, and account-level automation all depend on a client library that exposes Telegram beyond the regular Bot API."
     },
     "groq": {
         "tech-page-title": "Groq API: Fast LLM inference for assistant workflows",
@@ -458,7 +470,11 @@
         "full-sec-1-title": "1. Real-time assistant loops",
         "full-sec-1-text": "When a Telegram assistant is expected to reply naturally and stay useful in live conversation, latency becomes a product concern, not just an infrastructure metric. A faster inference path makes the assistant feel more immediate, keeps command workflows practical, and reduces friction when the user is switching between dialogue, actions, and retrieval.",
         "full-sec-2-title": "2. Multimodal and fallback-oriented use",
-        "full-sec-2-text": "Modern assistant systems rarely rely on one simple text prompt. They route between summarization, search synthesis, image understanding, and voice transcription. An API layer like Groq becomes part of the orchestration strategy: choosing models, handling limits, and preserving a stable experience when one path needs fallback logic."
+        "full-sec-2-text": "Modern assistant systems rarely rely on one simple text prompt. They route between summarization, search synthesis, image understanding, and voice transcription. An API layer like Groq becomes part of the orchestration strategy: choosing models, handling limits, and preserving a stable experience when one path needs fallback logic.",
+        "project-ai-userbot-case-title": "Project Application: Dekrov AI Userbot",
+        "project-ai-userbot-case-text": "Groq is the inference layer behind dialogue, .b tasks, transcription, vision, and model fallback inside the userbot ecosystem. In this project, speed matters because the assistant is part of a live Telegram workflow where answers, tools, and action planning need to stay responsive.",
+        "project-visitor-ai-case-title": "Project Application: Visitor AI Assistant",
+        "project-visitor-ai-case-text": "In the visitor layer, Groq powers consultation replies, request drafting, and quality review of public-facing answers. Here the goal is not just raw generation, but fast and stable guidance during the first contact with a visitor."
     },
     "httpx": {
         "tech-page-title": "HTTPX: Async network layer for live tools",
@@ -473,7 +489,9 @@
         "full-sec-1-title": "1. Async I/O and connection reuse",
         "full-sec-1-text": "In an assistant project, external requests should not freeze the rest of the system. HTTPX fits naturally into async applications, where one part of the app can wait for a remote API while other tasks continue running. Reusing clients also helps keep network behavior more efficient and predictable under load.",
         "full-sec-2-title": "2. Retrieval, APIs, and operational safety",
-        "full-sec-2-text": "A reliable HTTP layer is about more than sending GET requests. The application needs careful timeout strategy, validation, and clear handling of failed responses. That is especially important when live tools affect what the assistant says or does, because network instability should degrade gracefully instead of breaking the whole workflow."
+        "full-sec-2-text": "A reliable HTTP layer is about more than sending GET requests. The application needs careful timeout strategy, validation, and clear handling of failed responses. That is especially important when live tools affect what the assistant says or does, because network instability should degrade gracefully instead of breaking the whole workflow.",
+        "project-ai-userbot-case-title": "Project Application: Dekrov AI Userbot",
+        "project-ai-userbot-case-text": "HTTPX is the network layer for live tools, retrieval, and grounded answers inside Dekrov AI Userbot. Search, rates, weather, article fetching, and other external lookups all depend on a client that behaves predictably inside an async assistant pipeline."
     },
     "json-persistence": {
         "tech-page-title": "JSON Persistence: Portable runtime state without a database",
@@ -488,6 +506,10 @@
         "full-sec-1-title": "1. Why JSON works at this scale",
         "full-sec-1-text": "Not every automation product needs SQL, Redis, or a heavy persistence layer on day one. If the runtime state is moderate, the ownership model is clear, and the deployment target is controlled, JSON files can be a practical choice. They reduce setup complexity and make the project easier to move, inspect, and recover.",
         "full-sec-2-title": "2. Limits and operational rules",
-        "full-sec-2-text": "File-based persistence still needs discipline. The application must control write timing, prevent corrupted updates, and keep a clear structure for each data domain. In other words, JSON is simple, but not careless: it works best when the developer treats state layout, backup strategy, and validation as part of the architecture."
+        "full-sec-2-text": "File-based persistence still needs discipline. The application must control write timing, prevent corrupted updates, and keep a clear structure for each data domain. In other words, JSON is simple, but not careless: it works best when the developer treats state layout, backup strategy, and validation as part of the architecture.",
+        "project-ai-userbot-case-title": "Project Application: Dekrov AI Userbot",
+        "project-ai-userbot-case-text": "JSON persistence is part of why Dekrov AI Userbot stays portable: runtime state, owner knowledge, reminders, memory layers, and control settings can survive restarts without a separate database server. That tradeoff matches the product well because it keeps inspection, backup, and deployment straightforward.",
+        "project-visitor-ai-case-title": "Project Application: Visitor AI Assistant",
+        "project-visitor-ai-case-text": "For the visitor assistant, JSON persistence stores lightweight session state, moderation state, and review signals without introducing a heavy backend. It keeps the public layer simple to deploy while still letting consultations feel stateful and controlled."
     }
 }

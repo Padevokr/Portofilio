@@ -1,3 +1,72 @@
+const PROJECT_CASE_CONFIG = {
+    "project-automation": {
+        titleKey: "full-sec-project-case-title",
+        textKey: "full-sec-project-case-text",
+        hideGenericSections: true
+    },
+    "project-ai-userbot": {
+        titleKey: "project-ai-userbot-case-title",
+        textKey: "project-ai-userbot-case-text",
+        hideGenericSections: false
+    },
+    "project-visitor-ai": {
+        titleKey: "project-visitor-ai-case-title",
+        textKey: "project-visitor-ai-case-text",
+        hideGenericSections: false
+    }
+};
+
+const PROJECT_CASE_FALLBACKS = {
+    "project-ai-userbot": {
+        "python": {
+            title: "Project Application: Dekrov AI Userbot",
+            text: "In Dekrov AI Userbot, Python is the orchestration layer for command parsing, memory, reminders, action routing, chat-bot support, and owner workflows. The value here is not just language familiarity but the ability to keep one Telegram-native system modular while it coordinates AI, automation, and runtime state in one process."
+        },
+        "pyrogram": {
+            title: "Project Application: Dekrov AI Userbot",
+            text: "Pyrogram is what makes the userbot side possible. Dekrov AI Userbot works through the owner's real Telegram account, so dialog access, media handling, cross-chat actions, and account-level automation all depend on a client library that exposes Telegram beyond the regular Bot API."
+        },
+        "groq": {
+            title: "Project Application: Dekrov AI Userbot",
+            text: "Groq is the inference layer behind dialogue, .b tasks, transcription, vision, and model fallback inside the userbot ecosystem. In this project, speed matters because the assistant is part of a live Telegram workflow where answers, tools, and action planning need to stay responsive."
+        },
+        "asyncio": {
+            title: "Project Application: Dekrov AI Userbot",
+            text: "Asyncio is the architectural backbone of Dekrov AI Userbot: reminders, live requests, background jobs, auto-replies, and command execution all coexist in one persistent runtime. The project uses asynchrony as a system design choice, not as a small implementation detail."
+        },
+        "httpx": {
+            title: "Project Application: Dekrov AI Userbot",
+            text: "HTTPX is the network layer for live tools, retrieval, and grounded answers inside Dekrov AI Userbot. Search, rates, weather, article fetching, and other external lookups all depend on a client that behaves predictably inside an async assistant pipeline."
+        },
+        "json-persistence": {
+            title: "Project Application: Dekrov AI Userbot",
+            text: "JSON persistence is part of why Dekrov AI Userbot stays portable: runtime state, owner knowledge, reminders, memory layers, and control settings can survive restarts without a separate database server. That tradeoff matches the product well because it keeps inspection, backup, and deployment straightforward."
+        }
+    },
+    "project-visitor-ai": {
+        "python": {
+            title: "Project Application: Visitor AI Assistant",
+            text: "In Visitor AI Assistant, Python holds together the public consultation flow: session lifecycle, moderation counters, drift detection, request drafting, and owner handoff all live in the same runtime. It is the layer that keeps the assistant helpful and structured instead of turning into a loose generic chatbot."
+        },
+        "aiogram": {
+            title: "Project Application: Visitor AI Assistant",
+            text: "Aiogram is the transport layer of the visitor assistant: consultation start buttons, callbacks, moderation actions, and public chat routing are all built around bot-first interaction patterns. That makes it a strong fit for a visitor product that must feel responsive while still preserving clear boundaries."
+        },
+        "groq": {
+            title: "Project Application: Visitor AI Assistant",
+            text: "In the visitor layer, Groq powers consultation replies, request drafting, and quality review of public-facing answers. Here the goal is not just raw generation, but fast and stable guidance during the first contact with a visitor."
+        },
+        "asyncio": {
+            title: "Project Application: Visitor AI Assistant",
+            text: "Visitor AI Assistant relies on asyncio for concurrent message handling, session updates, cooldowns, and moderation checks. That lets the public assistant stay responsive while still maintaining state and background logic in parallel."
+        },
+        "json-persistence": {
+            title: "Project Application: Visitor AI Assistant",
+            text: "For the visitor assistant, JSON persistence stores lightweight session state, moderation state, and review signals without introducing a heavy backend. It keeps the public layer simple to deploy while still letting consultations feel stateful and controlled."
+        }
+    }
+};
+
 async function setLanguage(lang) {
     try {
         const path = window.location.pathname;
@@ -5,56 +74,76 @@ async function setLanguage(lang) {
         const segments = normalizedPath.split('/').filter(Boolean);
         const fileDepth = Math.max(0, segments.length - 1);
         const pathPrefix = fileDepth === 0 ? './' : '../'.repeat(fileDepth);
+        const urlParams = new URLSearchParams(window.location.search);
+        const techId = urlParams.get('id');
+        const fromSource = urlParams.get('from');
+
+        const backLink = document.getElementById('dynamic-back-link');
+        if (backLink) {
+            if (fromSource === 'project-automation') {
+                backLink.href = "../Auto.Tg/project-automation.html#d-stack";
+                backLink.setAttribute('data-i18n', 'back-to-Giveaway-Bot-&-Admin-Dashboard');
+            } else if (fromSource === 'project-ai-userbot') {
+                backLink.href = "../AI.Userbot/project-ai-userbot.html#ai-stack";
+                backLink.setAttribute('data-i18n', 'back-to-Dekrov-AI-Userbot');
+            } else if (fromSource === 'project-visitor-ai') {
+                backLink.href = "../Visitor/project-visitor-ai.html#vis-stack";
+                backLink.setAttribute('data-i18n', 'back-to-Visitor-AI-Assistant');
+            } else {
+                backLink.href = "../../index.html";
+                backLink.setAttribute('data-i18n', 'back-to-home');
+            }
+        }
         
         const response = await fetch(`${pathPrefix}locales/${lang}.json?v=20260307`, {
             cache: 'no-store'
         });
         if (!response.ok) throw new Error('Translation file not found');
         const translations = await response.json();
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        const techId = urlParams.get('id');
-        const fromSource = urlParams.get('from');
-
-	        const backLink = document.getElementById('dynamic-back-link');
-	        if (backLink) {
-	            if (fromSource === 'project-automation') {
-	                backLink.href = "../Auto.Tg/project-automation.html#d-stack";
-	                backLink.setAttribute('data-i18n', 'back-to-Giveaway-Bot-&-Admin-Dashboard'); 
-	            } else if (fromSource === 'project-ai-userbot') {
-	                backLink.href = "../AI.Userbot/project-ai-userbot.html#ai-stack";
-	                backLink.setAttribute('data-i18n', 'back-to-Dekrov-AI-Userbot');
-	            } else if (fromSource === 'project-visitor-ai') {
-	                backLink.href = "../Visitor/project-visitor-ai.html#vis-stack";
-	                backLink.setAttribute('data-i18n', 'back-to-Visitor-AI-Assistant');
-	            } else {
-	                backLink.href = "../../index.html";
-	                backLink.setAttribute('data-i18n', 'back-to-home');   
-	            }
-        }
 
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             let text = "";
             if (techId && translations[techId]) {
-                if (fromSource === 'project-automation') {
+                const techTranslations = translations[techId];
+                const projectCaseConfig = PROJECT_CASE_CONFIG[fromSource];
+                const fallbackGenericProjectTitle = techTranslations["full-sec-project-case-title"] || "";
+                const fallbackGenericProjectText = techTranslations["full-sec-project-case-text"] || "";
+                const localizedProjectTitle = projectCaseConfig ? techTranslations[projectCaseConfig.titleKey] : "";
+                const localizedProjectText = projectCaseConfig ? techTranslations[projectCaseConfig.textKey] : "";
+                const fallbackProjectCase = PROJECT_CASE_FALLBACKS[fromSource]?.[techId];
+                const resolvedProjectTitle = localizedProjectTitle || fallbackProjectCase?.title || fallbackGenericProjectTitle;
+                const resolvedProjectText = localizedProjectText || fallbackProjectCase?.text || fallbackGenericProjectText;
+                const hasProjectCase = Boolean(
+                    resolvedProjectTitle && resolvedProjectText
+                );
+
+                if (projectCaseConfig && projectCaseConfig.hideGenericSections) {
                     if (key === "full-sec-project-case-text") {
-                        text = translations[techId][key];
-                        if (el.closest('article')) el.closest('article').style.display = 'block';
+                        text = resolvedProjectText;
+                        if (el.closest('article')) el.closest('article').style.display = hasProjectCase ? 'block' : 'none';
                     } else if (key === "full-sec-project-case-title") {
-                        text = translations[techId]["full-sec-project-case-title"];
-                        if (el.closest('article')) el.closest('article').style.display = 'block';
+                        text = resolvedProjectTitle;
+                        if (el.closest('article')) el.closest('article').style.display = hasProjectCase ? 'block' : 'none';
                     } else if (key.startsWith("full-sec-1") || key.startsWith("full-sec-2")) {
                         if (el.closest('article')) el.closest('article').style.display = 'none';
                     } else {
-                        text = translations[techId][key] || translations[key];
+                        text = techTranslations[key] || translations[key];
                     }
                 } else {
-                    if (key.includes("project-case")) {
-                        if (el.closest('article')) el.closest('article').style.display = 'none';
+                    if (key === "full-sec-project-case-title") {
+                        text = resolvedProjectTitle;
+                        if (el.closest('article')) el.closest('article').style.display = hasProjectCase ? 'block' : 'none';
+                    } else if (key === "full-sec-project-case-text") {
+                        text = resolvedProjectText;
+                        if (el.closest('article')) el.closest('article').style.display = hasProjectCase ? 'block' : 'none';
                     } else {
-                        text = translations[techId][key] || translations[key];
-                        if (el.closest('article')) el.closest('article').style.display = 'block';
+                        text = techTranslations[key] || translations[key];
+                        if (key.includes("project-case") && el.closest('article')) {
+                            el.closest('article').style.display = hasProjectCase ? 'block' : 'none';
+                        } else if (el.closest('article')) {
+                            el.closest('article').style.display = 'block';
+                        }
                     }
                 }
             } else {
