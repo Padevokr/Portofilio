@@ -328,30 +328,56 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sections.length > 0 && navLinksList.length > 0) {
         const observerOptions = {
             root: null,
-            rootMargin: '-15% 0px -80% 0px', 
+            rootMargin: '-40% 0px -50% 0px',
             threshold: 0
         };
 
-const observerCallback = (entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            
-            navLinksList.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${id}`) {
-                    link.classList.add('active');
-                    if (link.classList.contains('toc-item')) {
-                        link.parentElement.scrollTo({
-                            left: link.offsetLeft - (link.parentElement.offsetWidth / 2) + (link.offsetWidth / 2),
-                            behavior: 'smooth'
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+
+                    navLinksList.forEach(link => {
+                        link.classList.remove('active', 'is-next', 'is-prev');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                            if (link.classList.contains('toc-item')) {
+                                link.parentElement.scrollTo({
+                                    left: link.offsetLeft - (link.parentElement.offsetWidth / 2) + (link.offsetWidth / 2),
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }
+                    });
+
+                    // Подсветка предыдущего и следующего раздела
+                    const sectionsArray = Array.from(sections);
+                    const currentIndex = sectionsArray.findIndex(s => s.id === id);
+                    
+                    // Предыдущий раздел
+                    if (currentIndex > 0) {
+                        const prevSection = sectionsArray[currentIndex - 1];
+                        const prevId = prevSection.id;
+                        navLinksList.forEach(link => {
+                            if (link.getAttribute('href') === `#${prevId}`) {
+                                link.classList.add('is-prev');
+                            }
+                        });
+                    }
+                    
+                    // Следующий раздел
+                    if (currentIndex >= 0 && currentIndex < sectionsArray.length - 1) {
+                        const nextSection = sectionsArray[currentIndex + 1];
+                        const nextId = nextSection.id;
+                        navLinksList.forEach(link => {
+                            if (link.getAttribute('href') === `#${nextId}`) {
+                                link.classList.add('is-next');
+                            }
                         });
                     }
                 }
             });
-        }
-    });
-};
+        };
 
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);

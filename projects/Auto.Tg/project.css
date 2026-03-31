@@ -12,14 +12,35 @@
 
 .back-link {
   display: inline-flex;
+  align-items: center;
+  gap: 7px;
   margin-bottom: 1rem;
-  color: var(--text-muted);
-  transition: color var(--ease), text-shadow var(--ease);
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 0.5px solid rgba(111, 211, 255, 0.3);
+  background: rgba(111, 211, 255, 0.05);
+  color: rgba(111, 211, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.back-link::before {
+  content: "←";
+  display: inline-block;
+  transition: transform 0.2s ease;
 }
 
 .back-link:hover {
-  color: var(--text);
-  text-shadow: 0 0 14px rgba(111, 211, 255, 0.35);
+  border-color: rgba(111, 211, 255, 0.6);
+  background: rgba(111, 211, 255, 0.1);
+  color: #6fd3ff;
+  text-shadow: none;
+}
+
+.back-link:hover::before {
+  transform: translateX(-4px);
 }
 
 .hero-badges {
@@ -222,40 +243,100 @@
   display: none;
 }
 
+/* Стили для TOC элементов (все экраны) */
+.toc-item,
+.toc a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  display: block;
+}
+
+.toc a {
+  margin-bottom: 4px;
+}
+
+.toc-item::before,
+.toc a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(111, 211, 255, 0.15), transparent);
+  border-radius: 20px 0 0 20px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  opacity: 0;
+}
+
+.toc-item.active::before,
+.toc a.active::before {
+  width: 100%;
+  opacity: 1;
+}
+
+.toc-item.active,
+.toc a.active {
+  color: #fff;
+  background: rgba(111, 211, 255, 0.08);
+  border-color: rgba(111, 211, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.toc-item.is-next,
+.toc a.is-next {
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.toc-item.is-prev,
+.toc a.is-prev {
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
 @media (max-width: 1024px) {
   .mobile-toc-wrapper {
     display: block;
     position: sticky;
-    top: 70px; 
+    top: 70px;
     z-index: 90;
-    background: rgba(10, 15, 28, 0.7); 
+    background: rgba(10, 15, 28, 0.7);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 0 -20px 20px -20px; 
+    margin: 0 -20px 20px -20px;
     padding: 10px 0;
   }
+}
 
 @media (max-width: 768px) {
   .mobile-toc-wrapper {
     display: block;
-    position: sticky; 
+    position: sticky;
     top: 90px;
-    z-index: 80; 
-    
+    z-index: 80;
     width: calc(100% - 30px);
     margin: 10px auto 20px auto;
-    
-    background: rgba(15, 20, 35, 0.85); 
+    background: rgba(15, 20, 35, 0.85);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
-    
-    border-radius: 16px; 
+    border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     padding: 8px 0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   }
-
 
   .mobile-toc {
     display: flex;
@@ -266,7 +347,6 @@
     scrollbar-width: none;
   }
 
-
   .details-sidebar {
     display: none;
   }
@@ -274,32 +354,8 @@
   .details-content {
     padding-top: 10px;
   }
-}
-
-
 
   .mobile-toc::-webkit-scrollbar {
-    display: none;
-  }
-
-  .toc-item {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.6);
-    padding: 6px 12px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    border: 1px solid transparent;
-  }
-
-  .toc-item.active {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-  .details-sidebar {
     display: none;
   }
 }
