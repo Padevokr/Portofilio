@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NY04NMP3VW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NY04NMP3VW');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    data-i18n-content="vis-meta-description"
+    content="Visitor AI Assistant: a public-facing Telegram consultation layer with session memory, moderation, routing, and owner handoff."
+  >
+  <title data-i18n="vis-page-title">Project | Visitor AI Assistant</title>
+  <link rel="icon" type="image/png" href="../../assets/favicon-rounded.png">
+  <link rel="apple-touch-icon" href="../../assets/favicon-rounded.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../AI.Userbot/project.css">
+  <script src="../../scripts.js" defer></script>
+</head>
+<body>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header class="site-header container">
+    <a class="brand" href="../../index.html#hero">Dekrov.dev</a>
+
+    <div class="menu-wrapper">
+      <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu" data-i18n-aria-label="menu-toggle-label">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </button>
+
+      <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-card">
+          <nav class="mobile-nav">
+            <a href="../../index.html#about" data-i18n="nav-about">About me</a>
+            <a href="../../index.html#projects" data-i18n="nav-projects">Projects</a>
+            <a href="../../index.html#contacts" data-i18n="nav-contacts">Contacts</a>
+            <a href="../../index.html" data-i18n="nav-all-projects">Home</a>
+            <div class="lang-scroll-area">
+              <select id="lang-select" class="lang-picker" title="Change language" data-i18n-title="change-language-label">
+                <option value="en">English</option>
+                <option value="uk">Ukrainian</option>
+                <option value="ru">Russian</option>
+                <option value="it">Italiano</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">French</option>
+                <option value="zh">Chinese</option>
+              </select>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="project-page">
+    <section class="project-hero container reveal reveal-fade">
+      <a class="back-link" href="../../projects.html" data-i18n="vis-back">Back to projects</a>
+      <p class="eyebrow" data-i18n="pa-eyebrow">Case Study</p>
+      <h1 data-i18n="proj-name-3">Visitor AI Assistant</h1>
+      <p class="tagline" data-i18n="vis-tagline">
+        A public-facing Telegram AI assistant built for first-contact conversations, project discovery, request drafting, moderation, and smooth handoff to the owner.
+      </p>
+      <div class="hero-badges">
+        <span class="badge neutral" data-i18n="vis-status">Live</span>
+        <span class="badge neutral" data-i18n="vis-badge-1">Python + Aiogram</span>
+        <span class="badge neutral" data-i18n="vis-badge-2">Session Memory</span>
+        <span class="badge neutral" data-i18n="vis-badge-3">Moderation + Handoff</span>
+      </div>
+      <article class="glass-card repo-callout">
+        <p class="repo-callout-kicker" data-i18n="vis-private-kicker">Public-facing layer</p>
+        <h2 data-i18n="vis-private-title">Separate visitor contour</h2>
+        <p class="repo-callout-text" data-i18n="vis-private-text">
+          This project is presented as its own public product layer inside the broader Dekrov AI ecosystem. It is designed for consultations and routing, not for owner-only internals.
+        </p>
+        <ul class="project-points project-points-large">
+          <li data-i18n="vis-private-li1">Built for first contact, not generic endless chat.</li>
+          <li data-i18n="vis-private-li2">Keeps temporary session context while the consultation is active.</li>
+          <li data-i18n="vis-private-li3">Can escalate meaningful requests to the owner without exposing private system behavior.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="container section reveal reveal-slide scroll-zoom">
+      <div class="split-grid">
+        <article class="glass-card mini-card">
+          <h3 data-i18n="pa-problem-title">Problem</h3>
+          <p data-i18n="vis-problem-text">
+            Most public AI bots either dump generic info, push links too early, or drift into empty small talk. That makes them poor as a real first contact layer for projects and collaboration requests.
+          </p>
+        </article>
+        <article class="glass-card mini-card">
+          <h3 data-i18n="pa-solution-title">Solution</h3>
+          <p data-i18n="vis-solution-text">
+            Visitor AI Assistant was built as a separate consultation contour: it answers public questions, helps visitors shape a meaningful request, preserves short session context, and keeps clear behavioral boundaries.
+          </p>
+        </article>
+      </div>
+
+      <div class="stat-band">
+        <div class="stat-item">
+          <strong data-i18n="vis-stat-1-title">Session-based</strong>
+          <span data-i18n="vis-stat-1-text">Conversation context is kept only for the active consultation and expires after inactivity.</span>
+        </div>
+        <div class="stat-item">
+          <strong data-i18n="vis-stat-2-title">Public-safe</strong>
+          <span data-i18n="vis-stat-2-text">The assistant stays inside public-facing knowledge and avoids owner-only internals.</span>
+        </div>
+        <div class="stat-item">
+          <strong data-i18n="vis-stat-3-title">Owner handoff</strong>
+          <span data-i18n="vis-stat-3-text">Useful requests can be turned into a cleaner message for the owner instead of forcing visitors to start cold.</span>
+        </div>
+        <div class="stat-item">
+          <strong data-i18n="vis-stat-4-title">Guarded dialogue</strong>
+          <span data-i18n="vis-stat-4-text">It can detect drift, keep boundaries, and end low-signal conversations when the dialogue stops being useful.</span>
+        </div>
+      </div>
+
+      <div class="read-more-wrapper">
+        <button id="read-more-btn" class="btn-primary" data-i18n="pa-read-more">Read More</button>
+      </div>
+    </section>
+
+    <div id="project-details" class="details-hidden container">
+      <nav class="mobile-toc-wrapper">
+        <div class="mobile-toc">
+          <a href="#vis-arch" class="toc-item active" data-i18n="pa-nav-arch">Architecture</a>
+          <a href="#vis-features" class="toc-item" data-i18n="pa-nav-feat">Features</a>
+          <a href="#vis-ops" class="toc-item" data-i18n="vis-nav-ops">Operations</a>
+          <a href="#vis-stack" class="toc-item" data-i18n="pa-nav-stack">Stack</a>
+          <a href="#vis-result" class="toc-item" data-i18n="pa-nav-res">Result</a>
+        </div>
+      </nav>
+
+      <div class="details-layout">
+        <aside class="details-sidebar">
+          <nav class="toc glass-card">
+            <ul>
+              <li><a href="#vis-arch" data-i18n="pa-nav-arch">Architecture</a></li>
+              <li><a href="#vis-features" data-i18n="pa-nav-feat">Features</a></li>
+              <li><a href="#vis-ops" data-i18n="vis-nav-ops">Operations</a></li>
+              <li><a href="#vis-stack" data-i18n="pa-nav-stack">Stack</a></li>
+              <li><a href="#vis-result" data-i18n="pa-nav-res">Result</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div class="details-content">
+          <section id="vis-arch" class="section reveal reveal-scale scroll-zoom">
+            <h2 data-i18n="pa-arch-title">Architecture</h2>
+            <div class="architecture-grid">
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="vis-arch-card-1-title">Public entry point</h3>
+                <p data-i18n="vis-arch-card-1-text">
+                  Visitors talk to a Telegram bot that starts and manages a consultation session instead of exposing the owner-facing userbot directly.
+                </p>
+              </article>
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="vis-arch-card-2-title">Consultation router</h3>
+                <p data-i18n="vis-arch-card-2-text">
+                  The assistant classifies requests, answers public questions, helps formulate messages, and routes useful conversations toward an owner handoff path.
+                </p>
+              </article>
+              <article class="glass-card architecture-card">
+                <h3 data-i18n="vis-arch-card-3-title">Guardrails</h3>
+                <p data-i18n="vis-arch-card-3-text">
+                  Session state, moderation, boundary tracking, and quality review keep the visitor layer useful without letting it turn into an unrestricted generic chatbot.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section id="vis-features" class="section reveal reveal-slide scroll-zoom">
+            <h2 data-i18n="pa-features-title">Features</h2>
+            <div class="split-grid">
+              <article class="glass-card mini-card">
+                <h3 data-i18n="vis-features-card-1-title">Pre-consultation help</h3>
+                <p data-i18n="vis-features-card-1-text">
+                  Instead of just dropping links, the assistant can help visitors understand what they need, clarify a task, and prepare a message before contacting the owner.
+                </p>
+              </article>
+              <article class="glass-card mini-card">
+                <h3 data-i18n="vis-features-card-2-title">Structured handoff</h3>
+                <p data-i18n="vis-features-card-2-text">
+                  When the conversation becomes meaningful, the visitor flow can redirect the user toward a clearer owner request rather than leaving them with a vague chat log.
+                </p>
+              </article>
+            </div>
+            <article class="glass-card project-panel">
+              <ul class="project-points project-points-large">
+                <li data-i18n="vis-features-li1">Short-lived session memory preserves the active consultation without growing into a heavy long-term profile system.</li>
+                <li data-i18n="vis-features-li2">Supportive drafting helps users who do not know how to describe a bot, automation flow, or collaboration request yet.</li>
+                <li data-i18n="vis-features-li3">Small talk is allowed in a limited form, but the assistant keeps its role as an assistant instead of pretending to be a friend.</li>
+                <li data-i18n="vis-features-li4">Public answers are separated from deeper owner-only project knowledge so the visitor layer stays clean and safe.</li>
+              </ul>
+            </article>
+          </section>
+
+          <section id="vis-ops" class="section reveal reveal-scale scroll-zoom">
+            <h2 data-i18n="vis-ops-title">Operations and Guardrails</h2>
+            <div class="split-grid">
+              <article class="glass-card mini-card">
+                <h3 data-i18n="vis-ops-card-1-title">Moderation layer</h3>
+                <p data-i18n="vis-ops-card-1-text">
+                  The flow can warn, limit, block, or end a consultation when behavior becomes abusive, repetitive, or clearly detached from the assistant's purpose.
+                </p>
+              </article>
+              <article class="glass-card mini-card">
+                <h3 data-i18n="vis-ops-card-2-title">Session lifecycle</h3>
+                <p data-i18n="vis-ops-card-2-text">
+                  Active consultation data is temporary by design: a session can expire after inactivity, and forced restarts do not keep unlimited conversational baggage.
+                </p>
+              </article>
+            </div>
+            <article class="glass-card project-panel">
+              <ul class="project-points project-points-large">
+                <li data-i18n="vis-ops-li1">The system distinguishes meaningful follow-up questions from low-signal drift or empty chatter.</li>
+                <li data-i18n="vis-ops-li2">Owner handoff stays explicit, so the assistant does not pretend it already completed something that still needs human review.</li>
+                <li data-i18n="vis-ops-li3">A separate review layer can flag poor visitor replies and repeated degradation patterns for later fixing.</li>
+                <li data-i18n="vis-ops-li4">The visitor contour remains separate from the owner-side assistant logic, which helps preserve safer public behavior.</li>
+              </ul>
+            </article>
+          </section>
+
+          <section id="vis-stack" class="section reveal reveal-slide scroll-zoom">
+            <h2 data-i18n="pa-stack-title">Technology Stack</h2>
+            <div class="stack-grid">
+              <a href="../What_is/tech.html?id=python&from=project-visitor-ai" class="glass-card stack-item">
+                <strong>Python</strong>
+                <span data-i18n="vis-stack-1-text">Core logic, orchestration, moderation, and session handling.</span>
+              </a>
+              <a href="../What_is/tech.html?id=aiogram&from=project-visitor-ai" class="glass-card stack-item">
+                <strong>Aiogram</strong>
+                <span data-i18n="vis-stack-2-text">Telegram bot transport, callbacks, routing, and visitor-facing interface handling.</span>
+              </a>
+              <a href="../What_is/tech.html?id=groq&from=project-visitor-ai" class="glass-card stack-item">
+                <strong>Groq API</strong>
+                <span data-i18n="vis-stack-3-text">LLM inference for consultation replies, drafting, and review logic.</span>
+              </a>
+              <a href="../What_is/tech.html?id=asyncio&from=project-visitor-ai" class="glass-card stack-item">
+                <strong>Asyncio</strong>
+                <span data-i18n="vis-stack-4-text">Async workflows for message handling, session updates, and background checks.</span>
+              </a>
+              <a href="../What_is/tech.html?id=json-persistence&from=project-visitor-ai" class="glass-card stack-item">
+                <strong>JSON Persistence</strong>
+                <span data-i18n="vis-stack-5-text">Session state, moderation state, and lightweight runtime storage without a heavy separate backend.</span>
+              </a>
+            </div>
+          </section>
+
+          <section id="vis-result" class="section reveal reveal-slide scroll-zoom">
+            <h2 data-i18n="pa-res-title">Result</h2>
+            <article class="glass-card project-panel">
+              <p data-i18n="vis-result-text">
+                Visitor AI Assistant turns the first contact layer into an actual product surface: helpful enough to guide people, strict enough to keep direction, and structured enough to pass meaningful requests forward. As a portfolio case, it shows product thinking around boundaries, public UX, moderation, and AI behavior quality, not just raw chatbot generation.
+              </p>
+            </article>
+          </section>
+
+          <div class="hide-details-wrapper">
+            <button id="hide-details-btn" class="btn-primary" data-i18n="pa-hide-details">Hide Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

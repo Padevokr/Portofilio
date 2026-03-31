@@ -24,6 +24,9 @@ async function setLanguage(lang) {
 	            } else if (fromSource === 'project-ai-userbot') {
 	                backLink.href = "../AI.Userbot/project-ai-userbot.html#ai-stack";
 	                backLink.setAttribute('data-i18n', 'back-to-Dekrov-AI-Userbot');
+	            } else if (fromSource === 'project-visitor-ai') {
+	                backLink.href = "../Visitor/project-visitor-ai.html#vis-stack";
+	                backLink.setAttribute('data-i18n', 'back-to-Visitor-AI-Assistant');
 	            } else {
 	                backLink.href = "../../index.html";
 	                backLink.setAttribute('data-i18n', 'back-to-home');   
