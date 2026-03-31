@@ -79,20 +79,21 @@ async function setLanguage(lang) {
         const fromSource = urlParams.get('from');
 
         const backLink = document.getElementById('dynamic-back-link');
+        let backLinkKey = 'back-to-home';
         if (backLink) {
             if (fromSource === 'project-automation') {
                 backLink.href = "../Auto.Tg/project-automation.html#d-stack";
-                backLink.setAttribute('data-i18n', 'back-to-Giveaway-Bot-&-Admin-Dashboard');
+                backLinkKey = 'back-to-Giveaway-Bot-&-Admin-Dashboard';
             } else if (fromSource === 'project-ai-userbot') {
                 backLink.href = "../AI.Userbot/project-ai-userbot.html#ai-stack";
-                backLink.setAttribute('data-i18n', 'back-to-Dekrov-AI-Userbot');
+                backLinkKey = 'back-to-Dekrov-AI-Userbot';
             } else if (fromSource === 'project-visitor-ai') {
                 backLink.href = "../Visitor/project-visitor-ai.html#vis-stack";
-                backLink.setAttribute('data-i18n', 'back-to-Visitor-AI-Assistant');
+                backLinkKey = 'back-to-Visitor-AI-Assistant';
             } else {
                 backLink.href = "../../index.html";
-                backLink.setAttribute('data-i18n', 'back-to-home');
             }
+            backLink.setAttribute('data-i18n', backLinkKey);
         }
         
         const response = await fetch(`${pathPrefix}locales/${lang}.json?v=20260307`, {
