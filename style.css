@@ -1303,7 +1303,64 @@ h3 {
   align-self: center;
   color: var(--text-muted);
   font-size: 1.5rem;
+  transition: transform var(--ease), color var(--ease);
 }
+
+.projects-link-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0;
+}
+
+.projects-btn-new {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+}
+
+.projects-btn-new:hover .btn-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.projects-btn-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects-btn-copy {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.projects-btn-kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.projects-btn-title {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+@media (max-width: 600px) {
+  .projects-link-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .contacts-cta {
   display: flex;

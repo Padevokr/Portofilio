@@ -67,7 +67,7 @@ const PROJECT_CASE_FALLBACKS = {
     }
 };
 
-async function setLanguage(lang) {
+async function setLanguage(lang, updateUrl = true) {
     try {
         const path = window.location.pathname;
         const normalizedPath = path.endsWith('/') ? `${path}index.html` : path;
@@ -77,6 +77,14 @@ async function setLanguage(lang) {
         const urlParams = new URLSearchParams(window.location.search);
         const techId = urlParams.get('id');
         const fromSource = urlParams.get('from');
+
+        // Update URL with lang parameter if on tech.html page
+        if (updateUrl && path.includes('tech.html')) {
+            const newUrlParams = new URLSearchParams(window.location.search);
+            newUrlParams.set('lang', lang);
+            const newUrl = window.location.pathname + '?' + newUrlParams.toString();
+            window.history.replaceState({}, '', newUrl);
+        }
 
         const backLink = document.getElementById('dynamic-back-link');
         let backLinkKey = 'back-to-home';
@@ -115,8 +123,10 @@ async function setLanguage(lang) {
                 const fallbackProjectCase = PROJECT_CASE_FALLBACKS[fromSource]?.[techId];
                 const resolvedProjectTitle = localizedProjectTitle || fallbackProjectCase?.title || fallbackGenericProjectTitle;
                 const resolvedProjectText = localizedProjectText || fallbackProjectCase?.text || fallbackGenericProjectText;
+                const knownProjectSources = Object.keys(PROJECT_CASE_CONFIG);
+                const isKnownProjectSource = knownProjectSources.includes(fromSource);
                 const hasProjectCase = Boolean(
-                    resolvedProjectTitle && resolvedProjectText
+                    isKnownProjectSource && resolvedProjectTitle && resolvedProjectText
                 );
 
                 if (projectCaseConfig && projectCaseConfig.hideGenericSections) {
@@ -307,8 +317,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const langBtn = document.getElementById('lang-btn');
     const langOptions = document.getElementById('lang-options');
     const langCurrent = document.getElementById('lang-current');
-    const savedLang = localStorage.getItem('lang') || 'en';
     
+    // Get lang from URL first (for tech.html), then from localStorage, then default to 'en'
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+    const savedLang = urlLang || localStorage.getItem('lang') || 'en';
+
     // Initialize language
     if (langCurrent) {
         const selectedOption = langOptions?.querySelector(`[data-value="${savedLang}"]`);
@@ -316,6 +330,11 @@ document.addEventListener('DOMContentLoaded', () => {
             langCurrent.textContent = selectedOption.textContent;
             selectedOption.classList.add('is-active');
         }
+    }
+
+    // Apply saved language on page load (skip tech.html — it handles itself)
+    if (!window.location.pathname.includes('tech.html') && savedLang !== 'en') {
+        setLanguage(savedLang, false);
     }
     
     // Toggle dropdown
@@ -350,9 +369,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Close on outside click
-        document.addEventListener('click', () => {
-            langOptions.classList.remove('is-open');
-            langBtn.setAttribute('aria-expanded', 'false');
+        document.addEventListener('click', (e) => {
+            if (!langBtn.contains(e.target) && !langOptions.contains(e.target)) {
+                langOptions.classList.remove('is-open');
+                langBtn.setAttribute('aria-expanded', 'false');
+            }
         });
     }
 
@@ -489,6 +510,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         sections.forEach(section => observer.observe(section));
+    }
+
+    // Auto-load language on tech.html page
+    const path = window.location.pathname;
+    if (path.includes('tech.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const techId = urlParams.get('id');
+        // Get lang from URL first, then from localStorage, then default to 'en'
+        const urlLang = urlParams.get('lang');
+        const savedLang = urlLang || localStorage.getItem('lang') || 'en';
+        
+        if (techId) {
+            setLanguage(savedLang, false); // false = don't update URL again
+        } else {
+            // No tech ID specified - redirect to home or show error
+            const backLink = document.getElementById('dynamic-back-link');
+            if (backLink) {
+                backLink.textContent = 'No technology specified. Go back.';
+                backLink.href = '../../index.html';
+            }
+            const descElement = document.querySelector('[data-i18n="tech-main-desc"]');
+            if (descElement) {
+                descElement.textContent = 'Please specify a technology (e.g., ?id=python)';
+            }
+        }
     }
 
     initGridEffects();

@@ -7,11 +7,15 @@ PORT = 8000
 ROOT_DIR = Path(__file__).resolve().parent
 
 
+class CustomHandler(SimpleHTTPRequestHandler):
+    def translate_path(self, path):
+        if path == "/" or path == "":
+            path = "/index.html"
+        return super().translate_path(path)
+
+
 def main() -> None:
-    handler = lambda *args, **kwargs: SimpleHTTPRequestHandler(  # noqa: E731
-        *args, directory=str(ROOT_DIR), **kwargs
-    )
-    server = ThreadingHTTPServer((HOST, PORT), handler)
+    server = ThreadingHTTPServer((HOST, PORT), CustomHandler)
     print(f"Portfolio is running on http://{HOST}:{PORT}")
     print("Press Ctrl+C to stop.")
     try:
