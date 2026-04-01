@@ -17,6 +17,21 @@
     <link rel="apple-touch-icon" href="assets/favicon-rounded.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="projects/Auto.Tg/project.css">
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'auto';
+            
+            // Auto - не ставим атрибут (работает :root)
+            // Dark/Light - ставим атрибут
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            
+            document.documentElement.setAttribute('data-theme-mode', savedTheme);
+        })();
+    </script>
 </head>
 <body>
     <div class="bg-orb orb-1" aria-hidden="true"></div>
@@ -25,12 +40,37 @@
     <header class="site-header container">
         <a class="brand" href="index.html#hero">Dekrov.dev</a>
 
-        <div class="menu-wrapper">
-            <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </button>
+        <div class="header-actions">
+            <div class="theme-toggle-wrapper">
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme" title="Theme: Auto">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="icon-auto" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="menu-wrapper">
+                <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             <div class="menu-overlay" id="menu-overlay">
                 <div class="menu-card">
                     <nav class="mobile-nav">
@@ -39,15 +79,23 @@
                         <a href="index.html#contacts" data-i18n="nav-contacts">Contacts</a>
                         <a href="index.html" data-i18n="nav-all-projects">Home</a>
                         <div class="lang-scroll-area">
-                            <select id="lang-select" class="lang-picker" title="Change language">
-                                <option value="en">English</option>
-                                <option value="uk">Ukrainian</option>
-                                <option value="ru">Russian</option>
-                                <option value="it">Italiano</option>
-                                <option value="de">Deutsch</option>
-                                <option value="fr">French</option>
-                                <option value="zh">Chinese</option>
-                            </select>
+                            <div class="lang-dropdown">
+                                <button class="lang-btn" id="lang-btn" type="button" aria-label="Select language" aria-expanded="false">
+                                    <span class="lang-current" id="lang-current">English</span>
+                                    <svg class="lang-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="lang-options" id="lang-options">
+                                    <button class="lang-option" data-value="en">English</button>
+                                    <button class="lang-option" data-value="uk">Українська</button>
+                                    <button class="lang-option" data-value="ru">Русский</button>
+                                    <button class="lang-option" data-value="it">Italiano</button>
+                                    <button class="lang-option" data-value="de">Deutsch</button>
+                                    <button class="lang-option" data-value="fr">Français</button>
+                                    <button class="lang-option" data-value="zh">中文</button>
+                                </div>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -116,5 +164,54 @@
     </main>
 
     <script src="scripts.js"></script>
+    <script>
+        // Theme toggle logic for projects.html
+        (function() {
+            const themeBtn = document.getElementById('theme-btn');
+            const savedTheme = localStorage.getItem('theme') || 'auto';
+            
+            const themeLabels = {
+                auto: 'Theme: Auto (system)',
+                light: 'Theme: Light',
+                dark: 'Theme: Dark'
+            };
+            
+            function applyTheme(theme) {
+                let actualTheme = theme;
+                
+                if (theme === 'auto') {
+                    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    actualTheme = prefersDark ? 'dark' : 'light';
+                }
+                
+                document.documentElement.setAttribute('data-theme', theme);
+                
+                if (themeBtn) {
+                    themeBtn.setAttribute('data-theme', theme);
+                    themeBtn.setAttribute('title', themeLabels[theme]);
+                }
+            }
+            
+            function cycleTheme() {
+                const currentTheme = localStorage.getItem('theme') || 'auto';
+                const nextTheme = currentTheme === 'auto' ? 'light' : currentTheme === 'light' ? 'dark' : 'auto';
+                
+                localStorage.setItem('theme', nextTheme);
+                applyTheme(nextTheme);
+            }
+            
+            applyTheme(savedTheme);
+            
+            if (themeBtn) {
+                themeBtn.addEventListener('click', cycleTheme);
+            }
+            
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                if (localStorage.getItem('theme') === 'auto') {
+                    applyTheme('auto');
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

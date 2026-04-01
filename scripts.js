@@ -243,16 +243,116 @@ function initGridEffects() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const langSelect = document.getElementById('lang-select');
+    // Theme toggle logic
+    const themeBtn = document.getElementById('theme-btn');
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const themeLabels = {
+        auto: 'Theme: Auto (system)',
+        light: 'Theme: Light',
+        dark: 'Theme: Dark'
+    };
+
+    function getStoredTheme() {
+        return localStorage.getItem('theme') || 'auto';
+    }
+
+    function applyTheme(theme) {
+        // Auto - не ставим атрибут (используется :root = системная тема)
+        // Dark - ставим data-theme="dark"
+        // Light - ставим data-theme="light"
+        if (theme === 'dark' || theme === 'light') {
+            document.documentElement.setAttribute('data-theme', theme);
+        } else {
+            // Auto - убираем атрибут, работает :root
+            document.documentElement.removeAttribute('data-theme');
+        }
+        
+        document.documentElement.setAttribute('data-theme-mode', theme);
+
+        if (themeBtn) {
+            themeBtn.setAttribute('data-theme', theme);
+            themeBtn.setAttribute('title', themeLabels[theme]);
+            themeBtn.setAttribute('aria-label', themeLabels[theme]);
+        }
+    }
+
+    function cycleTheme() {
+        const currentTheme = getStoredTheme();
+        const nextTheme =
+            currentTheme === 'auto'
+                ? 'light'
+                : currentTheme === 'light'
+                ? 'dark'
+                : 'auto';
+
+        localStorage.setItem('theme', nextTheme);
+        applyTheme(nextTheme);
+    }
+
+    applyTheme(getStoredTheme());
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', cycleTheme);
+    }
+
+    mediaQuery.addEventListener('change', () => {
+        const currentTheme = getStoredTheme();
+        if (currentTheme === 'auto') {
+            applyTheme('auto');
+        }
+    });
+
+    // Language dropdown logic
+    const langBtn = document.getElementById('lang-btn');
+    const langOptions = document.getElementById('lang-options');
+    const langCurrent = document.getElementById('lang-current');
     const savedLang = localStorage.getItem('lang') || 'en';
-
-    setLanguage(savedLang); 
-
-    if (langSelect) {
-        langSelect.value = savedLang;
-        langSelect.addEventListener('change', (e) => {
-            setLanguage(e.target.value);
-            updateReadMoreButtonText(e.target.value);
+    
+    // Initialize language
+    if (langCurrent) {
+        const selectedOption = langOptions?.querySelector(`[data-value="${savedLang}"]`);
+        if (selectedOption) {
+            langCurrent.textContent = selectedOption.textContent;
+            selectedOption.classList.add('is-active');
+        }
+    }
+    
+    // Toggle dropdown
+    if (langBtn && langOptions) {
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = langOptions.classList.toggle('is-open');
+            langBtn.setAttribute('aria-expanded', isOpen.toString());
+        });
+        
+        // Handle option click
+        langOptions.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const value = option.getAttribute('data-value');
+                
+                // Update active state
+                langOptions.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('is-active'));
+                option.classList.add('is-active');
+                
+                // Update current language display
+                langCurrent.textContent = option.textContent;
+                
+                // Close dropdown
+                langOptions.classList.remove('is-open');
+                langBtn.setAttribute('aria-expanded', 'false');
+                
+                // Change language
+                setLanguage(value);
+                localStorage.setItem('lang', value);
+            });
+        });
+        
+        // Close on outside click
+        document.addEventListener('click', () => {
+            langOptions.classList.remove('is-open');
+            langBtn.setAttribute('aria-expanded', 'false');
         });
     }
 
@@ -261,13 +361,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.mobile-nav a');
 
     if (menuBtn && overlay) {
-        menuBtn.addEventListener('click', () => overlay.classList.toggle('active'));
+        menuBtn.addEventListener('click', () => {
+            overlay.classList.toggle('active');
+            menuBtn.classList.toggle('is-active');
+        });
         document.addEventListener('click', (e) => {
             if (!overlay.contains(e.target) && !menuBtn.contains(e.target)) {
                 overlay.classList.remove('active');
+                menuBtn.classList.remove('is-active');
             }
         });
-        navLinks.forEach(link => link.addEventListener('click', () => overlay.classList.remove('active')));
+        navLinks.forEach(link => link.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            menuBtn.classList.remove('is-active');
+        }));
     }
 
 	    const readMoreBtn = document.getElementById('read-more-btn');
