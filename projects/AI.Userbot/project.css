@@ -106,6 +106,66 @@
   color: var(--text-muted);
 }
 
+.command-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.command-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.command-label {
+  display: inline-block;
+  font-family: "Space Grotesk", monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  padding: 0.3rem 0.7rem;
+  background: rgba(111, 211, 255, 0.1);
+  border: 1px solid rgba(111, 211, 255, 0.2);
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.command-card > p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+.command-card .project-points-large {
+  margin: 0.5rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.command-card .project-points-large li {
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+  .command-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .command-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project-points-large {
   margin-bottom: 0;
 }
