@@ -555,6 +555,8 @@
     "idea-modal-eyebrow": "Idea Inbox",
     "idea-modal-title": "Suggerisci un'idea",
     "idea-modal-description": "Condividi un progetto, una funzione del sito, un'automazione, uno strumento o un esperimento.",
+    "idea-modal-required-prefix": "I campi contrassegnati con",
+    "idea-modal-required-suffix": "sono obbligatori.",
     "idea-success-title": "Idea inviata",
     "idea-success-text": "Grazie. La tua proposta e stata inviata con successo.",
     "idea-category-label": "Categoria",

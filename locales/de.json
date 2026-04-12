@@ -554,6 +554,8 @@
     "idea-modal-eyebrow": "Idea Inbox",
     "idea-modal-title": "Idee vorschlagen",
     "idea-modal-description": "Teile ein Projekt, eine Website-Funktion, eine Automatisierung, ein Tool oder ein Experiment.",
+    "idea-modal-required-prefix": "Mit",
+    "idea-modal-required-suffix": "markierte Felder sind erforderlich.",
     "idea-success-title": "Idee gesendet",
     "idea-success-text": "Danke. Dein Vorschlag wurde erfolgreich gesendet.",
     "idea-category-label": "Kategorie",

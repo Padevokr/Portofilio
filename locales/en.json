@@ -556,6 +556,8 @@
     "idea-modal-eyebrow": "Idea Inbox",
     "idea-modal-title": "Suggest an idea",
     "idea-modal-description": "Share a project, feature, automation, tool, or experiment.",
+    "idea-modal-required-prefix": "Fields marked",
+    "idea-modal-required-suffix": "are required.",
     "idea-success-title": "Idea sent",
     "idea-success-text": "Thanks. Your suggestion has been recorded successfully.",
     "idea-category-label": "Category",
