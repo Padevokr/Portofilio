@@ -63,6 +63,12 @@
     return typeof value === "string" && value.trim() ? value : fallback;
   }
 
+  function getCurrentLanguage() {
+    const htmlLang = document.documentElement.getAttribute("lang");
+    const storedLang = localStorage.getItem("lang");
+    return (storedLang || htmlLang || "en").trim().toLowerCase();
+  }
+
   function getLocalizedCategory(value) {
     const map = {
       Project: t("idea-category-project", "Project"),
@@ -245,7 +251,11 @@
 
     const response = await fetch(`${apiBaseUrl}/api/idea`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Portfolio-Lang": getCurrentLanguage(),
+      },
       body: JSON.stringify(payload),
     });
 
