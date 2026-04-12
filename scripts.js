@@ -109,6 +109,7 @@ async function setLanguage(lang, updateUrl = true) {
         });
         if (!response.ok) throw new Error('Translation file not found');
         const translations = await response.json();
+        window.portfolioTranslations = translations;
 
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
@@ -187,8 +188,19 @@ async function setLanguage(lang, updateUrl = true) {
                 el.setAttribute('content', text);
             }
         });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            const text = translations[key];
+            if (text) {
+                el.setAttribute('placeholder', text);
+            }
+        });
         
         localStorage.setItem('lang', lang);
+        document.dispatchEvent(new CustomEvent('portfolio:translations-updated', {
+            detail: { lang, translations }
+        }));
     } catch (error) {
         console.error("Translation error:", error);
     }
