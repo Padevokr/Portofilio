@@ -11,6 +11,7 @@
   const config = window.IDEA_INBOX_CONFIG || {};
   const useMockRequest = config.mock === true;
   const apiBaseUrl = typeof config.apiBaseUrl === "string" ? config.apiBaseUrl.trim().replace(/\/+$/, "") : "";
+  let translations = window.portfolioTranslations || {};
 
   const fields = {
     category: document.getElementById("idea-category"),
@@ -56,6 +57,35 @@
 
   let lastFocusedElement = null;
   let isSubmitting = false;
+
+  function t(key, fallback) {
+    const value = translations[key];
+    return typeof value === "string" && value.trim() ? value : fallback;
+  }
+
+  function getLocalizedCategory(value) {
+    const map = {
+      Project: t("idea-category-project", "Project"),
+      "Website feature": t("idea-category-website-feature", "Website feature"),
+      Automation: t("idea-category-automation", "Automation"),
+      Telegram: t("idea-category-telegram", "Telegram"),
+      Tool: t("idea-category-tool", "Tool"),
+      Experiment: t("idea-category-experiment", "Experiment"),
+      Other: t("idea-category-other", "Other"),
+    };
+
+    return map[value] || value;
+  }
+
+  function getLocalizedScale(value) {
+    const map = {
+      Small: t("idea-scale-small", "Small"),
+      Medium: t("idea-scale-medium", "Medium"),
+      Large: t("idea-scale-large", "Large"),
+    };
+
+    return map[value] || value;
+  }
 
   function getSelectedCategories() {
     try {
@@ -137,6 +167,12 @@
     clearSuccessState();
   }
 
+  function refreshDynamicText() {
+    if (!isSubmitting) {
+      submitButton.textContent = t("idea-submit", "Submit idea");
+    }
+  }
+
   function openModal(trigger) {
     lastFocusedElement = trigger || document.activeElement;
     modal.hidden = false;
@@ -160,8 +196,8 @@
   function validate() {
     const selectedCategories = getSelectedCategories();
     const payload = {
-      category: selectedCategories.join(", "),
-      scale:    fields.scale.value.trim(),
+      category: selectedCategories.map(getLocalizedCategory).join(", "),
+      scale:    getLocalizedScale(fields.scale.value.trim()),
       idea:     fields.idea.value.trim(),
       reason:   fields.reason.value.trim(),
       contact:  fields.contact.value.trim(),
@@ -171,26 +207,26 @@
     clearErrors();
 
     if (!selectedCategories.length) {
-      setFieldError("category", "Select at least one category.");
+      setFieldError("category", t("idea-error-category", "Select at least one category."));
       isValid = false;
     }
     if (!payload.scale) {
-      setFieldError("scale", "Select a scale.");
+      setFieldError("scale", t("idea-error-scale", "Select a scale."));
       isValid = false;
     }
     if (!payload.idea) {
-      setFieldError("idea", "Enter the main idea.");
+      setFieldError("idea", t("idea-error-main", "Enter the main idea."));
       isValid = false;
     } else if (payload.idea.length > 500) {
-      setFieldError("idea", "Main idea must be 500 characters or fewer.");
+      setFieldError("idea", t("idea-error-main-length", "Main idea must be 500 characters or fewer."));
       isValid = false;
     }
     if (payload.reason.length > 400) {
-      setFieldError("reason", "Reason must be 400 characters or fewer.");
+      setFieldError("reason", t("idea-error-reason-length", "Reason must be 400 characters or fewer."));
       isValid = false;
     }
     if (payload.contact.length > 100) {
-      setFieldError("contact", "Contact must be 100 characters or fewer.");
+      setFieldError("contact", t("idea-error-contact-length", "Contact must be 100 characters or fewer."));
       isValid = false;
     }
 
@@ -204,7 +240,7 @@
     }
 
     if (!apiBaseUrl) {
-      throw new Error("Idea API is not configured.");
+      throw new Error(t("idea-error-api-not-configured", "Idea API is not configured."));
     }
 
     const response = await fetch(`${apiBaseUrl}/api/idea`, {
@@ -214,7 +250,7 @@
     });
 
     if (!response.ok) {
-      let message = "Could not send the idea. Please try again later.";
+      let message = t("idea-error-send", "Could not send the idea. Please try again later.");
       try {
         const data = await response.json();
         if (typeof data?.details?.message === "string" && data.details.message.trim()) {
@@ -234,27 +270,27 @@
 
     const { isValid, payload } = validate();
     if (!isValid) {
-      setStatus("Please fix the highlighted fields.", "error");
+      setStatus(t("idea-error-fix", "Please fix the highlighted fields."), "error");
       return;
     }
 
     isSubmitting = true;
     submitButton.disabled   = true;
-    submitButton.textContent = "Sending...";
-    setStatus("Sending idea...", "");
+    submitButton.textContent = t("idea-status-sending-button", "Sending...");
+    setStatus(t("idea-status-sending", "Sending idea..."), "");
     clearSuccessState();
 
     try {
       await postIdea(payload);
       resetFormState();
       successBox.hidden = false;
-      setStatus("Idea submitted successfully.", "success");
+      setStatus(t("idea-status-success", "Idea submitted successfully."), "success");
     } catch (error) {
-      setStatus(error.message || "Could not send the idea. Please try again later.", "error");
+      setStatus(error.message || t("idea-error-send", "Could not send the idea. Please try again later."), "error");
     } finally {
       isSubmitting = false;
       submitButton.disabled   = false;
-      submitButton.textContent = "Submit idea";
+      submitButton.textContent = t("idea-submit", "Submit idea");
     }
   }
 
@@ -318,9 +354,15 @@
     trapFocus(event);
   });
 
+  document.addEventListener("portfolio:translations-updated", (event) => {
+    translations = event.detail?.translations || {};
+    refreshDynamicText();
+  });
+
   updateCounter("idea");
   updateCounter("reason");
   updateCounter("contact");
   updateCatCards();
   updateScaleCards();
+  refreshDynamicText();
 })();
