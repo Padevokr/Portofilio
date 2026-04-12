@@ -672,6 +672,12 @@ h3 {
   border: 1px solid rgba(15, 23, 42, 0.1);
 }
 
+[data-theme="dark"] .menu-card {
+  background: rgba(10, 10, 10, 0.85);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
 .mobile-nav {
   display: flex;
   flex-direction: column;
