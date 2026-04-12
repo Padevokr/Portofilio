@@ -12,13 +12,14 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate | Dekrov.dev</title>
+    <title>Support | Dekrov.dev</title>
     <link rel="icon" type="image/png" href="../../assets/favicon-rounded.png">
     <link rel="apple-touch-icon" href="../../assets/favicon-rounded.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="./donate.css">
     <script>
         (function () {
             const savedTheme = localStorage.getItem('theme') || 'auto';
@@ -36,77 +37,188 @@
     <div class="bg-grid" aria-hidden="true"></div>
 
     <header class="site-header container">
-    <a class="brand" href="../../index.html#hero">Dekrov.dev</a>
+        <a class="brand" href="../../index.html#hero">Dekrov.dev</a>
 
-    <div class="header-actions">
-      <div class="theme-toggle-wrapper">
-        <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme" title="Theme: Auto">
-          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-          </svg>
-          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-          <svg class="icon-auto" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-          </svg>
-        </button>
-      </div>
-
-      <div class="menu-wrapper">
-        <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu" data-i18n-aria-label="menu-toggle-label">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="menu-overlay" id="menu-overlay">
-          <div class="menu-card">
-            <nav class="mobile-nav">
-              <a href="../../index.html#about" data-i18n="nav-about">About me</a>
-              <a href="../../index.html#projects" data-i18n="nav-projects">Projects</a>
-              <a href="../../index.html#contacts" data-i18n="nav-contacts">Contacts</a>
-              <a href="../../index.html" data-i18n="nav-all-projects">Home</a>
-              <div class="lang-scroll-area">
-                <div class="lang-dropdown">
-                  <button class="lang-btn" id="lang-btn" type="button" aria-label="Select language" aria-expanded="false">
-                    <span class="lang-current" id="lang-current">English</span>
-                    <svg class="lang-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
+        <div class="header-actions">
+            <div class="theme-toggle-wrapper">
+                <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme" title="Theme: Auto">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                  </button>
-                  <div class="lang-options" id="lang-options">
-                    <button class="lang-option" data-value="en">English</button>
-                    <button class="lang-option" data-value="uk">Українська</button>
-                    <button class="lang-option" data-value="ru">Русский</button>
-                    <button class="lang-option" data-value="it">Italiano</button>
-                    <button class="lang-option" data-value="de">Deutsch</button>
-                    <button class="lang-option" data-value="fr">Français</button>
-                    <button class="lang-option" data-value="zh">中文</button>
-                  </div>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="icon-auto" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="menu-wrapper">
+                <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu" data-i18n-aria-label="menu-toggle-label">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="menu-overlay" id="menu-overlay">
+                    <div class="menu-card">
+                        <nav class="mobile-nav">
+                            <a href="../../index.html#about" data-i18n="nav-about">About me</a>
+                            <a href="../../index.html#projects" data-i18n="nav-projects">Projects</a>
+                            <a href="../../index.html#contacts" data-i18n="nav-contacts">Contacts</a>
+                            <a href="../../index.html" data-i18n="nav-all-projects">Home</a>
+                            <div class="lang-scroll-area">
+                                <div class="lang-dropdown">
+                                    <button class="lang-btn" id="lang-btn" type="button" aria-label="Select language" aria-expanded="false">
+                                        <span class="lang-current" id="lang-current">English</span>
+                                        <svg class="lang-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </button>
+                                    <div class="lang-options" id="lang-options">
+                                        <button class="lang-option" data-value="en">English</button>
+                                        <button class="lang-option" data-value="uk">Українська</button>
+                                        <button class="lang-option" data-value="ru">Русский</button>
+                                        <button class="lang-option" data-value="it">Italiano</button>
+                                        <button class="lang-option" data-value="de">Deutsch</button>
+                                        <button class="lang-option" data-value="fr">Français</button>
+                                        <button class="lang-option" data-value="zh">中文</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
-              </div>
-            </nav>
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
     </header>
 
+    <main class="container support-page">
+        <section class="support-hero reveal-fade">
+            <a href="../../index.html" class="back-link" data-i18n="back-to-home">Back</a>
+            <p class="eyebrow support-eyebrow" data-i18n="don-eyebrow">Support</p>
+            <h1 data-i18n="don-title">Support the work behind Dekrov.dev</h1>
+            <p class="tagline support-tagline" data-i18n="don-tagline">
+                This page exists for people who want to back the work, help cover infrastructure costs, and keep the project moving.
+            </p>
 
-    <main class="container section reveal-fade">
-    <a href="../../index.html" class="back-link" data-i18n="back-to-home">Back</a>
-    <h1 data-i18n="don-title">My wallets</h1>
-    <p class="tagline" data-i18n="don-tagline">Websites and tools I use for work and inspiration.</p>
+            <div class="support-hero-pills">
+                <span class="support-pill" data-i18n="don-pill-1">Server</span>
+                <span class="support-pill" data-i18n="don-pill-2">Domain</span>
+                <span class="support-pill" data-i18n="don-pill-3">Experiments</span>
+                <span class="support-pill" data-i18n="don-pill-4">Updates</span>
+            </div>
+        </section>
+
+        <section class="support-grid reveal">
+            <article class="glass-card support-card support-card--intro">
+                <p class="support-card-kicker" data-i18n="don-card-1-kicker">Why this page exists</p>
+                <h2 data-i18n="don-card-1-title">A simple place for support</h2>
+                <p data-i18n="don-card-1-text">
+                    Dekrov.dev is not just a static showcase. It is part portfolio, part live product surface, and part experimentation space for bots, automations, interfaces, and AI workflows.
+                </p>
+                <p data-i18n="don-card-1-text-2">
+                    Support helps keep the infrastructure online and gives me more room to continue building, refining, and shipping new things.
+                </p>
+            </article>
+
+            <article class="glass-card support-card support-card--facts">
+                <p class="support-card-kicker" data-i18n="don-card-2-kicker">What it covers</p>
+                <h2 data-i18n="don-card-2-title">Practical costs, not abstract ones</h2>
+                <ul class="support-list">
+                    <li data-i18n="don-list-1">Server costs for hosting and backend experiments.</li>
+                    <li data-i18n="don-list-2">Domain and basic infrastructure needed to keep the site online.</li>
+                    <li data-i18n="don-list-3">Ongoing iteration on portfolio pages, automations, and Telegram-based tools.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="support-metrics reveal">
+            <article class="glass-card support-metric">
+                <span class="support-metric__value" data-i18n="don-metric-1-value">Live</span>
+                <span class="support-metric__label" data-i18n="don-metric-1-label">Portfolio and backend infrastructure</span>
+            </article>
+            <article class="glass-card support-metric">
+                <span class="support-metric__value" data-i18n="don-metric-2-value">Ongoing</span>
+                <span class="support-metric__label" data-i18n="don-metric-2-label">Design, development, and iteration</span>
+            </article>
+            <article class="glass-card support-metric">
+                <span class="support-metric__value" data-i18n="don-metric-3-value">Crypto</span>
+                <span class="support-metric__label" data-i18n="don-metric-3-label">Support methods will start with crypto</span>
+            </article>
+        </section>
+
+        <section class="support-methods reveal">
+            <div class="section-head support-section-head">
+                <div>
+                    <p class="eyebrow" data-i18n="don-methods-kicker">Methods</p>
+                    <h2 data-i18n="don-methods-title">Prepared support methods</h2>
+                </div>
+                <p class="support-section-note" data-i18n="don-methods-text">
+                    The first support options on this page will be crypto-based. The visual structure is ready, and the exact wallets can be added cleanly next.
+                </p>
+            </div>
+
+            <div class="support-methods-grid">
+                <article class="glass-card method-card">
+                    <div class="method-card__icon" aria-hidden="true">&#8383;</div>
+                    <div class="method-card__copy">
+                        <p class="method-card__kicker" data-i18n="don-method-btc-kicker">Crypto</p>
+                        <h3 data-i18n="don-method-btc-title">Bitcoin</h3>
+                        <p data-i18n="don-method-btc-text">Prepared for a direct wallet address.</p>
+                    </div>
+                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
+                </article>
+
+                <article class="glass-card method-card">
+                    <div class="method-card__icon" aria-hidden="true">&#926;</div>
+                    <div class="method-card__copy">
+                        <p class="method-card__kicker" data-i18n="don-method-eth-kicker">Crypto</p>
+                        <h3 data-i18n="don-method-eth-title">Ethereum</h3>
+                        <p data-i18n="don-method-eth-text">Ready for an on-chain support option.</p>
+                    </div>
+                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
+                </article>
+
+                <article class="glass-card method-card">
+                    <div class="method-card__icon" aria-hidden="true">T</div>
+                    <div class="method-card__copy">
+                        <p class="method-card__kicker" data-i18n="don-method-ton-kicker">Crypto</p>
+                        <h3 data-i18n="don-method-ton-title">TON</h3>
+                        <p data-i18n="don-method-ton-text">A good fit for Telegram-native support flows.</p>
+                    </div>
+                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
+                </article>
+
+                <article class="glass-card method-card">
+                    <div class="method-card__icon" aria-hidden="true">&#8378;</div>
+                    <div class="method-card__copy">
+                        <p class="method-card__kicker" data-i18n="don-method-usdt-kicker">Stablecoin</p>
+                        <h3 data-i18n="don-method-usdt-title">USDT</h3>
+                        <p data-i18n="don-method-usdt-text">Prepared as a stable support option.</p>
+                    </div>
+                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
+                </article>
+            </div>
+        </section>
+
+        <section class="support-footer reveal-fade">
+            <article class="glass-card support-note">
+                <p class="support-note__text" data-i18n="don-note">
+                    This page is here to keep support options in one place. Clear, direct, and without extra ceremony.
+                </p>
+            </article>
+        </section>
     </main>
 
     <script src="../../scripts.js" defer></script>
