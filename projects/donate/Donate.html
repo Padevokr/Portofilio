@@ -7,7 +7,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-NY04NMP3VW');
     </script>
     <meta charset="UTF-8">
@@ -66,9 +65,7 @@
 
             <div class="menu-wrapper">
                 <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu" data-i18n-aria-label="menu-toggle-label">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span></span><span></span><span></span>
                 </button>
                 <div class="menu-overlay" id="menu-overlay">
                     <div class="menu-card">
@@ -104,123 +101,235 @@
     </header>
 
     <main class="container support-page">
+
+        <!-- Hero: коротко и по делу -->
         <section class="support-hero reveal-fade">
             <a href="../../index.html" class="back-link" data-i18n="back-to-home">Back</a>
             <p class="eyebrow support-eyebrow" data-i18n="don-eyebrow">Support</p>
-            <h1 data-i18n="don-title">Support the work behind Dekrov.dev</h1>
+            <h1 data-i18n="don-title">Support Dekrov.dev</h1>
             <p class="tagline support-tagline" data-i18n="don-tagline">
-                This page exists for people who want to back the work, help cover infrastructure costs, and keep the project moving.
+                All donations go toward server costs, domain renewal, and keeping the experiments running.
             </p>
-
-            <div class="support-hero-pills">
-                <span class="support-pill" data-i18n="don-pill-1">Server</span>
-                <span class="support-pill" data-i18n="don-pill-2">Domain</span>
-                <span class="support-pill" data-i18n="don-pill-3">Experiments</span>
-                <span class="support-pill" data-i18n="don-pill-4">Updates</span>
-            </div>
         </section>
 
-        <section class="support-grid reveal">
-            <article class="glass-card support-card support-card--intro">
-                <p class="support-card-kicker" data-i18n="don-card-1-kicker">Why this page exists</p>
-                <h2 data-i18n="don-card-1-title">A simple place for support</h2>
-                <p data-i18n="don-card-1-text">
-                    Dekrov.dev is not just a static showcase. It is part portfolio, part live product surface, and part experimentation space for bots, automations, interfaces, and AI workflows.
-                </p>
-                <p data-i18n="don-card-1-text-2">
-                    Support helps keep the infrastructure online and gives me more room to continue building, refining, and shipping new things.
-                </p>
-            </article>
-
-            <article class="glass-card support-card support-card--facts">
-                <p class="support-card-kicker" data-i18n="don-card-2-kicker">What it covers</p>
-                <h2 data-i18n="don-card-2-title">Practical costs, not abstract ones</h2>
-                <ul class="support-list">
-                    <li data-i18n="don-list-1">Server costs for hosting and backend experiments.</li>
-                    <li data-i18n="don-list-2">Domain and basic infrastructure needed to keep the site online.</li>
-                    <li data-i18n="don-list-3">Ongoing iteration on portfolio pages, automations, and Telegram-based tools.</li>
-                </ul>
-            </article>
-        </section>
-
-        <section class="support-metrics reveal">
-            <article class="glass-card support-metric">
-                <span class="support-metric__value" data-i18n="don-metric-1-value">Live</span>
-                <span class="support-metric__label" data-i18n="don-metric-1-label">Portfolio and backend infrastructure</span>
-            </article>
-            <article class="glass-card support-metric">
-                <span class="support-metric__value" data-i18n="don-metric-2-value">Ongoing</span>
-                <span class="support-metric__label" data-i18n="don-metric-2-label">Design, development, and iteration</span>
-            </article>
-            <article class="glass-card support-metric">
-                <span class="support-metric__value" data-i18n="don-metric-3-value">Crypto</span>
-                <span class="support-metric__label" data-i18n="don-metric-3-label">Support methods will start with crypto</span>
-            </article>
-        </section>
-
+        <!-- Аккордеон с монетами -->
         <section class="support-methods reveal">
-            <div class="section-head support-section-head">
-                <div>
-                    <p class="eyebrow" data-i18n="don-methods-kicker">Methods</p>
-                    <h2 data-i18n="don-methods-title">Prepared support methods</h2>
+            <div class="support-section-head">
+                <p class="eyebrow" data-i18n="don-methods-kicker">Crypto</p>
+                <h2 data-i18n="don-methods-title">Pick a method</h2>
+            </div>
+
+            <div class="accordion" id="crypto-accordion">
+
+                <!-- Bitcoin -->
+                <div class="accordion-item" data-coin="BTC">
+                    <button class="accordion-trigger" type="button" aria-expanded="false">
+                        <div class="accordion-icon" aria-hidden="true">&#8383;</div>
+                        <div class="accordion-meta">
+                            <span class="accordion-kicker">Crypto</span>
+                            <span class="accordion-title">Bitcoin</span>
+                        </div>
+                        <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="accordion-panel" role="region">
+                        <div class="accordion-panel-inner">
+                            <div class="accordion-content">
+                                <div class="accordion-address-block">
+                                    <span class="accordion-address-label">BTC Address</span>
+                                    <div class="accordion-address-row">
+                                        <span class="accordion-address-text" data-address="YOUR_BTC_ADDRESS_HERE">YOUR_BTC_ADDRESS_HERE</span>
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="accordion-qr">
+                                    <img src="" alt="BTC QR code" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="support-section-note" data-i18n="don-methods-text">
-                    The first support options on this page will be crypto-based. The visual structure is ready, and the exact wallets can be added cleanly next.
-                </p>
-            </div>
 
-            <div class="support-methods-grid">
-                <article class="glass-card method-card">
-                    <div class="method-card__icon" aria-hidden="true">&#8383;</div>
-                    <div class="method-card__copy">
-                        <p class="method-card__kicker" data-i18n="don-method-btc-kicker">Crypto</p>
-                        <h3 data-i18n="don-method-btc-title">Bitcoin</h3>
-                        <p data-i18n="don-method-btc-text">Prepared for a direct wallet address.</p>
+                <!-- Ethereum -->
+                <div class="accordion-item" data-coin="ETH">
+                    <button class="accordion-trigger" type="button" aria-expanded="false">
+                        <div class="accordion-icon" aria-hidden="true">&#926;</div>
+                        <div class="accordion-meta">
+                            <span class="accordion-kicker">Crypto</span>
+                            <span class="accordion-title">Ethereum</span>
+                        </div>
+                        <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="accordion-panel" role="region">
+                        <div class="accordion-panel-inner">
+                            <div class="accordion-content">
+                                <div class="accordion-address-block">
+                                    <span class="accordion-address-label">ETH Address</span>
+                                    <div class="accordion-address-row">
+                                        <span class="accordion-address-text" data-address="YOUR_ETH_ADDRESS_HERE">YOUR_ETH_ADDRESS_HERE</span>
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="accordion-qr">
+                                    <img src="" alt="ETH QR code" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
-                </article>
+                </div>
 
-                <article class="glass-card method-card">
-                    <div class="method-card__icon" aria-hidden="true">&#926;</div>
-                    <div class="method-card__copy">
-                        <p class="method-card__kicker" data-i18n="don-method-eth-kicker">Crypto</p>
-                        <h3 data-i18n="don-method-eth-title">Ethereum</h3>
-                        <p data-i18n="don-method-eth-text">Ready for an on-chain support option.</p>
+                <!-- TON -->
+                <div class="accordion-item" data-coin="TON">
+                    <button class="accordion-trigger" type="button" aria-expanded="false">
+                        <div class="accordion-icon" aria-hidden="true">T</div>
+                        <div class="accordion-meta">
+                            <span class="accordion-kicker">Crypto</span>
+                            <span class="accordion-title">TON</span>
+                        </div>
+                        <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="accordion-panel" role="region">
+                        <div class="accordion-panel-inner">
+                            <div class="accordion-content">
+                                <div class="accordion-address-block">
+                                    <span class="accordion-address-label">TON Address</span>
+                                    <div class="accordion-address-row">
+                                        <span class="accordion-address-text" data-address="YOUR_TON_ADDRESS_HERE">YOUR_TON_ADDRESS_HERE</span>
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="accordion-qr">
+                                    <img src="" alt="TON QR code" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
-                </article>
+                </div>
 
-                <article class="glass-card method-card">
-                    <div class="method-card__icon" aria-hidden="true">T</div>
-                    <div class="method-card__copy">
-                        <p class="method-card__kicker" data-i18n="don-method-ton-kicker">Crypto</p>
-                        <h3 data-i18n="don-method-ton-title">TON</h3>
-                        <p data-i18n="don-method-ton-text">A good fit for Telegram-native support flows.</p>
+                <!-- USDT -->
+                <div class="accordion-item" data-coin="USDT">
+                    <button class="accordion-trigger" type="button" aria-expanded="false">
+                        <div class="accordion-icon" aria-hidden="true">&#8378;</div>
+                        <div class="accordion-meta">
+                            <span class="accordion-kicker">Stablecoin</span>
+                            <span class="accordion-title">USDT</span>
+                        </div>
+                        <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="accordion-panel" role="region">
+                        <div class="accordion-panel-inner">
+                            <div class="accordion-content">
+                                <div class="accordion-address-block">
+                                    <span class="accordion-address-label">USDT Address (TRC-20)</span>
+                                    <div class="accordion-address-row">
+                                        <span class="accordion-address-text" data-address="YOUR_USDT_ADDRESS_HERE">YOUR_USDT_ADDRESS_HERE</span>
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="accordion-qr">
+                                    <img src="" alt="USDT QR code" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
-                </article>
+                </div>
 
-                <article class="glass-card method-card">
-                    <div class="method-card__icon" aria-hidden="true">&#8378;</div>
-                    <div class="method-card__copy">
-                        <p class="method-card__kicker" data-i18n="don-method-usdt-kicker">Stablecoin</p>
-                        <h3 data-i18n="don-method-usdt-title">USDT</h3>
-                        <p data-i18n="don-method-usdt-text">Prepared as a stable support option.</p>
-                    </div>
-                    <button class="btn-secondary method-card__button" type="button" disabled data-i18n="don-method-btn">Address next</button>
-                </article>
-            </div>
+            </div><!-- /accordion -->
         </section>
 
         <section class="support-footer reveal-fade">
             <article class="glass-card support-note">
                 <p class="support-note__text" data-i18n="don-note">
-                    This page is here to keep support options in one place. Clear, direct, and without extra ceremony.
+                    Clear and direct. No extra ceremony.
                 </p>
             </article>
         </section>
     </main>
 
     <script src="../../scripts.js" defer></script>
+
+    <script>
+    (function () {
+        // ── QR generator via goqr.me API ──
+        function buildQR(address) {
+            return `https://api.qrserver.com/v1/create-qr-code/?size=176x176&margin=4&data=${encodeURIComponent(address)}`;
+        }
+
+        // ── Accordion logic ──
+        const accordion = document.getElementById('crypto-accordion');
+        if (!accordion) return;
+
+        accordion.addEventListener('click', function (e) {
+            const trigger = e.target.closest('.accordion-trigger');
+            const copyBtn = e.target.closest('.accordion-copy-btn');
+
+            // Copy button
+            if (copyBtn) {
+                const addressEl = copyBtn.closest('.accordion-address-row').querySelector('.accordion-address-text');
+                const address = addressEl ? addressEl.dataset.address : '';
+                if (!address || address.startsWith('YOUR_')) return;
+                navigator.clipboard.writeText(address).then(() => {
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => copyBtn.classList.remove('copied'), 1800);
+                });
+                return;
+            }
+
+            // Accordion toggle
+            if (!trigger) return;
+            const item = trigger.closest('.accordion-item');
+            const isOpen = item.classList.contains('is-open');
+
+            // Close all
+            accordion.querySelectorAll('.accordion-item.is-open').forEach(openItem => {
+                openItem.classList.remove('is-open');
+                openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+            });
+
+            // Open clicked (if it was closed)
+            if (!isOpen) {
+                item.classList.add('is-open');
+                trigger.setAttribute('aria-expanded', 'true');
+
+                // Lazy-load QR
+                const qrImg = item.querySelector('.accordion-qr img');
+                if (qrImg && !qrImg.src) {
+                    const addressEl = item.querySelector('.accordion-address-text');
+                    const address = addressEl ? addressEl.dataset.address : '';
+                    if (address && !address.startsWith('YOUR_')) {
+                        qrImg.src = buildQR(address);
+                    }
+                }
+            }
+        });
+    })();
+    </script>
 </body>
 </html>
