@@ -32,6 +32,7 @@
   --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08));
   --card-border: rgba(255, 255, 255, 0.18);
   --header-bg: linear-gradient(120deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  --menu-toggle-fg: #f4f7ff;
 }
 
 /* Dark theme (pure black) */
@@ -60,6 +61,7 @@
   --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
   --card-border: rgba(255, 255, 255, 0.08);
   --header-bg: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  --menu-toggle-fg: #ffffff;
 }
 
 /* Light theme */
@@ -88,6 +90,7 @@
   --card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.8));
   --card-border: rgba(15, 23, 42, 0.15);
   --header-bg: linear-gradient(120deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.7));
+  --menu-toggle-fg: #0f172a;
 }
 
 *,
@@ -569,6 +572,9 @@ h3 {
   background: var(--surface);
   cursor: pointer;
   position: relative;
+  color: var(--menu-toggle-fg);
+  appearance: none;
+  -webkit-appearance: none;
   transition: all 0.3s ease;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -588,7 +594,7 @@ h3 {
   position: absolute;
   width: 18px;
   height: 2px;
-  background: var(--text);
+  background: currentColor;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
