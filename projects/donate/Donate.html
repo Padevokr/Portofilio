@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NY04NMP3VW"></script>
@@ -10,7 +10,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support | Dekrov.dev</title>
+    <title data-i18n="don-page-title">Support | Dekrov.dev</title>
     <link rel="icon" type="image/png" href="../../assets/favicon-rounded.png">
     <link rel="apple-touch-icon" href="../../assets/favicon-rounded.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,23 +41,30 @@
                 <button class="theme-toggle" id="theme-btn" aria-label="Toggle theme" title="Theme: Auto">
                     <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                     <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                     <svg class="icon-auto" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
                     </svg>
                 </button>
             </div>
             <div class="menu-wrapper">
-                <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu">
-                    <span></span><span></span><span></span>
+                <button class="menu-toggle" id="menu-btn" aria-label="Toggle Menu" data-i18n-aria-label="menu-toggle-label">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
                 <div class="menu-overlay" id="menu-overlay">
                     <div class="menu-card">
@@ -93,36 +100,34 @@
     </header>
 
     <main class="container support-page">
-
-        <!-- Hero -->
         <section class="support-hero reveal-fade">
             <a href="../../index.html" class="back-link" data-i18n="back-to-home">Back</a>
             <p class="eyebrow support-eyebrow" data-i18n="don-eyebrow">Support</p>
-            <h1 data-i18n="don-title">Support Dekrov.dev</h1>
+            <h1 data-i18n="don-title">Support the work behind Dekrov.dev</h1>
             <p class="tagline support-tagline" data-i18n="don-tagline">
-                All donations go toward server costs, domain renewal, and keeping the experiments running.
+                This page exists for people who want to back the work, help cover infrastructure costs, and keep the project moving.
             </p>
         </section>
 
-        <!-- Accordion -->
         <section class="support-methods reveal">
             <div class="support-section-head">
-                <p class="eyebrow" data-i18n="don-methods-kicker">Crypto</p>
-                <h2 data-i18n="don-methods-title">Pick a method</h2>
+                <p class="eyebrow" data-i18n="don-methods-kicker">Methods</p>
+                <h2 data-i18n="don-methods-title">Prepared support methods</h2>
+                <p class="support-section-note" data-i18n="don-methods-text">
+                    The first support options on this page will be crypto-based. The visual structure is ready, and the exact wallets can be added cleanly next.
+                </p>
             </div>
 
             <div class="accordion" id="crypto-accordion">
-
-                <!-- BTC -->
                 <div class="accordion-item" data-coin="BTC">
                     <button class="accordion-trigger" type="button" aria-expanded="false">
                         <div class="accordion-icon" aria-hidden="true">&#8383;</div>
                         <div class="accordion-meta">
                             <div class="accordion-meta-text">
-                                <span class="accordion-kicker">Crypto</span>
-                                <span class="accordion-title">Bitcoin</span>
+                                <span class="accordion-kicker" data-i18n="don-method-btc-kicker">Crypto</span>
+                                <span class="accordion-title" data-i18n="don-method-btc-title">Bitcoin</span>
                             </div>
-                            <span class="network-badge" data-net="BTC">Bitcoin Network</span>
+                            <span class="network-badge" data-net="BTC" data-i18n="don-network-btc">Bitcoin Network</span>
                         </div>
                         <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -132,10 +137,10 @@
                         <div class="accordion-panel-inner">
                             <div class="accordion-content">
                                 <div class="accordion-address-block">
-                                    <span class="accordion-address-label">BTC Address</span>
+                                    <span class="accordion-address-label" data-i18n="don-address-btc-label">BTC Address</span>
                                     <div class="accordion-address-row">
                                         <span class="accordion-address-text" data-address="bc1qw2dp3ntuvs76r28kzq2jermprv2t7hg0wprwd2">bc1qw2dp3ntuvs76r28kzq2jermprv2t7hg0wprwd2</span>
-                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address" data-i18n-aria-label="don-copy-label">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -151,16 +156,15 @@
                     </div>
                 </div>
 
-                <!-- ETH -->
                 <div class="accordion-item" data-coin="ETH">
                     <button class="accordion-trigger" type="button" aria-expanded="false">
                         <div class="accordion-icon" aria-hidden="true">&#926;</div>
                         <div class="accordion-meta">
                             <div class="accordion-meta-text">
-                                <span class="accordion-kicker">Crypto</span>
-                                <span class="accordion-title">Ethereum</span>
+                                <span class="accordion-kicker" data-i18n="don-method-eth-kicker">Crypto</span>
+                                <span class="accordion-title" data-i18n="don-method-eth-title">Ethereum</span>
                             </div>
-                            <span class="network-badge" data-net="ETH">Ethereum Mainnet</span>
+                            <span class="network-badge" data-net="ETH" data-i18n="don-network-eth">Ethereum Mainnet</span>
                         </div>
                         <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -170,10 +174,10 @@
                         <div class="accordion-panel-inner">
                             <div class="accordion-content">
                                 <div class="accordion-address-block">
-                                    <span class="accordion-address-label">ETH Address</span>
+                                    <span class="accordion-address-label" data-i18n="don-address-eth-label">ETH Address</span>
                                     <div class="accordion-address-row">
                                         <span class="accordion-address-text" data-address="0x9506C0D8F412dcfF07c0240e2Fc49eB3627b2017">0x9506C0D8F412dcfF07c0240e2Fc49eB3627b2017</span>
-                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address" data-i18n-aria-label="don-copy-label">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -189,16 +193,15 @@
                     </div>
                 </div>
 
-                <!-- TON -->
                 <div class="accordion-item" data-coin="TON">
                     <button class="accordion-trigger" type="button" aria-expanded="false">
                         <div class="accordion-icon" aria-hidden="true">T</div>
                         <div class="accordion-meta">
                             <div class="accordion-meta-text">
-                                <span class="accordion-kicker">Crypto</span>
-                                <span class="accordion-title">TON</span>
+                                <span class="accordion-kicker" data-i18n="don-method-ton-kicker">Crypto</span>
+                                <span class="accordion-title" data-i18n="don-method-ton-title">TON</span>
                             </div>
-                            <span class="network-badge" data-net="TON">TON Network</span>
+                            <span class="network-badge" data-net="TON" data-i18n="don-network-ton">TON Network</span>
                         </div>
                         <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -208,10 +211,10 @@
                         <div class="accordion-panel-inner">
                             <div class="accordion-content">
                                 <div class="accordion-address-block">
-                                    <span class="accordion-address-label">TON Address</span>
+                                    <span class="accordion-address-label" data-i18n="don-address-ton-label">TON Address</span>
                                     <div class="accordion-address-row">
                                         <span class="accordion-address-text" data-address="UQBVzMlqbYGnqktxXFhhKaiIEWmuiEaj8ZK-dfnAyS4uoKfE">UQBVzMlqbYGnqktxXFhhKaiIEWmuiEaj8ZK-dfnAyS4uoKfE</span>
-                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address" data-i18n-aria-label="don-copy-label">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -232,11 +235,10 @@
                         <div class="accordion-icon" aria-hidden="true">&#8378;</div>
                         <div class="accordion-meta">
                             <div class="accordion-meta-text">
-                                <span class="accordion-kicker">Stablecoin</span>
-                                <span class="accordion-title">USDT</span>
+                                <span class="accordion-kicker" data-i18n="don-method-usdt-kicker">Stablecoin</span>
+                                <span class="accordion-title" data-i18n="don-method-usdt-title">USDT</span>
                             </div>
-                            <!-- badge обновляется JS-ом при переключении сети -->
-                            <span class="network-badge" id="usdt-badge" data-net="TRC20">TRC-20</span>
+                            <span class="network-badge" id="usdt-badge" data-net="TRC20" data-i18n="don-network-trc20">TRC-20</span>
                         </div>
                         <svg class="accordion-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
@@ -245,23 +247,15 @@
                     <div class="accordion-panel" role="region">
                         <div class="accordion-panel-inner">
                             <div class="accordion-content">
-
-                                <!-- Switcher -->
                                 <div class="network-switcher">
-                                    <button class="net-btn is-active" type="button" data-net="TRC20">TRC-20</button>
-                                    <button class="net-btn" type="button" data-net="TON">TON</button>
+                                    <button class="net-btn is-active" type="button" data-net="TRC20" data-i18n="don-network-trc20">TRC-20</button>
+                                    <button class="net-btn" type="button" data-net="TON" data-i18n="don-network-ton-short">TON</button>
                                 </div>
-
                                 <div class="accordion-address-block">
-                                    <span class="accordion-address-label" id="usdt-label">USDT Address (TRC-20)</span>
+                                    <span class="accordion-address-label" id="usdt-label" data-i18n="don-address-usdt-label-trc20">USDT Address (TRC-20)</span>
                                     <div class="accordion-address-row">
-                                        <span class="accordion-address-text"
-                                                id="usdt-address"
-                                                data-address-trc20="TPDe1dPF2VV9eDkrvZHZrPwsVFjgmin5L9"
-                                                data-address-ton="UQBVzMlqbYGnqktxXFhhKaiIEWmuiEaj8ZK-dfnAyS4uoKfE">
-                                            YOUR_USDT_TRC20_ADDRESS_HERE
-                                        </span>
-                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address">
+                                        <span class="accordion-address-text" id="usdt-address" data-address-trc20="TPDe1dPF2VV9eDkrvZHZrPwsVFjgmin5L9" data-address-ton="UQBVzMlqbYGnqktxXFhhKaiIEWmuiEaj8ZK-dfnAyS4uoKfE">TPDe1dPF2VV9eDkrvZHZrPwsVFjgmin5L9</span>
+                                        <button class="accordion-copy-btn" type="button" aria-label="Copy address" data-i18n-aria-label="don-copy-label">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -269,73 +263,70 @@
                                         </button>
                                     </div>
                                 </div>
-
                                 <div class="accordion-qr" id="usdt-qr">
                                     <img src="" alt="USDT QR" loading="lazy">
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div><!-- /accordion -->
+            </div>
         </section>
 
         <section class="support-footer reveal-fade">
             <article class="glass-card support-note">
                 <p class="support-note__text" data-i18n="don-note">
-                    Clear and direct. No extra ceremony.
+                    This page is here to keep support options in one place. Clear, direct, and without extra ceremony.
                 </p>
             </article>
         </section>
     </main>
 
     <script src="../../scripts.js" defer></script>
-
     <script>
     (function () {
+        function getDonateText(key, fallback) {
+            const translations = window.portfolioTranslations || {};
+            return translations[key] || fallback;
+        }
+
         function buildQR(address) {
             return `https://api.qrserver.com/v1/create-qr-code/?size=176x176&margin=4&data=${encodeURIComponent(address)}`;
         }
 
         function loadQR(item, address) {
             const img = item.querySelector('.accordion-qr img');
-            if (!img || !address || address.startsWith('YOUR_')) return;
+            if (!img || !address) return;
             img.src = buildQR(address);
         }
 
-        // ── USDT network switcher ──
-        const usdtItem    = document.querySelector('.accordion-item[data-coin="USDT"]');
-        const usdtBadge   = document.getElementById('usdt-badge');
-        const usdtLabel   = document.getElementById('usdt-label');
-        const usdtAddrEl  = document.getElementById('usdt-address');
-        const usdtQrImg   = usdtItem ? usdtItem.querySelector('.accordion-qr img') : null;
+        const usdtItem = document.querySelector('.accordion-item[data-coin="USDT"]');
+        const usdtBadge = document.getElementById('usdt-badge');
+        const usdtLabel = document.getElementById('usdt-label');
+        const usdtAddrEl = document.getElementById('usdt-address');
+        const usdtQrImg = usdtItem ? usdtItem.querySelector('.accordion-qr img') : null;
 
         function switchUSDT(net) {
             if (!usdtItem) return;
             const isTON = net === 'TON';
-            const address = isTON
-                ? usdtAddrEl.dataset.addressTon
-                : usdtAddrEl.dataset.addressTrc20;
+            const address = isTON ? usdtAddrEl.dataset.addressTon : usdtAddrEl.dataset.addressTrc20;
 
-            // Update address text + data-address for copy
-            usdtAddrEl.textContent   = address;
+            usdtAddrEl.textContent = address;
             usdtAddrEl.dataset.address = address;
 
-            // Update label
-            usdtLabel.textContent = isTON ? 'USDT Address (TON)' : 'USDT Address (TRC-20)';
+            usdtLabel.textContent = isTON
+                ? getDonateText('don-address-usdt-label-ton', 'USDT Address (TON)')
+                : getDonateText('don-address-usdt-label-trc20', 'USDT Address (TRC-20)');
 
-            // Update badge
-            usdtBadge.textContent       = isTON ? 'TON' : 'TRC-20';
-            usdtBadge.dataset.net       = isTON ? 'TON' : 'TRC20';
+            usdtBadge.textContent = isTON
+                ? getDonateText('don-network-ton-short', 'TON')
+                : getDonateText('don-network-trc20', 'TRC-20');
+            usdtBadge.dataset.net = isTON ? 'TON' : 'TRC20';
 
-            // Update QR (only if panel is open)
             if (usdtItem.classList.contains('is-open') && usdtQrImg) {
-                usdtQrImg.src = (!address || address.startsWith('YOUR_')) ? '' : buildQR(address);
+                usdtQrImg.src = buildQR(address);
             }
 
-            // Update switcher buttons
             usdtItem.querySelectorAll('.net-btn').forEach(btn => {
                 btn.classList.toggle('is-active', btn.dataset.net === net);
             });
@@ -344,72 +335,71 @@
         if (usdtItem) {
             usdtItem.addEventListener('click', function (e) {
                 const netBtn = e.target.closest('.net-btn');
-                if (netBtn) {
-                    e.stopPropagation(); // не закрывать аккордеон
-                    switchUSDT(netBtn.dataset.net);
-                }
+                if (!netBtn) return;
+                e.stopPropagation();
+                switchUSDT(netBtn.dataset.net);
             });
         }
 
-        // ── Main accordion ──
         const accordion = document.getElementById('crypto-accordion');
         if (!accordion) return;
 
-        const COPY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
-        const CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        const copySvg = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+        const checkSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
 
         accordion.addEventListener('click', function (e) {
-            // Copy button
             const copyBtn = e.target.closest('.accordion-copy-btn');
             if (copyBtn) {
                 const row = copyBtn.closest('.accordion-address-row');
                 const addrEl = row ? row.querySelector('.accordion-address-text') : null;
                 const address = addrEl ? (addrEl.dataset.address || addrEl.textContent.trim()) : '';
-                if (!address || address.startsWith('YOUR_')) return;
+                if (!address) return;
+
                 navigator.clipboard.writeText(address).then(() => {
                     copyBtn.classList.add('copied');
-                    copyBtn.innerHTML = CHECK_SVG;
+                    copyBtn.innerHTML = checkSvg;
                     setTimeout(() => {
                         copyBtn.classList.remove('copied');
-                        copyBtn.innerHTML = COPY_SVG;
+                        copyBtn.innerHTML = copySvg;
                     }, 1800);
                 });
                 return;
             }
 
-            // Trigger
             const trigger = e.target.closest('.accordion-trigger');
-            if (!trigger) return;
-            // Ignore clicks inside the switcher area that bubble up
-            if (e.target.closest('.net-btn')) return;
+            if (!trigger || e.target.closest('.net-btn')) return;
 
-            const item   = trigger.closest('.accordion-item');
+            const item = trigger.closest('.accordion-item');
             const isOpen = item.classList.contains('is-open');
 
-            // Close all
             accordion.querySelectorAll('.accordion-item.is-open').forEach(open => {
                 open.classList.remove('is-open');
                 open.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
             });
 
-            // Open clicked
             if (!isOpen) {
                 item.classList.add('is-open');
                 trigger.setAttribute('aria-expanded', 'true');
 
-                // Load QR (non-USDT)
                 if (item.dataset.coin !== 'USDT') {
-                    const addrEl  = item.querySelector('.accordion-address-text');
+                    const addrEl = item.querySelector('.accordion-address-text');
                     const address = addrEl ? addrEl.dataset.address : '';
                     loadQR(item, address);
                 } else {
-                    // USDT — load QR for currently active network
                     const activeNet = usdtItem.querySelector('.net-btn.is-active');
                     switchUSDT(activeNet ? activeNet.dataset.net : 'TRC20');
                 }
+            }
+        });
+
+        document.addEventListener('portfolio:translations-updated', () => {
+            const activeNet = usdtItem ? usdtItem.querySelector('.net-btn.is-active') : null;
+            if (activeNet) {
+                switchUSDT(activeNet.dataset.net);
             }
         });
     })();
     </script>
 </body>
 </html>
+
