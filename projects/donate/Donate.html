@@ -274,6 +274,28 @@
         </section>
     </main>
 
+    <div class="qr-modal" id="qr-modal" hidden>
+        <button class="qr-modal__backdrop" type="button" data-qr-close aria-label="Close QR preview"></button>
+        <div class="qr-modal__dialog glass-card" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title">
+            <button class="qr-modal__close" type="button" data-qr-close aria-label="Close QR preview">&times;</button>
+            <p class="qr-modal__eyebrow" data-i18n="don-qr-kicker">QR preview</p>
+            <h2 class="qr-modal__title" id="qr-modal-title">Wallet QR</h2>
+            <div class="qr-modal__image-wrap">
+                <img class="qr-modal__image" id="qr-modal-image" src="" alt="Wallet QR">
+            </div>
+            <p class="qr-modal__network" id="qr-modal-network"></p>
+            <div class="qr-modal__address-row">
+                <span class="qr-modal__address" id="qr-modal-address"></span>
+                <button class="accordion-copy-btn qr-modal__copy" id="qr-modal-copy" type="button" aria-label="Copy address" data-i18n-aria-label="don-copy-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../scripts.js" defer></script>
     <script>
     (function () {
@@ -297,6 +319,33 @@
         const usdtLabel = document.getElementById('usdt-label');
         const usdtAddrEl = document.getElementById('usdt-address');
         const usdtQrImg = usdtItem ? usdtItem.querySelector('.accordion-qr img') : null;
+        const qrModal = document.getElementById('qr-modal');
+        const qrModalImage = document.getElementById('qr-modal-image');
+        const qrModalTitle = document.getElementById('qr-modal-title');
+        const qrModalNetwork = document.getElementById('qr-modal-network');
+        const qrModalAddress = document.getElementById('qr-modal-address');
+        const qrModalCopy = document.getElementById('qr-modal-copy');
+        let lastQrTrigger = null;
+
+        function openQrModal(payload) {
+            if (!qrModal) return;
+            qrModalTitle.textContent = payload.title;
+            qrModalNetwork.textContent = payload.network;
+            qrModalAddress.textContent = payload.address;
+            qrModalCopy.dataset.address = payload.address;
+            qrModalImage.src = buildQR(payload.address);
+            qrModal.hidden = false;
+            document.body.classList.add('idea-modal-open');
+        }
+
+        function closeQrModal() {
+            if (!qrModal || qrModal.hidden) return;
+            qrModal.hidden = true;
+            document.body.classList.remove('idea-modal-open');
+            if (lastQrTrigger && typeof lastQrTrigger.focus === 'function') {
+                lastQrTrigger.focus();
+            }
+        }
 
         function switchUSDT(net) {
             if (!usdtItem) return;
@@ -344,7 +393,7 @@
             if (copyBtn) {
                 const row = copyBtn.closest('.accordion-address-row');
                 const addrEl = row ? row.querySelector('.accordion-address-text') : null;
-                const address = addrEl ? (addrEl.dataset.address || addrEl.textContent.trim()) : '';
+                const address = copyBtn.dataset.address || (addrEl ? (addrEl.dataset.address || addrEl.textContent.trim()) : '');
                 if (!address) return;
 
                 navigator.clipboard.writeText(address).then(() => {
@@ -354,6 +403,23 @@
                         copyBtn.classList.remove('copied');
                         copyBtn.innerHTML = copySvg;
                     }, 1800);
+                });
+                return;
+            }
+
+            const qr = e.target.closest('.accordion-qr');
+            if (qr) {
+                const item = qr.closest('.accordion-item');
+                const titleEl = item ? item.querySelector('.accordion-title') : null;
+                const networkEl = item ? item.querySelector('.network-badge') : null;
+                const addrEl = item ? item.querySelector('.accordion-address-text') : null;
+                const address = addrEl ? (addrEl.dataset.address || addrEl.textContent.trim()) : '';
+                if (!address) return;
+                lastQrTrigger = qr;
+                openQrModal({
+                    title: titleEl ? titleEl.textContent.trim() : 'Wallet QR',
+                    network: networkEl ? networkEl.textContent.trim() : '',
+                    address
                 });
                 return;
             }
@@ -390,6 +456,20 @@
                 switchUSDT(activeNet.dataset.net);
             }
         });
+
+        if (qrModal) {
+            qrModal.addEventListener('click', function (e) {
+                if (e.target.hasAttribute('data-qr-close')) {
+                    closeQrModal();
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    closeQrModal();
+                }
+            });
+        }
     })();
     </script>
 </body>

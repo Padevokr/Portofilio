@@ -305,12 +305,121 @@
   background: #fff;
   display: grid;
   place-items: center;
+  cursor: zoom-in;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.accordion-qr:hover {
+  transform: scale(1.04);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
 .accordion-qr img {
   width: 88px;
   height: 88px;
   display: block;
+}
+
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 3100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.qr-modal[hidden] {
+  display: none;
+}
+
+.qr-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(2, 6, 23, 0.68);
+  cursor: pointer;
+}
+
+.qr-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 420px);
+  padding: 1.25rem;
+}
+
+.qr-modal__close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.qr-modal__eyebrow {
+  margin: 0 0 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.qr-modal__title {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+}
+
+.qr-modal__image-wrap {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid var(--card-border);
+}
+
+.qr-modal__image {
+  width: min(100%, 280px);
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.qr-modal__network {
+  margin: 0.9rem 0 0.5rem;
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.qr-modal__address-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  background: var(--surface);
+}
+
+.qr-modal__address {
+  flex: 1;
+  font-family: "Space Grotesk", monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+[data-theme="light"] .qr-modal__image-wrap {
+  border-color: rgba(15, 23, 42, 0.12);
 }
 
 /* ── Footer note ── */
@@ -328,4 +437,6 @@
   .accordion-qr img { width: 72px; height: 72px; }
 
   .accordion-meta { flex-wrap: wrap; gap: 0.4rem; }
+
+  .qr-modal__dialog { padding: 1rem; }
 }
