@@ -69,6 +69,7 @@ const PROJECT_CASE_FALLBACKS = {
 
 async function setLanguage(lang, updateUrl = true) {
     try {
+        document.documentElement.lang = lang;
         const path = window.location.pathname;
         const normalizedPath = path.endsWith('/') ? `${path}index.html` : path;
         const segments = normalizedPath.split('/').filter(Boolean);
@@ -78,7 +79,6 @@ async function setLanguage(lang, updateUrl = true) {
         const techId = urlParams.get('id');
         const fromSource = urlParams.get('from');
 
-        // Update URL with lang parameter if on tech.html page
         if (updateUrl && path.includes('tech.html')) {
             const newUrlParams = new URLSearchParams(window.location.search);
             newUrlParams.set('lang', lang);
@@ -265,7 +265,6 @@ function initGridEffects() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme toggle logic
     const themeBtn = document.getElementById('theme-btn');
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -280,13 +279,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function applyTheme(theme) {
-        // Auto - не ставим атрибут (используется :root = системная тема)
-        // Dark - ставим data-theme="dark"
-        // Light - ставим data-theme="light"
         if (theme === 'dark' || theme === 'light') {
             document.documentElement.setAttribute('data-theme', theme);
         } else {
-            // Auto - убираем атрибут, работает :root
             document.documentElement.removeAttribute('data-theme');
         }
         
@@ -324,18 +319,12 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTheme('auto');
         }
     });
-
-    // Language dropdown logic
     const langBtn = document.getElementById('lang-btn');
     const langOptions = document.getElementById('lang-options');
     const langCurrent = document.getElementById('lang-current');
-    
-    // Get lang from URL first (for tech.html), then from localStorage, then default to 'en'
     const urlParams = new URLSearchParams(window.location.search);
     const urlLang = urlParams.get('lang');
     const savedLang = urlLang || localStorage.getItem('lang') || 'en';
-
-    // Initialize language
     if (langCurrent) {
         const selectedOption = langOptions?.querySelector(`[data-value="${savedLang}"]`);
         if (selectedOption) {
@@ -343,44 +332,28 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedOption.classList.add('is-active');
         }
     }
-
-    // Apply saved language on page load (skip tech.html — it handles itself)
-    if (!window.location.pathname.includes('tech.html') && savedLang !== 'en') {
+    if (!window.location.pathname.includes('tech.html')) {
         setLanguage(savedLang, false);
     }
-    
-    // Toggle dropdown
     if (langBtn && langOptions) {
         langBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = langOptions.classList.toggle('is-open');
             langBtn.setAttribute('aria-expanded', isOpen.toString());
         });
-        
-        // Handle option click
         langOptions.querySelectorAll('.lang-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const value = option.getAttribute('data-value');
-                
-                // Update active state
                 langOptions.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('is-active'));
                 option.classList.add('is-active');
-                
-                // Update current language display
                 langCurrent.textContent = option.textContent;
-                
-                // Close dropdown
                 langOptions.classList.remove('is-open');
                 langBtn.setAttribute('aria-expanded', 'false');
-                
-                // Change language
                 setLanguage(value);
                 localStorage.setItem('lang', value);
             });
         });
-        
-        // Close on outside click
         document.addEventListener('click', (e) => {
             if (!langBtn.contains(e.target) && !langOptions.contains(e.target)) {
                 langOptions.classList.remove('is-open');
@@ -489,12 +462,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         }
                     });
-
-                    // Подсветка предыдущего и следующего раздела
                     const sectionsArray = Array.from(sections);
                     const currentIndex = sectionsArray.findIndex(s => s.id === id);
-                    
-                    // Предыдущий раздел
                     if (currentIndex > 0) {
                         const prevSection = sectionsArray[currentIndex - 1];
                         const prevId = prevSection.id;
@@ -504,8 +473,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                         });
                     }
-                    
-                    // Следующий раздел
                     if (currentIndex >= 0 && currentIndex < sectionsArray.length - 1) {
                         const nextSection = sectionsArray[currentIndex + 1];
                         const nextId = nextSection.id;
@@ -523,20 +490,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const observer = new IntersectionObserver(observerCallback, observerOptions);
         sections.forEach(section => observer.observe(section));
     }
-
-    // Auto-load language on tech.html page
     const path = window.location.pathname;
     if (path.includes('tech.html')) {
         const urlParams = new URLSearchParams(window.location.search);
         const techId = urlParams.get('id');
-        // Get lang from URL first, then from localStorage, then default to 'en'
         const urlLang = urlParams.get('lang');
         const savedLang = urlLang || localStorage.getItem('lang') || 'en';
         
         if (techId) {
             setLanguage(savedLang, false); // false = don't update URL again
         } else {
-            // No tech ID specified - redirect to home or show error
             const backLink = document.getElementById('dynamic-back-link');
             if (backLink) {
                 backLink.textContent = 'No technology specified. Go back.';
@@ -600,3 +563,4 @@ if (!prefersReducedMotion && zoomSections.length > 0) {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
 }
+
