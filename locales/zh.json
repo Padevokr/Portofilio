@@ -601,13 +601,13 @@
     "don-address-ton-label": "TON 地址",
     "don-method-eth-title": "Ethereum",
     "don-qr-kicker": "QR 预览",
-    "idea-images-label": "??",
-    "idea-images-title": "????",
-    "idea-images-hint": "?? 3 ????JPG?JPEG?PNG?WEBP????? 5 MB?",
+    "idea-images-label": "图片",
+    "idea-images-title": "可选附件",
+    "idea-images-hint": "最多 3 张图片：JPG、JPEG、PNG、WEBP。每张最大 5 MB。",
     "idea-images-unit-kb": "KB",
     "idea-images-unit-mb": "MB",
-    "idea-error-images-count": "?????? 3 ????",
-    "idea-error-images-type": "??? JPG?JPEG?PNG ? WEBP ???",
-    "idea-error-images-size": "??????????? 5 MB?",
-    "idea-status-sending-images": "?????????..."
+    "idea-error-images-count": "最多只能附加 3 张图片。",
+    "idea-error-images-type": "仅允许 JPG、JPEG、PNG 和 WEBP 图片。",
+    "idea-error-images-size": "每张图片大小必须不超过 5 MB。",
+    "idea-status-sending-images": "正在发送想法和图片..."
 }
