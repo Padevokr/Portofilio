@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NY04NMP3VW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -550,6 +549,27 @@
           <p class="idea-form__error" id="idea-contact-error" aria-live="polite"></p>
         </div>
 
+        <div class="idea-form__field">
+          <div class="idea-form__label-row">
+            <label class="idea-form__label" for="idea-images" data-i18n="idea-images-label"></label>
+            <span class="idea-form__meta"><span id="idea-images-count">0</span>/3</span>
+          </div>
+          <label class="idea-upload" for="idea-images">
+            <span class="idea-upload__title" data-i18n="idea-images-title"></span>
+            <span class="idea-upload__hint" data-i18n="idea-images-hint"></span>
+          </label>
+          <input
+            class="idea-upload__input"
+            id="idea-images"
+            name="images"
+            type="file"
+            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+            multiple
+          >
+          <ul class="idea-upload__list" id="idea-images-list" hidden></ul>
+          <p class="idea-form__error" id="idea-images-error" aria-live="polite"></p>
+        </div>
+
         <p class="idea-form__status" id="idea-form-status" aria-live="polite"></p>
 
         <div class="idea-form__actions">
@@ -567,3 +587,4 @@
   <script src="assets/js/idea-modal.js"></script>
 </body>
 </html>
+

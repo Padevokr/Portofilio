@@ -542,7 +542,7 @@
     "idea-modal-required-prefix": "I campi contrassegnati con",
     "idea-modal-required-suffix": "sono obbligatori.",
     "idea-success-title": "Idea inviata",
-    "idea-success-text": "Grazie. La tua proposta e stata inviata con successo.",
+    "idea-success-text": "Grazie. La tua proposta è stata inviata con successo.",
     "idea-category-label": "Categoria",
     "idea-scale-label": "Scala",
     "idea-category-project": "Progetto",
@@ -574,7 +574,7 @@
     "idea-status-sending": "Invio dell'idea...",
     "idea-status-success": "Idea inviata con successo.",
     "idea-error-send": "Impossibile inviare l'idea. Riprova più tardi.",
-    "idea-error-api-not-configured": "L'API delle idee non e configurata.",
+    "idea-error-api-not-configured": "L'API delle idee non è configurata.",
     "don-tagline": "Questa pagina esiste per chi vuole sostenere il lavoro, aiutare a coprire i costi dell infrastruttura e permettere al progetto di continuare a muoversi.",
     "don-method-ton-title": "TON",
     "don-title": "Supporta il lavoro dietro Dekrov.dev",
@@ -600,5 +600,14 @@
     "don-network-eth": "Ethereum Mainnet",
     "don-address-ton-label": "Indirizzo TON",
     "don-method-eth-title": "Ethereum",
-    "don-qr-kicker": "Anteprima QR"
+    "don-qr-kicker": "Anteprima QR",
+    "idea-images-label": "Immagini",
+    "idea-images-title": "Allegati facoltativi",
+    "idea-images-hint": "Fino a 3 immagini: JPG, JPEG, PNG, WEBP. Max 5 MB ciascuna.",
+    "idea-images-unit-kb": "KB",
+    "idea-images-unit-mb": "MB",
+    "idea-error-images-count": "Puoi allegare fino a 3 immagini.",
+    "idea-error-images-type": "Sono consentite solo immagini JPG, JPEG, PNG e WEBP.",
+    "idea-error-images-size": "Ogni immagine deve essere di 5 MB o meno.",
+    "idea-status-sending-images": "Invio dell'idea e delle immagini..."
 }

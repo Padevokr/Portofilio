@@ -600,5 +600,14 @@
     "don-network-eth": "Ethereum 主网",
     "don-address-ton-label": "TON 地址",
     "don-method-eth-title": "Ethereum",
-    "don-qr-kicker": "QR 预览"
+    "don-qr-kicker": "QR 预览",
+    "idea-images-label": "??",
+    "idea-images-title": "????",
+    "idea-images-hint": "?? 3 ????JPG?JPEG?PNG?WEBP????? 5 MB?",
+    "idea-images-unit-kb": "KB",
+    "idea-images-unit-mb": "MB",
+    "idea-error-images-count": "?????? 3 ????",
+    "idea-error-images-type": "??? JPG?JPEG?PNG ? WEBP ???",
+    "idea-error-images-size": "??????????? 5 MB?",
+    "idea-status-sending-images": "?????????..."
 }

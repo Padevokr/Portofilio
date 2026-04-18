@@ -601,5 +601,14 @@
     "don-network-eth": "Ethereum Mainnet",
     "don-address-ton-label": "TON Address",
     "don-method-eth-title": "Ethereum",
-    "don-qr-kicker": "QR preview"
+    "don-qr-kicker": "QR preview",
+    "idea-images-label": "Images",
+    "idea-images-title": "Optional attachments",
+    "idea-images-hint": "Up to 3 images: JPG, JPEG, PNG, WEBP. Max 5 MB each.",
+    "idea-images-unit-kb": "KB",
+    "idea-images-unit-mb": "MB",
+    "idea-error-images-count": "You can attach up to 3 images.",
+    "idea-error-images-type": "Only JPG, JPEG, PNG, and WEBP images are allowed.",
+    "idea-error-images-size": "Each image must be 5 MB or smaller.",
+    "idea-status-sending-images": "Sending idea and images..."
 }

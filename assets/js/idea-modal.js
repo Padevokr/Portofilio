@@ -1,4 +1,9 @@
 (function () {
+  const MAX_IMAGE_FILES = 3;
+  const MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024;
+  const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+  const ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+
   const modal = document.getElementById("idea-modal");
   const dialog = modal?.querySelector(".idea-modal__dialog");
   const form = document.getElementById("idea-form");
@@ -15,35 +20,40 @@
 
   const fields = {
     category: document.getElementById("idea-category"),
-    scale:    document.getElementById("idea-scale"),
-    idea:     document.getElementById("idea-text"),
-    reason:   document.getElementById("idea-reason"),
-    contact:  document.getElementById("idea-contact"),
+    scale: document.getElementById("idea-scale"),
+    idea: document.getElementById("idea-text"),
+    reason: document.getElementById("idea-reason"),
+    contact: document.getElementById("idea-contact"),
+    images: document.getElementById("idea-images"),
   };
 
   const fieldWrappers = {
     category: fields.category.closest(".idea-form__field"),
-    scale:    fields.scale.closest(".idea-form__field"),
-    idea:     fields.idea.closest(".idea-form__field"),
-    reason:   fields.reason.closest(".idea-form__field"),
-    contact:  fields.contact.closest(".idea-form__field"),
+    scale: fields.scale.closest(".idea-form__field"),
+    idea: fields.idea.closest(".idea-form__field"),
+    reason: fields.reason.closest(".idea-form__field"),
+    contact: fields.contact.closest(".idea-form__field"),
+    images: fields.images.closest(".idea-form__field"),
   };
 
   const errorNodes = {
     category: document.getElementById("idea-category-error"),
-    scale:    document.getElementById("idea-scale-error"),
-    idea:     document.getElementById("idea-text-error"),
-    reason:   document.getElementById("idea-reason-error"),
-    contact:  document.getElementById("idea-contact-error"),
+    scale: document.getElementById("idea-scale-error"),
+    idea: document.getElementById("idea-text-error"),
+    reason: document.getElementById("idea-reason-error"),
+    contact: document.getElementById("idea-contact-error"),
+    images: document.getElementById("idea-images-error"),
   };
 
   const counters = {
-    idea:    document.getElementById("idea-text-count"),
-    reason:  document.getElementById("idea-reason-count"),
+    idea: document.getElementById("idea-text-count"),
+    reason: document.getElementById("idea-reason-count"),
     contact: document.getElementById("idea-contact-count"),
+    images: document.getElementById("idea-images-count"),
   };
 
-  const openButtons  = document.querySelectorAll("[data-idea-open]");
+  const imagesList = document.getElementById("idea-images-list");
+  const openButtons = document.querySelectorAll("[data-idea-open]");
   const closeButtons = modal.querySelectorAll("[data-idea-close]");
 
   const focusableSelector = [
@@ -102,6 +112,10 @@
     }
   }
 
+  function getSelectedImages() {
+    return Array.from(fields.images.files || []);
+  }
+
   function setSelectedCategories(values) {
     fields.category.value = JSON.stringify(values);
   }
@@ -119,7 +133,7 @@
   }
 
   function setFieldError(name, message) {
-    const wrapper   = fieldWrappers[name];
+    const wrapper = fieldWrappers[name];
     const errorNode = errorNodes[name];
     if (!wrapper || !errorNode) return;
     wrapper.classList.toggle("has-error", Boolean(message));
@@ -132,10 +146,50 @@
   }
 
   function updateCounter(fieldName) {
-    const field   = fields[fieldName];
+    const field = fields[fieldName];
     const counter = counters[fieldName];
     if (!field || !counter) return;
+
+    if (fieldName === "images") {
+      counter.textContent = String(getSelectedImages().length);
+      return;
+    }
+
     counter.textContent = String(field.value.length);
+  }
+
+  function formatFileSize(bytes) {
+    if (bytes < 1024 * 1024) {
+      return `${Math.max(1, Math.round(bytes / 1024))} ${t("idea-images-unit-kb", "")}`;
+    }
+    return `${(bytes / (1024 * 1024)).toFixed(1)} ${t("idea-images-unit-mb", "")}`;
+  }
+
+  function renderSelectedImages() {
+    const files = getSelectedImages();
+    updateCounter("images");
+
+    if (!imagesList) return;
+    imagesList.innerHTML = "";
+
+    if (!files.length) {
+      imagesList.hidden = true;
+      return;
+    }
+
+    imagesList.hidden = false;
+    files.forEach((file) => {
+      const item = document.createElement("li");
+      item.className = "idea-upload__item";
+      const name = document.createElement("span");
+      name.className = "idea-upload__name";
+      name.textContent = file.name;
+      const size = document.createElement("span");
+      size.className = "idea-upload__size";
+      size.textContent = formatFileSize(file.size);
+      item.append(name, size);
+      imagesList.appendChild(item);
+    });
   }
 
   function updateCatCards() {
@@ -163,12 +217,13 @@
   function resetFormState() {
     form.reset();
     setSelectedCategories([]);
-    fields.scale.value    = "";
+    fields.scale.value = "";
     updateCatCards();
     updateScaleCards();
     updateCounter("idea");
     updateCounter("reason");
     updateCounter("contact");
+    renderSelectedImages();
     clearErrors();
     clearSuccessState();
   }
@@ -199,14 +254,38 @@
     }
   }
 
+  function hasAllowedExtension(filename) {
+    const lower = filename.toLowerCase();
+    return ALLOWED_IMAGE_EXTENSIONS.some((extension) => lower.endsWith(extension));
+  }
+
+  function validateImages(files) {
+    if (files.length > MAX_IMAGE_FILES) {
+      return t("idea-error-images-count", "");
+    }
+
+    for (const file of files) {
+      if (!ALLOWED_IMAGE_TYPES.has(file.type) || !hasAllowedExtension(file.name)) {
+        return t("idea-error-images-type", "");
+      }
+      if (file.size > MAX_IMAGE_SIZE_BYTES) {
+        return t("idea-error-images-size", "");
+      }
+    }
+
+    return "";
+  }
+
   function validate() {
     const selectedCategories = getSelectedCategories();
+    const images = getSelectedImages();
     const payload = {
       category: selectedCategories.map(getLocalizedCategory).join(", "),
-      scale:    getLocalizedScale(fields.scale.value.trim()),
-      idea:     fields.idea.value.trim(),
-      reason:   fields.reason.value.trim(),
-      contact:  fields.contact.value.trim(),
+      scale: getLocalizedScale(fields.scale.value.trim()),
+      idea: fields.idea.value.trim(),
+      reason: fields.reason.value.trim(),
+      contact: fields.contact.value.trim(),
+      website: "",
     };
 
     let isValid = true;
@@ -236,10 +315,27 @@
       isValid = false;
     }
 
-    return { isValid, payload };
+    const imagesError = validateImages(images);
+    if (imagesError) {
+      setFieldError("images", imagesError);
+      isValid = false;
+    }
+
+    return { isValid, payload, images };
   }
 
-  async function postIdea(payload) {
+  function buildMultipartPayload(payload, images) {
+    const formData = new FormData();
+    Object.entries(payload).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    images.forEach((image) => {
+      formData.append("images", image, image.name);
+    });
+    return formData;
+  }
+
+  async function postIdea(payload, images) {
     if (useMockRequest) {
       await new Promise((resolve) => window.setTimeout(resolve, 700));
       return { ok: true };
@@ -249,15 +345,23 @@
       throw new Error(t("idea-error-api-not-configured", "Idea API is not configured."));
     }
 
-    const response = await fetch(`${apiBaseUrl}/api/idea`, {
+    const headers = {
+      Accept: "application/json",
+      "X-Portfolio-Lang": getCurrentLanguage(),
+    };
+    const requestInit = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "X-Portfolio-Lang": getCurrentLanguage(),
-      },
-      body: JSON.stringify(payload),
-    });
+      headers,
+    };
+
+    if (images.length) {
+      requestInit.body = buildMultipartPayload(payload, images);
+    } else {
+      headers["Content-Type"] = "application/json";
+      requestInit.body = JSON.stringify(payload);
+    }
+
+    const response = await fetch(`${apiBaseUrl}/api/idea`, requestInit);
 
     if (!response.ok) {
       let message = t("idea-error-send", "Could not send the idea. Please try again later.");
@@ -278,20 +382,25 @@
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const { isValid, payload } = validate();
+    const { isValid, payload, images } = validate();
     if (!isValid) {
       setStatus(t("idea-error-fix", "Please fix the highlighted fields."), "error");
       return;
     }
 
     isSubmitting = true;
-    submitButton.disabled   = true;
+    submitButton.disabled = true;
     submitButton.textContent = t("idea-status-sending-button", "Sending...");
-    setStatus(t("idea-status-sending", "Sending idea..."), "");
+    setStatus(
+      images.length
+        ? t("idea-status-sending-images", "")
+        : t("idea-status-sending", "Sending idea..."),
+      ""
+    );
     clearSuccessState();
 
     try {
-      await postIdea(payload);
+      await postIdea(payload, images);
       resetFormState();
       successBox.hidden = false;
       setStatus(t("idea-status-success", "Idea submitted successfully."), "success");
@@ -299,7 +408,7 @@
       setStatus(error.message || t("idea-error-send", "Could not send the idea. Please try again later."), "error");
     } finally {
       isSubmitting = false;
-      submitButton.disabled   = false;
+      submitButton.disabled = false;
       submitButton.textContent = t("idea-submit", "Submit idea");
     }
   }
@@ -331,13 +440,18 @@
   function trapFocus(event) {
     if (event.key !== "Tab" || modal.hidden) return;
     const focusable = getFocusableElements();
-    if (!focusable.length) { event.preventDefault(); return; }
+    if (!focusable.length) {
+      event.preventDefault();
+      return;
+    }
     const first = focusable[0];
-    const last  = focusable[focusable.length - 1];
+    const last = focusable[focusable.length - 1];
     if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault(); last.focus();
+      event.preventDefault();
+      last.focus();
     } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault(); first.focus();
+      event.preventDefault();
+      first.focus();
     }
   }
 
@@ -359,8 +473,17 @@
     });
   });
 
+  fields.images.addEventListener("change", () => {
+    clearSuccessState();
+    renderSelectedImages();
+    setFieldError("images", validateImages(getSelectedImages()));
+  });
+
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !modal.hidden) { closeModal(); return; }
+    if (event.key === "Escape" && !modal.hidden) {
+      closeModal();
+      return;
+    }
     trapFocus(event);
   });
 
@@ -372,6 +495,7 @@
   updateCounter("idea");
   updateCounter("reason");
   updateCounter("contact");
+  renderSelectedImages();
   updateCatCards();
   updateScaleCards();
   refreshDynamicText();
