@@ -3,6 +3,16 @@
   const MAX_IMAGE_SIZE_BYTES = 5 * 1024 * 1024;
   const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
   const ALLOWED_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp"];
+  const ALLOWED_CATEGORIES = new Set([
+    "project",
+    "website_feature",
+    "automation",
+    "telegram",
+    "tool",
+    "experiment",
+    "other",
+  ]);
+  const ALLOWED_SCALES = new Set(["small", "medium", "large"]);
 
   const modal = document.getElementById("idea-modal");
   const dialog = modal?.querySelector(".idea-modal__dialog");
@@ -81,34 +91,14 @@
     return (storedLang || htmlLang || "en").trim().toLowerCase();
   }
 
-  function getLocalizedCategory(value) {
-    const map = {
-      Project: t("idea-category-project", "Project"),
-      "Website feature": t("idea-category-website-feature", "Website feature"),
-      Automation: t("idea-category-automation", "Automation"),
-      Telegram: t("idea-category-telegram", "Telegram"),
-      Tool: t("idea-category-tool", "Tool"),
-      Experiment: t("idea-category-experiment", "Experiment"),
-      Other: t("idea-category-other", "Other"),
-    };
-
-    return map[value] || value;
-  }
-
-  function getLocalizedScale(value) {
-    const map = {
-      Small: t("idea-scale-small", "Small"),
-      Medium: t("idea-scale-medium", "Medium"),
-      Large: t("idea-scale-large", "Large"),
-    };
-
-    return map[value] || value;
-  }
-
   function getSelectedCategories() {
     try {
       const parsed = JSON.parse(fields.category.value || "[]");
-      return Array.isArray(parsed) ? parsed.filter((item) => typeof item === "string" && item.trim()) : [];
+      if (!Array.isArray(parsed)) return [];
+      return parsed
+        .filter((item) => typeof item === "string")
+        .map((item) => item.trim().toLowerCase())
+        .filter((item, index, list) => ALLOWED_CATEGORIES.has(item) && list.indexOf(item) === index);
     } catch (_) {
       return [];
     }
@@ -343,8 +333,8 @@
     const selectedCategories = getSelectedCategories();
     const images = getSelectedImages();
     const payload = {
-      category: selectedCategories.map(getLocalizedCategory).join(", "),
-      scale: getLocalizedScale(fields.scale.value.trim()),
+      category: selectedCategories,
+      scale: fields.scale.value.trim().toLowerCase(),
       idea: fields.idea.value.trim(),
       reason: fields.reason.value.trim(),
       contact: fields.contact.value.trim(),
@@ -358,7 +348,7 @@
       setFieldError("category", t("idea-error-category", "Select at least one category."));
       isValid = false;
     }
-    if (!payload.scale) {
+    if (!payload.scale || !ALLOWED_SCALES.has(payload.scale)) {
       setFieldError("scale", t("idea-error-scale", "Select a scale."));
       isValid = false;
     }
@@ -390,7 +380,7 @@
   function buildMultipartPayload(payload, images) {
     const formData = new FormData();
     Object.entries(payload).forEach(([key, value]) => {
-      formData.append(key, value);
+      formData.append(key, Array.isArray(value) ? JSON.stringify(value) : value);
     });
     images.forEach((image) => {
       formData.append("images", image, image.name);
@@ -432,6 +422,13 @@
         const data = await response.json();
         if (typeof data?.details?.message === "string" && data.details.message.trim()) {
           message = data.details.message.trim();
+        } else if (typeof data?.message === "string" && data.message.trim()) {
+          message = data.message.trim();
+        } else if (data?.details && typeof data.details === "object") {
+          const firstErrorGroup = Object.values(data.details).find((value) => Array.isArray(value) && value.length);
+          if (Array.isArray(firstErrorGroup) && typeof firstErrorGroup[0] === "string" && firstErrorGroup[0].trim()) {
+            message = firstErrorGroup[0].trim();
+          }
         } else if (typeof data?.error === "string" && data.error.trim()) {
           message = data.error.trim();
         }
@@ -489,7 +486,8 @@
 
     const catCard = event.target.closest(".idea-cat-card");
     if (catCard) {
-      const value = catCard.dataset.catValue || "";
+      const value = (catCard.dataset.catValue || "").trim().toLowerCase();
+      if (!ALLOWED_CATEGORIES.has(value)) return;
       const selected = getSelectedCategories();
       const nextSelected = selected.includes(value)
         ? selected.filter((item) => item !== value)
@@ -503,7 +501,9 @@
 
     const scaleCard = event.target.closest(".idea-scale-card");
     if (scaleCard) {
-      fields.scale.value = scaleCard.dataset.scaleValue || "";
+      const value = (scaleCard.dataset.scaleValue || "").trim().toLowerCase();
+      if (!ALLOWED_SCALES.has(value)) return;
+      fields.scale.value = value;
       updateScaleCards();
       setFieldError("scale", "");
       clearSuccessState();
