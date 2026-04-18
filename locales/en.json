@@ -610,5 +610,6 @@
     "idea-error-images-count": "You can attach up to 3 images.",
     "idea-error-images-type": "Only JPG, JPEG, PNG, and WEBP images are allowed.",
     "idea-error-images-size": "Each image must be 5 MB or smaller.",
-    "idea-status-sending-images": "Sending idea and images..."
+    "idea-status-sending-images": "Sending idea and images...",
+    "idea-images-remove-label": "Remove image"
 }

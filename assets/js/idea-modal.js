@@ -53,6 +53,7 @@
   };
 
   const imagesList = document.getElementById("idea-images-list");
+  const uploadZone = modal.querySelector(".idea-upload");
   const openButtons = document.querySelectorAll("[data-idea-open]");
   const closeButtons = modal.querySelectorAll("[data-idea-close]");
 
@@ -67,6 +68,7 @@
 
   let lastFocusedElement = null;
   let isSubmitting = false;
+  let selectedImages = [];
 
   function t(key, fallback) {
     const value = translations[key];
@@ -113,7 +115,7 @@
   }
 
   function getSelectedImages() {
-    return Array.from(fields.images.files || []);
+    return [...selectedImages];
   }
 
   function setSelectedCategories(values) {
@@ -165,6 +167,37 @@
     return `${(bytes / (1024 * 1024)).toFixed(1)} ${t("idea-images-unit-mb", "")}`;
   }
 
+  function getImageFingerprint(file) {
+    return [file.name, file.size, file.lastModified].join(":");
+  }
+
+  function syncFileInput() {
+    if (typeof DataTransfer === "undefined") return;
+    const transfer = new DataTransfer();
+    selectedImages.forEach((file) => transfer.items.add(file));
+    fields.images.files = transfer.files;
+  }
+
+  function setSelectedImages(files) {
+    selectedImages = [...files];
+    syncFileInput();
+  }
+
+  function clearImageSelection() {
+    selectedImages = [];
+    fields.images.value = "";
+    syncFileInput();
+  }
+
+  function appendImages(newFiles) {
+    const existing = new Map(selectedImages.map((file) => [getImageFingerprint(file), file]));
+    newFiles.forEach((file) => {
+      existing.set(getImageFingerprint(file), file);
+    });
+    setSelectedImages(existing.values());
+    fields.images.value = "";
+  }
+
   function renderSelectedImages() {
     const files = getSelectedImages();
     updateCounter("images");
@@ -181,13 +214,21 @@
     files.forEach((file) => {
       const item = document.createElement("li");
       item.className = "idea-upload__item";
+      item.dataset.fileId = getImageFingerprint(file);
       const name = document.createElement("span");
       name.className = "idea-upload__name";
       name.textContent = file.name;
       const size = document.createElement("span");
       size.className = "idea-upload__size";
       size.textContent = formatFileSize(file.size);
-      item.append(name, size);
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "idea-upload__remove";
+      remove.dataset.fileRemove = item.dataset.fileId;
+      remove.setAttribute("aria-label", t("idea-images-remove-label", ""));
+      remove.setAttribute("title", t("idea-images-remove-label", ""));
+      remove.textContent = "×";
+      item.append(name, size, remove);
       imagesList.appendChild(item);
     });
   }
@@ -218,6 +259,7 @@
     form.reset();
     setSelectedCategories([]);
     fields.scale.value = "";
+    clearImageSelection();
     updateCatCards();
     updateScaleCards();
     updateCounter("idea");
@@ -247,6 +289,7 @@
 
   function closeModal() {
     if (isSubmitting) return;
+    resetFormState();
     modal.hidden = true;
     document.body.classList.remove("idea-modal-open");
     if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
@@ -274,6 +317,26 @@
     }
 
     return "";
+  }
+
+  function commitImages(nextFiles) {
+    const existing = new Map(selectedImages.map((file) => [getImageFingerprint(file), file]));
+    nextFiles.forEach((file) => {
+      existing.set(getImageFingerprint(file), file);
+    });
+
+    const mergedFiles = Array.from(existing.values());
+    if (mergedFiles.length > MAX_IMAGE_FILES) {
+      fields.images.value = "";
+      setFieldError("images", t("idea-error-images-count", ""));
+      return;
+    }
+
+    setSelectedImages(mergedFiles);
+    fields.images.value = "";
+    renderSelectedImages();
+    setFieldError("images", validateImages(getSelectedImages()));
+    clearSuccessState();
   }
 
   function validate() {
@@ -414,6 +477,16 @@
   }
 
   function handleDialogClick(event) {
+    const removeButton = event.target.closest("[data-file-remove]");
+    if (removeButton) {
+      const fileId = removeButton.dataset.fileRemove || "";
+      setSelectedImages(getSelectedImages().filter((file) => getImageFingerprint(file) !== fileId));
+      renderSelectedImages();
+      setFieldError("images", validateImages(getSelectedImages()));
+      clearSuccessState();
+      return;
+    }
+
     const catCard = event.target.closest(".idea-cat-card");
     if (catCard) {
       const value = catCard.dataset.catValue || "";
@@ -474,10 +547,31 @@
   });
 
   fields.images.addEventListener("change", () => {
-    clearSuccessState();
-    renderSelectedImages();
-    setFieldError("images", validateImages(getSelectedImages()));
+    commitImages(Array.from(fields.images.files || []));
   });
+
+  if (uploadZone) {
+    ["dragenter", "dragover"].forEach((eventName) => {
+      uploadZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        uploadZone.classList.add("is-dragover");
+      });
+    });
+
+    ["dragleave", "dragend", "drop"].forEach((eventName) => {
+      uploadZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        if (eventName === "dragleave" && uploadZone.contains(event.relatedTarget)) return;
+        uploadZone.classList.remove("is-dragover");
+      });
+    });
+
+    uploadZone.addEventListener("drop", (event) => {
+      const droppedFiles = Array.from(event.dataTransfer?.files || []);
+      if (!droppedFiles.length) return;
+      commitImages(droppedFiles);
+    });
+  }
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && !modal.hidden) {

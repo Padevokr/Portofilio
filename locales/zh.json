@@ -609,5 +609,6 @@
     "idea-error-images-count": "最多只能附加 3 张图片。",
     "idea-error-images-type": "仅允许 JPG、JPEG、PNG 和 WEBP 图片。",
     "idea-error-images-size": "每张图片大小必须不超过 5 MB。",
-    "idea-status-sending-images": "正在发送想法和图片..."
+    "idea-status-sending-images": "正在发送想法和图片...",
+    "idea-images-remove-label": "删除图片"
 }

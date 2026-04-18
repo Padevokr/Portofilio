@@ -609,5 +609,6 @@
     "idea-error-images-count": "Vous pouvez joindre jusqu'a 3 images.",
     "idea-error-images-type": "Seules les images JPG, JPEG, PNG et WEBP sont autorisees.",
     "idea-error-images-size": "Chaque image doit faire 5 Mo maximum.",
-    "idea-status-sending-images": "Envoi de l'idée et des images..."
+    "idea-status-sending-images": "Envoi de l'idée et des images...",
+    "idea-images-remove-label": "Supprimer l'image"
 }

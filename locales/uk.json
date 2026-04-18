@@ -609,5 +609,6 @@
     "idea-error-images-count": "Можна прикріпити не більше 3 зображень.",
     "idea-error-images-type": "Дозволені лише зображення JPG, JPEG, PNG і WEBP.",
     "idea-error-images-size": "Розмір кожного зображення має бути не більшим за 5 МБ.",
-    "idea-status-sending-images": "Надсилаємо ідею та зображення..."
+    "idea-status-sending-images": "Надсилаємо ідею та зображення...",
+    "idea-images-remove-label": "Видалити зображення"
 }

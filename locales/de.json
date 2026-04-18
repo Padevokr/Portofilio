@@ -609,5 +609,6 @@
     "idea-error-images-count": "Du kannst bis zu 3 Bilder anhaengen.",
     "idea-error-images-type": "Erlaubt sind nur JPG-, JPEG-, PNG- und WEBP-Bilder.",
     "idea-error-images-size": "Jedes Bild muss 5 MB oder kleiner sein.",
-    "idea-status-sending-images": "Idee und Bilder werden gesendet..."
+    "idea-status-sending-images": "Idee und Bilder werden gesendet...",
+    "idea-images-remove-label": "Bild entfernen"
 }

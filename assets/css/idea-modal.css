@@ -382,6 +382,12 @@
   transform: translateY(-1px);
 }
 
+.idea-upload.is-dragover {
+  border-color: var(--accent);
+  background: rgba(111, 211, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(111, 211, 255, 0.08);
+}
+
 .idea-upload__title {
   font-size: 0.88rem;
   font-weight: 600;
@@ -438,6 +444,30 @@
   flex-shrink: 0;
   color: var(--text-muted);
   font-size: 0.78rem;
+}
+
+.idea-upload__remove {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color var(--ease), background var(--ease), color var(--ease), transform var(--ease);
+}
+
+.idea-upload__remove:hover,
+.idea-upload__remove:focus-visible {
+  border-color: rgba(255, 157, 157, 0.85);
+  background: rgba(255, 157, 157, 0.08);
+  color: #ffb4b4;
+  transform: scale(1.03);
+  outline: none;
 }
 
 .idea-form__error {
